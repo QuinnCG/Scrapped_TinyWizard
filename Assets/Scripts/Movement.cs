@@ -64,7 +64,7 @@ namespace Quinn
 				dir.Normalize();
 
 				_velocitySum += dir * MoveSpeed;
-				_wasMovingLastFrame = true;
+				_wasMovingLastFrame = dir.sqrMagnitude > 0f;
 
 				if (dir.sqrMagnitude > 0f)
 				{

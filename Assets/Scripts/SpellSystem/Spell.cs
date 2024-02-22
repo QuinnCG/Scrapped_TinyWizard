@@ -5,8 +5,7 @@ namespace Quinn.SpellSystem
 {
 	public abstract class Spell : MonoBehaviour
 	{
-		protected ICaster Caster { get; private set; }
-		protected GameObject CasterGameObject { get; private set; }
+		protected SpellCaster Caster { get; private set; }
 
 		private Damage _casterDamage;
 
@@ -15,11 +14,10 @@ namespace Quinn.SpellSystem
 			OnUpdate();
 		}
 
-		public void Cast(ICaster caster)
+		public void Cast(SpellCaster caster)
 		{
 			Caster = caster;
-			CasterGameObject = (caster as MonoBehaviour).gameObject;
-			_casterDamage = CasterGameObject.GetComponent<Damage>();
+			_casterDamage = caster.GetComponent<Damage>();
 
 			OnCast();
 		}
@@ -45,8 +43,10 @@ namespace Quinn.SpellSystem
 			return false;
 		}
 
-		protected abstract void OnCast();
-		protected abstract void OnUpdate();
-		protected abstract void OnHit(GameObject hit);
+		public virtual void OnCasterDeath() { }
+
+		protected virtual void OnCast() { }
+		protected virtual void OnUpdate() { }
+		protected virtual void OnHit(GameObject hit) { }
 	}
 }

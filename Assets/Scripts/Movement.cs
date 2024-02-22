@@ -72,7 +72,7 @@ namespace Quinn
 
 					if (dir.x != 0f)
 					{
-						transform.localScale = new Vector3(1f, Mathf.Sign(dir.x), 1f);
+						transform.localScale = new Vector3(Mathf.Sign(dir.x), 1f, 1f);
 					}
 				}
 			}

@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 1663543865695874092}
   - component: {fileID: 4649226225175434076}
   - component: {fileID: 2877922967651762990}
+  - component: {fileID: 2960003836992930123}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -303,3 +304,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2960003836992930123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294514811228691265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfba7b9fbd914143bb97cf4c2e9ed55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MoveSpeed>k__BackingField: 5
+  DashSpeed: 12
+  DashDuration: 0.2

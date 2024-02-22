@@ -1,0 +1,92 @@
+using System;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace Quinn
+{
+	[RequireComponent(typeof(Rigidbody2D))]
+	public class Movement : MonoBehaviour
+	{
+		[field: SerializeField]
+		public float MoveSpeed { get; set; } = 5f;
+
+		[SerializeField]
+		private float DashSpeed = 12f;
+
+		[SerializeField]
+		private float DashDuration = 0.2f;
+
+		public bool IsMoving { get; private set; }
+		public bool IsDashing { get; private set; }
+
+		public Vector2 FacingDirection { get; private set; } = Vector2.right;
+
+		public event Action OnDashStart, OnDashEnd;
+
+		private Rigidbody2D _rb;
+
+		private Vector2 _velocitySum;
+		private bool _wasMovingLastFrame;
+		private float _dashEndTime;
+
+		private void Awake()
+		{
+			_rb = GetComponent<Rigidbody2D>();
+		}
+
+		private void Update()
+		{
+			if (IsDashing)
+			{
+				_velocitySum += DashSpeed * FacingDirection;
+
+				if (Time.time > _dashEndTime)
+				{
+					IsDashing = false;
+					OnDashEnd?.Invoke();
+				}
+			}
+		}
+
+		private void LateUpdate()
+		{
+			_rb.velocity = _velocitySum;
+			_velocitySum = Vector2.zero;
+
+			IsMoving = _wasMovingLastFrame;
+			_wasMovingLastFrame = false;
+		}
+
+		public void Move(Vector2 dir)
+		{
+			if (!IsDashing)
+			{
+				dir.Normalize();
+
+				_velocitySum += dir * MoveSpeed;
+				_wasMovingLastFrame = true;
+
+				if (dir.sqrMagnitude > 0f)
+				{
+					FacingDirection = dir;
+
+					if (dir.x != 0f)
+					{
+						transform.localScale = new Vector3(1f, Mathf.Sign(dir.x), 1f);
+					}
+				}
+			}
+		}
+
+		public void Dash()
+		{
+			if (!IsDashing)
+			{
+				IsDashing = true;
+
+				_dashEndTime = Time.time + DashDuration;
+				OnDashStart?.Invoke();
+			}
+		}
+	}
+}

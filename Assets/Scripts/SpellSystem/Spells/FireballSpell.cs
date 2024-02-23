@@ -17,10 +17,10 @@ namespace Quinn.SpellSystem.Spells
 		[SerializeField]
 		private float HitRadius = 0.5f;
 
-		protected override void OnCast(float charge)
+		protected override void OnCast(float charge, Vector2 target)
 		{
 			Vector2 pos = Caster.SpellOrigin.position;
-			Vector2 dir = Vector2.zero; // TODO: Crosshair system.
+			Vector2 dir = (target - (Vector2)transform.position).normalized;
 			var info = new MissileInfo()
 			{
 				Speed = Speed,

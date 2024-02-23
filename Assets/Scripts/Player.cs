@@ -20,6 +20,9 @@ namespace Quinn
 			_animator = GetComponent<Animator>();
 			_movement = GetComponent<Movement>();
 			_caster = GetComponent<SpellCaster>();
+
+			Cursor.lockState = CursorLockMode.Confined;
+			Cursor.visible = false;
 		}
 
 		private void Update()
@@ -58,7 +61,8 @@ namespace Quinn
 			}
 			else if (Input.GetMouseButtonUp(0))
 			{
-				_caster.ReleaseCharge(EquippedSpell);
+				Vector2 target = Crosshair.Instance.Position;
+				_caster.ReleaseCharge(EquippedSpell, target);
 			}
 		}
 	}

@@ -53,7 +53,7 @@ namespace Quinn.SpellSystem
 			}
 		}
 
-		public void ReleaseCharge(GameObject spell)
+		public void ReleaseCharge(GameObject spell, Vector2 target)
 		{
 			if (IsCharging)
 			{
@@ -62,7 +62,7 @@ namespace Quinn.SpellSystem
 				float max = spell.GetComponent<Spell>().MaxCharge;
 				if (Charge > max)
 				{
-					CastSpell(spell);
+					CastSpell(spell, target);
 				}
 
 				Charge = 0f;
@@ -78,13 +78,13 @@ namespace Quinn.SpellSystem
 			}
 		}
 
-		public void CastSpell(GameObject spell)
+		public void CastSpell(GameObject spell, Vector2 target)
 		{
 			var instance = Instantiate(spell, transform);
 			var s = instance.GetComponent<Spell>();
 			_spells.Add(s);
 
-			s.Cast(this, Charge);
+			s.Cast(this, Charge, target);
 		}
 	}
 }

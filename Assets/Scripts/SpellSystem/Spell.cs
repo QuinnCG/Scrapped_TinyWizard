@@ -36,12 +36,12 @@ namespace Quinn.SpellSystem
 			return Mathf.Abs(charge - MaxOvercharge) < BufferCharge;
 		}
 
-		public void Cast(SpellCaster caster, float charge)
+		public void Cast(SpellCaster caster, float charge, Vector2 target)
 		{
 			Caster = caster;
 			_casterDamage = caster.GetComponent<Damage>();
 
-			OnCast(charge);
+			OnCast(charge, target);
 		}
 
 		protected Missile SpawnMissile(Vector2 position, Vector2 dir, MissileInfo info, GameObject attached = null)
@@ -75,7 +75,7 @@ namespace Quinn.SpellSystem
 
 		public virtual void OnCasterDeath() { }
 
-		protected virtual void OnCast(float charge) { }
+		protected virtual void OnCast(float charge, Vector2 target) { }
 		protected virtual void OnUpdate() { }
 	}
 }

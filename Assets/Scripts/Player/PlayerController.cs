@@ -3,39 +3,39 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
-namespace Quinn
+namespace Quinn.Player
 {
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(SpellCaster))]
-	public class Player : MonoBehaviour
+	public class PlayerController : MonoBehaviour
 	{
-		[field: SerializeField]
+		[SerializeField, BoxGroup("Movement")]
+		private float DashCooldown = 0.2f;
+
+		[field: SerializeField, BoxGroup("Spell")]
 		public GameObject EquippedSpellPrefab { get; private set; }
 
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("Spell")]
 		private Transform Staff;
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Spell")]
 		private float StaffOffset = 0.5f;
 
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("Spell")]
 		private Transform StaffOrigin;
 
-		[SerializeField, FoldoutGroup("StaffColors")]
+		[SerializeField, FoldoutGroup("Spell/StaffColors")]
 		private Color Fire, Water, Earth, Lightning, Holy, Nature, Dark;
 
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("Spell")]
 		private SpriteRenderer StaffRenderer;
 
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("Camera")]
 		private Transform CameraTarget;
 
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("Camera")]
 		private float CameraCrosshairBias = 0.2f;
-
-		[SerializeField]
-		private float DashCooldown = 0.2f;
 
 		private Animator _animator;
 		private Movement _movement;

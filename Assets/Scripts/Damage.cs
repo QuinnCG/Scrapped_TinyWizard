@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
@@ -8,16 +9,16 @@ namespace Quinn
 		[field: SerializeField]
 		public Team Team { get; private set; }
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Elemental")]
 		private ElementType Resistances;
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Elemental")]
 		private ElementType Weaknesses;
 
-		[SerializeField]
+		[Space, SerializeField, BoxGroup("Elemental")]
 		private float ResistanceDamageFactor = 0.75f;
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Elemental")]
 		private float WeaknessDamageFactor = 1.5f;
 
 		public event Action<DamageInfo, DamageEfficiencyType> OnDamaged;

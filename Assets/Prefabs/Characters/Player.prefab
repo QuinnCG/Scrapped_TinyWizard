@@ -153,6 +153,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.444
       objectReference: {fileID: 0}
+    - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DashSpeed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: <DashDuration>k__BackingField
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4589214804294652599, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -267,6 +275,7 @@ MonoBehaviour:
   StaffRenderer: {fileID: 7792355094613511073}
   CameraTarget: {fileID: 672410304654386847}
   CameraCrosshairBias: 0.1
+  DashCooldown: 0.3
 --- !u!114 &3339170963623325113
 MonoBehaviour:
   m_ObjectHideFlags: 0

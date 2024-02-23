@@ -13,8 +13,8 @@ namespace Quinn
 		[SerializeField]
 		private float DashSpeed = 12f;
 
-		[SerializeField]
-		private float DashDuration = 0.2f;
+		[field: SerializeField]
+		public float DashDuration { get; private set; } = 0.2f;
 
 		public bool IsMoving { get; private set; }
 		public bool IsDashing { get; private set; }

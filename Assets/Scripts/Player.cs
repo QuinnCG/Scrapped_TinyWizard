@@ -34,12 +34,17 @@ namespace Quinn
 		[SerializeField, Required]
 		private float CameraCrosshairBias = 0.2f;
 
+		[SerializeField]
+		private float DashCooldown = 0.2f;
+
 		private Animator _animator;
 		private Movement _movement;
 		private SpellCaster _caster;
 
 		private Spell _equippedSpell;
 		private Material _staffMat;
+
+		private float _nextDashTime;
 
 		private void Awake()
 		{
@@ -81,8 +86,11 @@ namespace Quinn
 
 		private void DashUpdate()
 		{
-			if (Input.GetKeyDown(KeyCode.Space))
+			if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextDashTime)
 			{
+				_nextDashTime = Time.time + _movement.DashDuration + DashCooldown;
+				_caster.CancelCharge();
+
 				_movement.Dash();
 				_animator.SetTrigger("Dash");
 			}

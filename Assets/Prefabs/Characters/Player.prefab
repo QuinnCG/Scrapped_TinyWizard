@@ -155,7 +155,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: DashSpeed
-      value: 14
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: <MoveSpeed>k__BackingField
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <DashDuration>k__BackingField

@@ -136,6 +136,9 @@ namespace Quinn
 			Vector2 dirToCrosshair = (crosshairPos - staffOrigin).normalized;
 
 			Staff.position = staffOrigin + (dirToCrosshair * StaffOffset);
+
+			bool toTheLeft = Staff.position.x < transform.position.x;
+			Staff.localScale = new Vector3(toTheLeft ? -1f : 1f, 1f, 1f);
 		}
 
 		private void CameraTargetUpdate()

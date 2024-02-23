@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 4418497010026034992}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,6 +223,14 @@ MonoBehaviour:
   Staff: {fileID: 7796643680482403220}
   StaffOffset: 0.3
   StaffOrigin: {fileID: 3118102807043325839}
+  Fire: {r: 1, g: 0.30784342, b: 0, a: 1}
+  Water: {r: 0, g: 0.7967129, b: 1, a: 1}
+  Earth: {r: 0.3433962, g: 0.26975748, b: 0.24037732, a: 1}
+  Lightning: {r: 1, g: 0.86824596, b: 0, a: 1}
+  Holy: {r: 1, g: 0.96556497, b: 0.76037735, a: 1}
+  Nature: {r: 0.19312914, g: 0.6603774, b: 0.27963933, a: 1}
+  Dark: {r: 0.16345255, g: 0.10301882, b: 0.3433962, a: 1}
+  StaffRenderer: {fileID: 7792355094613511073}
 --- !u!114 &3339170963623325113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +324,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 1603b75a99a96774282565ca3d915e0c, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

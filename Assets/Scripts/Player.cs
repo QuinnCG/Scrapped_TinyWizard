@@ -22,15 +22,23 @@ namespace Quinn
 		[SerializeField, Required]
 		private Transform StaffOrigin;
 
+		[SerializeField, FoldoutGroup("StaffColors")]
+		private Color Fire, Water, Earth, Lightning, Holy, Nature, Dark;
+
+		[SerializeField, Required]
+		private SpriteRenderer StaffRenderer;
+
 		private Animator _animator;
 		private Movement _movement;
 		private SpellCaster _caster;
 
 		private Spell _equippedSpell;
+		private Material _staffMat;
 
 		private void Awake()
 		{
-			_equippedSpell = EquippedSpellPrefab.GetComponent<Spell>();
+			_staffMat = StaffRenderer.material;
+			EquipSpell(EquippedSpellPrefab);
 
 			_animator = GetComponent<Animator>();
 			_movement = GetComponent<Movement>();
@@ -113,6 +121,23 @@ namespace Quinn
 			Vector2 dirToCrosshair = (crosshairPos - staffOrigin).normalized;
 
 			Staff.position = staffOrigin + (dirToCrosshair * StaffOffset);
+		}
+
+		private void EquipSpell(GameObject spellPrefab)
+		{
+			_equippedSpell = spellPrefab.GetComponent<Spell>();
+			_staffMat.SetColor("_Color", _equippedSpell.Element switch
+			{
+				ElementType.Fire => Fire,
+				ElementType.Water => Water,
+				ElementType.Earth => Earth,
+				ElementType.Lightning => Lightning,
+				ElementType.Holy => Holy,
+				ElementType.Nature => Nature,
+				ElementType.Dark => Dark,
+
+				_ => throw new NotImplementedException($"The element {_equippedSpell.Element} is not implemented!")
+			});
 		}
 	}
 }

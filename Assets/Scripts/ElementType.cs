@@ -10,6 +10,7 @@ namespace Quinn
 		Earth = 4,
 		Lightning = 8,
 		Holy = 16,
-		Nature = 32
+		Nature = 32,
+		Dark = 64
 	}
 }

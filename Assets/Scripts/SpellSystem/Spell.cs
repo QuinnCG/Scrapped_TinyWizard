@@ -20,6 +20,9 @@ namespace Quinn.SpellSystem
 		[field: SerializeField, Tooltip("Low means more accurate.")]
 		public float TargetRadius { get; private set; } = 0.2f;
 
+		[field: SerializeField]
+		public ElementType Element { get; private set; }
+
 		protected SpellCaster Caster { get; private set; }
 
 		private Damage _casterDamage;

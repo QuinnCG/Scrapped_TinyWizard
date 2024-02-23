@@ -8,7 +8,19 @@ namespace Quinn
 		[field: SerializeField]
 		public Team Team { get; private set; }
 
-		public event Action<DamageInfo> OnDamaged;
+		[SerializeField]
+		private ElementType Resistances;
+
+		[SerializeField]
+		private ElementType Weaknesses;
+
+		[SerializeField]
+		private float ResistanceDamageFactor = 0.75f;
+
+		[SerializeField]
+		private float WeaknessDamageFactor = 1.5f;
+
+		public event Action<DamageInfo, DamageEfficiencyType> OnDamaged;
 
 		public bool CanTakeDamage(Team source)
 		{
@@ -22,8 +34,30 @@ namespace Quinn
 				return false;
 			}
 
-			OnDamaged?.Invoke(info);
+			var efficiencyType = ModifyDamage(info);
+			OnDamaged?.Invoke(info, efficiencyType);
+
 			return true;
+		}
+
+		private DamageEfficiencyType ModifyDamage(DamageInfo info)
+		{
+			float modifier = 1f;
+			var efficiencyType = DamageEfficiencyType.Normal;
+
+			if ((info.Element | Resistances) > 0)
+			{
+				modifier += ResistanceDamageFactor;
+				efficiencyType = DamageEfficiencyType.Resistant;
+			}
+			else if ((info.Element | Weaknesses) > 0)
+			{
+				modifier += WeaknessDamageFactor;
+				efficiencyType = DamageEfficiencyType.Weak;
+			}
+
+			info.Damage *= modifier;
+			return efficiencyType;
 		}
 	}
 }

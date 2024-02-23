@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Team>k__BackingField: 2
+  Resistances: 0
+  Weaknesses: 0
 --- !u!4 &7796643680482403220 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2549248465452154988, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}

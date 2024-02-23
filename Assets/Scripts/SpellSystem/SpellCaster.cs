@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quinn.SpellSystem
 {
+	[RequireComponent(typeof(Damage))]
 	public class SpellCaster : MonoBehaviour
 	{
 		[SerializeField]
 		private float ChargeRate = 50f;
 
+		[field: SerializeField, Required]
+		public Transform SpellOrigin { get; private set; }
+
+		public Damage Damage { get; private set; }
 		public bool IsCharging { get; private set; }
 		public float Charge { get; private set; }
 
@@ -16,6 +22,11 @@ namespace Quinn.SpellSystem
 		public event Action<float> OnReleaseCharge, OnCancelCharge;
 
 		private readonly List<Spell> _spells = new();
+
+		private void Awake()
+		{
+			Damage = GetComponent<Damage>();
+		}
 
 		private void Update()
 		{
@@ -38,6 +49,7 @@ namespace Quinn.SpellSystem
 			if (!IsCharging)
 			{
 				IsCharging = true;
+				OnBeginCharge?.Invoke();
 			}
 		}
 

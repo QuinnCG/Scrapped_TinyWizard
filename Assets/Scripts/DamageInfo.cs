@@ -5,13 +5,11 @@
 	{
 		public float Damage;
 		public Damage Source;
-		public Team Team;
 
-		public DamageInfo(float damage, Damage source, Team team)
+		public DamageInfo(float damage, Damage source)
 		{
 			Damage = damage;
 			Source = source;
-			Team = team;
 		}
 	}
 }

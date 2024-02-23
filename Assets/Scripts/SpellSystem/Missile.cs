@@ -3,36 +3,51 @@ using UnityEngine;
 
 namespace Quinn.SpellSystem
 {
-	[RequireComponent(typeof(Collider2D))]
+	[RequireComponent(typeof(CircleCollider2D))]
 	[RequireComponent(typeof(Rigidbody2D))]
 	public class Missile : MonoBehaviour
 	{
-		public event Action<GameObject> OnHit;
+		public GameObject Attached { get; set; }
 
-		private Rigidbody2D _rb;
+		public event Action<GameObject> OnHit;
+		public event Action OnDestroyed;
+
+		public Rigidbody2D Rigidbody { get; private set; }
 
 		private Vector2 _dir;
 		private MissileInfo _info;
 
 		private void Awake()
 		{
-			_rb = GetComponent<Rigidbody2D>();
+			Rigidbody = GetComponent<Rigidbody2D>();
 		}
 
 		private void Update()
 		{
-			_rb.velocity = _dir * _info.Speed;
+			Rigidbody.velocity = _dir * _info.Speed;
 		}
 
-		private void OnTriggerEnter2D(Collider2D collision)
+		protected virtual void OnTriggerEnter2D(Collider2D collision)
 		{
 			OnHit?.Invoke(collision.gameObject);
+		}
+
+		protected virtual void OnDestroy()
+		{
+			OnDestroyed?.Invoke();
+
+			if (Attached)
+			{
+				Attached.transform.parent = null;
+			}
 		}
 
 		public void Launch(Vector2 dir, MissileInfo info)
 		{
 			_dir = dir.normalized;
 			_info = info;
+
+			GetComponent<CircleCollider2D>().radius = info.HitRadius;
 		}
 	}
 }

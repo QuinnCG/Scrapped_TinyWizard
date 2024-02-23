@@ -50,20 +50,22 @@ namespace Quinn.SpellSystem
 			var instance = Addressables.InstantiateAsync(key, position, Quaternion.identity)
 				.WaitForCompletion();
 
+			var missile = instance.GetComponent<Missile>();
+
 			if (attached != null)
 			{
-				Instantiate(attached, instance.transform);
+				var a = Instantiate(attached, instance.transform);
+				missile.Attached = a;
 			}
 
-			var missile = instance.GetComponent<Missile>();
 			missile.Launch(dir, info);
 
 			return missile;
 		}
 
-		protected bool CanDamage(GameObject gameObject)
+		protected bool CanDamage(GameObject gameObject, out Damage damage)
 		{
-			if (gameObject.TryGetComponent(out Damage damage))
+			if (gameObject.TryGetComponent(out damage))
 			{
 				return damage.CanTakeDamage(_casterDamage.Team);
 			}

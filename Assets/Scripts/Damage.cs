@@ -17,7 +17,7 @@ namespace Quinn
 
 		public bool TakeDamage(DamageInfo info)
 		{
-			if (!CanTakeDamage(info.Team))
+			if (!CanTakeDamage(info.Source.Team))
 			{
 				return false;
 			}

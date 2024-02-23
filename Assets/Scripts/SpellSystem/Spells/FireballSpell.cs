@@ -8,19 +8,40 @@ namespace Quinn.SpellSystem.Spells
 		[SerializeField, Required]
 		private GameObject MissileFX;
 
+		[SerializeField]
+		private float Speed = 10f;
+
+		[SerializeField]
+		private float Damage = 16f;
+
+		[SerializeField]
+		private float HitRadius = 0.5f;
+
 		protected override void OnCast(float charge)
 		{
-			
+			Vector2 pos = Caster.SpellOrigin.position;
+			Vector2 dir = Vector2.zero; // TODO: Crosshair system.
+			var info = new MissileInfo()
+			{
+				Speed = Speed,
+				HitRadius = HitRadius
+			};
+
+			var missile = SpawnMissile(pos, dir, info, MissileFX);
+			missile.OnHit += hit => OnHit(missile, hit);
+			missile.OnDestroyed += () =>
+			{
+				Destroy(missile.Attached, 2f);
+			};
 		}
 
-		protected override void OnUpdate()
+		private void OnHit(Missile missile, GameObject hit)
 		{
-			
-		}
-
-		public override void OnCasterDeath()
-		{
-			
+			if (CanDamage(hit, out var damage))
+			{
+				damage.TakeDamage(new DamageInfo(Damage, Caster.Damage));
+				Destroy(missile.gameObject);
+			}
 		}
 	}
 }

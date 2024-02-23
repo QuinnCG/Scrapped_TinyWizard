@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxCharge>k__BackingField: 100
-  <CanOvercharge>k__BackingField: 1
+  <CanOvercharge>k__BackingField: 0
   <MaxOvercharge>k__BackingField: 120
+  <TargetRadius>k__BackingField: 1
   MissileFX: {fileID: 4431279572644365563, guid: 760901db8a653324e8268db64fc14b0e, type: 3}
   Speed: 10
   Damage: 16
-  HitRadius: 0.5
+  HitRadius: 0.25

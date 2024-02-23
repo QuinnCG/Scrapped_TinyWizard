@@ -49,6 +49,7 @@ namespace Quinn.SpellSystem
 			if (!IsCharging)
 			{
 				IsCharging = true;
+				Charge = 0f;
 				OnBeginCharge?.Invoke();
 			}
 		}
@@ -57,7 +58,7 @@ namespace Quinn.SpellSystem
 		{
 			if (IsCharging)
 			{
-				OnReleaseCharge?.Invoke(Charge);
+				IsCharging = false;
 
 				float max = spell.GetComponent<Spell>().MaxCharge;
 				if (Charge > max)
@@ -66,6 +67,7 @@ namespace Quinn.SpellSystem
 				}
 
 				Charge = 0f;
+				OnReleaseCharge?.Invoke(Charge);
 			}
 		}
 
@@ -73,8 +75,10 @@ namespace Quinn.SpellSystem
 		{
 			if (IsCharging)
 			{
-				OnCancelCharge?.Invoke(Charge);
+				IsCharging = false;
 				Charge = 0f;
+
+				OnCancelCharge?.Invoke(Charge);
 			}
 		}
 

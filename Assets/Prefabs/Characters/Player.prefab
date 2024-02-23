@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee63da43fe1478409d533e5a050000d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EquippedSpell>k__BackingField: {fileID: 4002628484351460420, guid: 3d0ba6c90dafa5c448386b58dc918bc5, type: 3}
+  <EquippedSpellPrefab>k__BackingField: {fileID: 4002628484351460420, guid: 3d0ba6c90dafa5c448386b58dc918bc5, type: 3}
 --- !u!114 &3339170963623325113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cf0868867b31f14aa585b7dadc0a756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChargeRate: 50
+  ChargeRate: 150
   <SpellOrigin>k__BackingField: {fileID: 3026155119094596268}
 --- !u!114 &494924743403622856
 MonoBehaviour:

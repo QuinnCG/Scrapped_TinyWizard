@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 4649226225175434076}
   - component: {fileID: 2877922967651762990}
   - component: {fileID: 2960003836992930123}
+  - component: {fileID: -6533609437074267734}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -373,4 +374,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MoveSpeed>k__BackingField: 5
   DashSpeed: 12
-  DashDuration: 0.2
+  <DashDuration>k__BackingField: 0.2
+--- !u!114 &-6533609437074267734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294514811228691265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07644939de245d948a3c162291aa2ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Team>k__BackingField: 0
+  Resistances: 0
+  Weaknesses: 0
+  ResistanceDamageFactor: 0.75
+  WeaknessDamageFactor: 1.5

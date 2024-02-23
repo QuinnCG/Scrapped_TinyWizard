@@ -1,4 +1,5 @@
 using Quinn.SpellSystem;
+using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,15 @@ namespace Quinn
 	{
 		[field: SerializeField]
 		public GameObject EquippedSpellPrefab { get; private set; }
+
+		[SerializeField, Required]
+		private Transform Staff;
+
+		[SerializeField]
+		private float StaffOffset = 0.5f;
+
+		[SerializeField, Required]
+		private Transform StaffOrigin;
 
 		private Animator _animator;
 		private Movement _movement;
@@ -38,16 +48,8 @@ namespace Quinn
 			MoveUpdate();
 			DashUpdate();
 			CastUpdate();
-
-			if (_equippedSpell)
-			{
-				Crosshair.Instance.SetAccuracy(_equippedSpell.TargetRadius);
-			}
-
-			if (_caster.IsCharging)
-			{
-				Crosshair.Instance.SetCharge(_caster.Charge / _equippedSpell.MaxCharge);
-			}
+			CrosshairChargeUpdate();
+			StaffTransformUpdate();
 		}
 
 		private void MoveUpdate()
@@ -88,6 +90,29 @@ namespace Quinn
 		private void OnStopCharge(float charge)
 		{
 			Crosshair.Instance.SetCharge(0f);
+		}
+
+		private void CrosshairChargeUpdate()
+		{
+			if (_equippedSpell)
+			{
+				Crosshair.Instance.SetAccuracy(_equippedSpell.TargetRadius);
+			}
+
+			if (_caster.IsCharging)
+			{
+				Crosshair.Instance.SetCharge(_caster.Charge / _equippedSpell.MaxCharge);
+			}
+		}
+
+		private void StaffTransformUpdate()
+		{
+			Vector2 staffOrigin = StaffOrigin.transform.position;
+
+			Vector2 crosshairPos = Crosshair.Instance.Position;
+			Vector2 dirToCrosshair = (crosshairPos - staffOrigin).normalized;
+
+			Staff.position = staffOrigin + (dirToCrosshair * StaffOffset);
 		}
 	}
 }

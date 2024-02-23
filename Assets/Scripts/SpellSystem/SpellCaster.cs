@@ -1,11 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quinn.SpellSystem
 {
 	public class SpellCaster : MonoBehaviour
 	{
+		[SerializeField]
+		private float ChargeRate = 50f;
+
+		public bool IsCharging { get; private set; }
+		public float Charge { get; private set; }
+
+		public event Action OnBeginCharge;
+		public event Action<float> OnReleaseCharge, OnCancelCharge;
+
 		private readonly List<Spell> _spells = new();
+
+		private void Update()
+		{
+			if (IsCharging)
+			{
+				Charge += ChargeRate * Time.deltaTime;
+			}
+		}
 
 		private void OnDestroy()
 		{
@@ -15,13 +33,46 @@ namespace Quinn.SpellSystem
 			}
 		}
 
-		public void CastSpell(GameObject prefab)
+		public void BeginCharge()
 		{
-			var instance = Instantiate(prefab, transform);
-			var spell = instance.GetComponent<Spell>();
-			_spells.Add(spell);
+			if (!IsCharging)
+			{
+				IsCharging = true;
+			}
+		}
 
-			spell.Cast(this);
+		public void ReleaseCharge(GameObject spell)
+		{
+			if (IsCharging)
+			{
+				OnReleaseCharge?.Invoke(Charge);
+
+				float max = spell.GetComponent<Spell>().MaxCharge;
+				if (Charge > max)
+				{
+					CastSpell(spell);
+				}
+
+				Charge = 0f;
+			}
+		}
+
+		public void CancelCharge()
+		{
+			if (IsCharging)
+			{
+				OnCancelCharge?.Invoke(Charge);
+				Charge = 0f;
+			}
+		}
+
+		public void CastSpell(GameObject spell)
+		{
+			var instance = Instantiate(spell, transform);
+			var s = instance.GetComponent<Spell>();
+			_spells.Add(s);
+
+			s.Cast(this, Charge);
 		}
 	}
 }

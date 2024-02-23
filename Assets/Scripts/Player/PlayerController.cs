@@ -10,6 +10,8 @@ namespace Quinn.Player
 	[RequireComponent(typeof(SpellCaster))]
 	public class PlayerController : MonoBehaviour
 	{
+		public static PlayerController Instance { get; private set; }
+
 		[SerializeField, BoxGroup("Movement")]
 		private float DashCooldown = 0.2f;
 
@@ -48,6 +50,8 @@ namespace Quinn.Player
 
 		private void Awake()
 		{
+			Instance = this;
+
 			_staffMat = StaffRenderer.material;
 			EquipSpell(EquippedSpellPrefab);
 

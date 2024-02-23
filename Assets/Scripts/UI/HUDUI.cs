@@ -8,6 +8,8 @@ namespace Quinn.UI
 {
 	public class HUDUI : MonoBehaviour
 	{
+		public static HUDUI Instance { get; private set; }
+
 		[SerializeField, Required, BoxGroup("Health")]
 		private Slider HealthBar;
 
@@ -18,15 +20,16 @@ namespace Quinn.UI
 		private GameObject BossContainer;
 
 		[SerializeField, Required, BoxGroup("Boss")]
-		private Slider BossBar;
+		private TextMeshProUGUI BossTitle;
 
 		[SerializeField, Required, BoxGroup("Boss")]
-		private TextMeshProUGUI BossTitle;
+		private Slider BossBar;
 
 		private Health _bossHealth;
 
 		private void Awake()
 		{
+			Instance = this;
 			BossContainer.SetActive(false);
 		}
 

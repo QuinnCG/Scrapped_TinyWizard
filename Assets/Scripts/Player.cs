@@ -1,4 +1,5 @@
 using Quinn.SpellSystem;
+using System;
 using UnityEngine;
 
 namespace Quinn
@@ -9,17 +10,24 @@ namespace Quinn
 	public class Player : MonoBehaviour
 	{
 		[field: SerializeField]
-		public GameObject EquippedSpell { get; private set; }
+		public GameObject EquippedSpellPrefab { get; private set; }
 
 		private Animator _animator;
 		private Movement _movement;
 		private SpellCaster _caster;
 
+		private Spell _equippedSpell;
+
 		private void Awake()
 		{
+			_equippedSpell = EquippedSpellPrefab.GetComponent<Spell>();
+
 			_animator = GetComponent<Animator>();
 			_movement = GetComponent<Movement>();
 			_caster = GetComponent<SpellCaster>();
+
+			_caster.OnReleaseCharge += OnStopCharge;
+			_caster.OnCancelCharge += OnStopCharge;
 
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
@@ -30,6 +38,16 @@ namespace Quinn
 			MoveUpdate();
 			DashUpdate();
 			CastUpdate();
+
+			if (_equippedSpell)
+			{
+				Crosshair.Instance.SetAccuracy(_equippedSpell.TargetRadius);
+			}
+
+			if (_caster.IsCharging)
+			{
+				Crosshair.Instance.SetCharge(_caster.Charge / _equippedSpell.MaxCharge);
+			}
 		}
 
 		private void MoveUpdate()
@@ -59,11 +77,17 @@ namespace Quinn
 			{
 				_caster.BeginCharge();
 			}
-			else if (Input.GetMouseButtonUp(0))
+
+			if (Input.GetMouseButtonUp(0))
 			{
 				Vector2 target = Crosshair.Instance.Position;
-				_caster.ReleaseCharge(EquippedSpell, target);
+				_caster.ReleaseCharge(EquippedSpellPrefab, target);
 			}
+		}
+
+		private void OnStopCharge(float charge)
+		{
+			Crosshair.Instance.SetCharge(0f);
 		}
 	}
 }

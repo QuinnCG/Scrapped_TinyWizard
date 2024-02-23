@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3756023628310089644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672410304654386847}
+  m_Layer: 6
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672410304654386847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3756023628310089644}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6360659045008527316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4418497010026034992
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,6 +184,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1663543865695874092, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 672410304654386847}
     - targetCorrespondingSourceObject: {fileID: 2549248465452154988, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3026155119094596268}
@@ -231,6 +265,8 @@ MonoBehaviour:
   Nature: {r: 0.19312914, g: 0.6603774, b: 0.27963933, a: 1}
   Dark: {r: 0.16345255, g: 0.10301882, b: 0.3433962, a: 1}
   StaffRenderer: {fileID: 7792355094613511073}
+  CameraTarget: {fileID: 672410304654386847}
+  CameraCrosshairBias: 0.1
 --- !u!114 &3339170963623325113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +314,11 @@ MonoBehaviour:
 --- !u!4 &3693783694292595910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8940055740882507582, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+  m_PrefabInstance: {fileID: 5716055183282070520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6360659045008527316 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1663543865695874092, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
   m_PrefabInstance: {fileID: 5716055183282070520}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6635234765175491251 stripped

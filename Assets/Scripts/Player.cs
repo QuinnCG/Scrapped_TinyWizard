@@ -28,6 +28,12 @@ namespace Quinn
 		[SerializeField, Required]
 		private SpriteRenderer StaffRenderer;
 
+		[SerializeField, Required]
+		private Transform CameraTarget;
+
+		[SerializeField, Required]
+		private float CameraCrosshairBias = 0.2f;
+
 		private Animator _animator;
 		private Movement _movement;
 		private SpellCaster _caster;
@@ -58,6 +64,7 @@ namespace Quinn
 			CastUpdate();
 			CrosshairChargeUpdate();
 			StaffTransformUpdate();
+			CameraTargetUpdate();
 		}
 
 		private void MoveUpdate()
@@ -121,6 +128,15 @@ namespace Quinn
 			Vector2 dirToCrosshair = (crosshairPos - staffOrigin).normalized;
 
 			Staff.position = staffOrigin + (dirToCrosshair * StaffOffset);
+		}
+
+		private void CameraTargetUpdate()
+		{
+			Vector2 a = transform.position;
+			Vector2 b = Crosshair.Instance.Position;
+
+			Vector2 target = Vector2.Lerp(a, b, CameraCrosshairBias);
+			CameraTarget.position = target;
 		}
 
 		private void EquipSpell(GameObject spellPrefab)

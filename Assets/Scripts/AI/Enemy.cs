@@ -1,6 +1,9 @@
 using DG.Tweening;
 using Quinn.Player;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace Quinn.AI
@@ -8,18 +11,18 @@ namespace Quinn.AI
 	[RequireComponent(typeof(Collider2D))]
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(Health))]
-	public class Enemy : MonoBehaviour
+	public abstract class Enemy : MonoBehaviour
 	{
 		[SerializeField]
 		private bool DisplayBossBar;
 
-		[field: SerializeField, ShowIf(nameof(DisplayBossBar))]
+		[field: SerializeField, ShowIf(nameof(DisplayBossBar)), BoxGroup("Core")]
 		public string BossBarTitle { get; private set; } = "Enemy Title";
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Core")]
 		private float PlayerSpotRadius = 8f;
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Core")]
 		private LayerMask CharacterMask;
 
 		public PlayerController Player => PlayerController.Instance;
@@ -28,14 +31,53 @@ namespace Quinn.AI
 
 		public bool IsJumping { get; private set; }
 
+		protected State ActiveState { get; private set; }
+		protected State StartState{ get; set; }
+
 		private Collider2D _collider;
 
-		private void Awake()
+		private readonly HashSet<State> _states = new();
+		private readonly Dictionary<State, List<(Func<bool> condition, State to)>> _connections = new();
+
+		protected virtual void Awake()
 		{
 			_collider = GetComponent<Collider2D>();
 		}
 
-		private void FixedUpdate()
+		protected virtual void Start()
+		{
+			TransitionTo(StartState);
+		}
+
+		protected virtual void Update()
+		{
+			if (ActiveState != null)
+			{
+				bool exitStatus = ActiveState.OnUpdate();
+
+				if (exitStatus)
+				{
+					ActiveState?.OnExit(false);
+					ActiveState = null;
+				}
+				else
+				{
+					if (_connections.TryGetValue(ActiveState, out var connections))
+					{
+						foreach (var (condition, to) in connections)
+						{
+							if (condition())
+							{
+								TransitionTo(to);
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		protected virtual void FixedUpdate()
 		{
 			if (!HasSpottedPlayer)
 			{
@@ -72,6 +114,36 @@ namespace Quinn.AI
 				tween.onKill += () => IsJumping = false;
 				tween.onComplete += () => IsJumping = false;
 			}
+		}
+
+		protected void RegisterState(State state)
+		{
+			state.Agent = this;
+			_states.Add(state);
+		}
+
+		protected void ConnectState(State from, State to, Func<bool> condition)
+		{
+			if (_connections.TryGetValue(from, out var connections))
+			{
+				connections.Add((condition, to));
+			}
+			else
+			{
+				_connections.Add(from, new() { (condition, to) });
+			}
+		}
+
+		private void TransitionTo(State state)
+		{
+			if (ActiveState != null && !ActiveState.IsInterruptable)
+			{
+				return;
+			}
+
+			ActiveState?.OnExit(true);
+			ActiveState = state;
+			ActiveState?.OnEnter();
 		}
 	}
 }

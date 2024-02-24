@@ -304,6 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChargeRate: 150
   <SpellOrigin>k__BackingField: {fileID: 3026155119094596268}
+  <BaseDamage>k__BackingField: 21
 --- !u!114 &494924743403622856
 MonoBehaviour:
   m_ObjectHideFlags: 0

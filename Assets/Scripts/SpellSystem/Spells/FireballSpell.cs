@@ -12,7 +12,7 @@ namespace Quinn.SpellSystem.Spells
 		private float Speed = 10f;
 
 		[SerializeField]
-		private float Damage = 16f;
+		private float DamageFactor = 1f;
 
 		[SerializeField]
 		private float HitRadius = 0.5f;
@@ -40,7 +40,7 @@ namespace Quinn.SpellSystem.Spells
 			if (CanDamage(hit, out var damage))
 			{
 				Vector2 dir = missile.Velocity.normalized;
-				damage.TakeDamage(new DamageInfo(Damage, dir, Caster.Damage, Element));
+				damage.TakeDamage(new DamageInfo(DamageFactor * BaseDamage, dir, Caster.Damage, Element));
 
 				Destroy(missile.gameObject);
 			}

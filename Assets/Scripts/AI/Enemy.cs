@@ -55,4 +55,6 @@ namespace Quinn.AI
 			return hit.collider == null;
 		}
 	}
+
+	// TODO: Directly code if-else AI in sub-classes, abstractions add too much complexity.
 }

@@ -14,6 +14,9 @@ namespace Quinn.SpellSystem
 		[field: SerializeField, Required]
 		public Transform SpellOrigin { get; private set; }
 
+		[field: SerializeField]
+		public float BaseDamage { get; set; } = 19f;
+
 		public Damage Damage { get; private set; }
 		public bool IsCharging { get; private set; }
 		public float Charge { get; private set; }
@@ -88,7 +91,7 @@ namespace Quinn.SpellSystem
 			var s = instance.GetComponent<Spell>();
 			_spells.Add(s);
 
-			s.Cast(this, Charge, target);
+			s.Cast(this, Charge, BaseDamage, target);
 		}
 	}
 }

@@ -24,6 +24,7 @@ namespace Quinn.SpellSystem
 		public ElementType Element { get; private set; }
 
 		protected SpellCaster Caster { get; private set; }
+		protected float BaseDamage { get; private set; }
 
 		private Damage _casterDamage;
 
@@ -42,10 +43,11 @@ namespace Quinn.SpellSystem
 			return Mathf.Abs(charge - MaxOvercharge) < BufferCharge;
 		}
 
-		public void Cast(SpellCaster caster, float charge, Vector2 target)
+		public void Cast(SpellCaster caster, float charge, float baseDamage, Vector2 target)
 		{
 			Caster = caster;
 			_casterDamage = caster.GetComponent<Damage>();
+			BaseDamage = baseDamage;
 
 			target += Random.insideUnitCircle * (TargetRadius / 2f);
 			OnCast(charge, target);

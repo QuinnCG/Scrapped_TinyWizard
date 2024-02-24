@@ -1,6 +1,6 @@
 namespace Quinn.AI.States
 {
-	public class MoveTo : State
+	public class SubFSM : State
 	{
 		
 	}

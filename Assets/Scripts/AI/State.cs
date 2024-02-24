@@ -7,6 +7,6 @@
 
 		public virtual void OnEnter() { }
 		public virtual bool OnUpdate() => false;
-		public virtual void OnExit(bool isInterruption) { }
+		public virtual void OnExit() { }
 	}
 }

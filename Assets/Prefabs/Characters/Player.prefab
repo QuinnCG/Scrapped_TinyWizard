@@ -153,6 +153,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.444
       objectReference: {fileID: 0}
+    - target: {fileID: 2877922967651762990, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: m_Mass
+      value: 0.15558822
+      objectReference: {fileID: 0}
     - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: DashSpeed
       value: 12
@@ -164,6 +168,10 @@ PrefabInstance:
     - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <DashDuration>k__BackingField
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971667891182054209, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: m_Name
+      value: Staff
       objectReference: {fileID: 0}
     - target: {fileID: 4589214804294652599, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Sprite
@@ -414,7 +422,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 1603b75a99a96774282565ca3d915e0c, type: 3}
+  - {fileID: 2100000, guid: 38af4cb83c449b14ca38c9f40968b27e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

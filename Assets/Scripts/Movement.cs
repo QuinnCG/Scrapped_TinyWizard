@@ -78,6 +78,11 @@ namespace Quinn
 			}
 		}
 
+		public void MoveTowards(Vector2 target)
+		{
+			Move(target - (Vector2)transform.position);
+		}
+
 		public void Dash()
 		{
 			if (!IsDashing)

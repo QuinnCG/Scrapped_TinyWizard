@@ -39,7 +39,9 @@ namespace Quinn.SpellSystem.Spells
 		{
 			if (CanDamage(hit, out var damage))
 			{
-				damage.TakeDamage(new DamageInfo(Damage, Caster.Damage, Element));
+				Vector2 dir = missile.Velocity.normalized;
+				damage.TakeDamage(new DamageInfo(Damage, dir, Caster.Damage, Element));
+
 				Destroy(missile.gameObject);
 			}
 		}

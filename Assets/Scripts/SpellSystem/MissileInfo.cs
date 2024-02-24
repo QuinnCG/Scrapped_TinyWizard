@@ -1,6 +1,8 @@
-﻿namespace Quinn.SpellSystem
+﻿using Unity.VisualScripting;
+
+namespace Quinn.SpellSystem
 {
-	[System.Serializable]
+	[System.Serializable, Inspectable]
 	public class MissileInfo
 	{
 		public float Speed = 10f;

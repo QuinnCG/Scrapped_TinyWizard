@@ -93,7 +93,6 @@ namespace Quinn.Player
 			if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextDashTime)
 			{
 				_nextDashTime = Time.time + _movement.DashDuration + DashCooldown;
-				_caster.CancelCharge();
 
 				_movement.Dash();
 				_animator.SetTrigger("Dash");

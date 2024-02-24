@@ -13,6 +13,7 @@ namespace Quinn.SpellSystem
 		public event Action OnDestroyed;
 
 		public Rigidbody2D Rigidbody { get; private set; }
+		public Vector2 Velocity => Rigidbody.velocity;
 
 		private Vector2 _dir;
 		private MissileInfo _info;

@@ -20,6 +20,7 @@ namespace Quinn
 		public bool IsDashing { get; private set; }
 
 		public Vector2 FacingDirection { get; private set; } = Vector2.right;
+		public Vector2 Velocity => _rb.velocity;
 
 		public event Action OnDashStart, OnDashEnd;
 

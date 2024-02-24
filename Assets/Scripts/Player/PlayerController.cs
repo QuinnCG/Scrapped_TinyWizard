@@ -8,6 +8,7 @@ namespace Quinn.Player
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(SpellCaster))]
+	[RequireComponent(typeof(Collider2D))]
 	public class PlayerController : MonoBehaviour
 	{
 		public static PlayerController Instance { get; private set; }
@@ -39,9 +40,13 @@ namespace Quinn.Player
 		[SerializeField, Required, BoxGroup("Camera")]
 		private float CameraCrosshairBias = 0.2f;
 
+		public Vector2 Velocity => _movement.Velocity;
+		public Vector2 Center => _collider.bounds.center;
+
 		private Animator _animator;
 		private Movement _movement;
 		private SpellCaster _caster;
+		private Collider2D _collider;
 
 		private Spell _equippedSpell;
 		private Material _staffMat;
@@ -58,6 +63,7 @@ namespace Quinn.Player
 			_animator = GetComponent<Animator>();
 			_movement = GetComponent<Movement>();
 			_caster = GetComponent<SpellCaster>();
+			_collider = GetComponent<Collider2D>();
 
 			_caster.OnReleaseCharge += OnStopCharge;
 			_caster.OnCancelCharge += OnStopCharge;

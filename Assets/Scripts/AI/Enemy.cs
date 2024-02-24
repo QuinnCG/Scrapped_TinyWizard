@@ -21,17 +21,24 @@ namespace Quinn.AI
 		[SerializeField, BoxGroup("Core")]
 		private float PlayerSpotRadius = 8f;
 
-		public PlayerController Player => PlayerController.Instance;
-		public Vector2 PlayerPosition => Player.transform.position;
-		public bool HasSpottedPlayer { get; set; }
-
 		public bool IsJumping { get; private set; }
 
+		protected PlayerController Player => PlayerController.Instance;
+		protected Vector2 PlayerPos => Player.transform.position;
+		protected Vector2 PlayerCenter => Player.Center;
+		protected Vector2 PlayerVel => Player.Velocity;
+
+		protected float HealthPercent => _health.Percent;
+		protected float Health => _health.Current;
+		protected float MaxHealth => _health.Max;
+
 		private Collider2D _collider;
+		private Health _health;
 
 		private void Awake()
 		{
 			_collider = GetComponent<Collider2D>();
+			_health = GetComponent<Health>();
 		}
 
 		protected void JumpTo(Vector2 position, float height, float speed)
@@ -55,6 +62,4 @@ namespace Quinn.AI
 			return hit.collider == null;
 		}
 	}
-
-	// TODO: Directly code if-else AI in sub-classes, abstractions add too much complexity.
 }

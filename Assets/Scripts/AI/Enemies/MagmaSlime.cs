@@ -1,6 +1,6 @@
 namespace Quinn.AI.Enemies
 {
-	public class MagmaSlime : Enemy
+	public class MagmaSlime : BasicEnemy
 	{
 
 	}

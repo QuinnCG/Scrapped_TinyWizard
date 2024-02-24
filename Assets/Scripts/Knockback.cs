@@ -12,13 +12,13 @@ namespace Quinn
 		public const float BaseSpellDamage = 20f;
 
 		// When the knockback velocity reaches this threshold, cancel the knockback.
-		public const float VelocityEndTheshold = 0.1f;
+		public const float VelocityEndTheshold = 0.5f;
 
 		[SerializeField]
 		private float BaseSpeed = 8f;
 
 		[SerializeField]
-		private float DecayRate = 1f;
+		private float DecayRate = 16f;
 
 		[Space, SerializeField]
 		private bool UseCustomMass;
@@ -30,7 +30,8 @@ namespace Quinn
 
 		private float _mass;
 		private bool _shouldKnockback;
-		private Vector2 _knockbackVel;
+		private Vector2 _knockbacDir;
+		private float _knockbackSpeed;
 
 		private void Awake()
 		{
@@ -45,14 +46,14 @@ namespace Quinn
 		{
 			if (_shouldKnockback)
 			{
-				if (_knockbackVel.sqrMagnitude < VelocityEndTheshold)
+				if (_knockbackSpeed <= VelocityEndTheshold)
 				{
 					_shouldKnockback = false;
 					return;
 				}
 
-				_movement.AddVelocity(_knockbackVel);
-				_knockbackVel -= DecayRate * Time.deltaTime * Vector2.one;
+				_movement.AddVelocity(_knockbacDir * _knockbackSpeed);
+				_knockbackSpeed -= DecayRate * Time.deltaTime;
 			}
 		}
 
@@ -62,11 +63,8 @@ namespace Quinn
 			{
 				_shouldKnockback = true;
 
-				Vector2 dir = info.Direction.normalized;
-				float speed = BaseSpeed / _mass;
-				speed *= info.Damage / BaseSpellDamage;
-
-				_knockbackVel = dir * speed;
+				_knockbacDir = info.Direction.normalized;
+				_knockbackSpeed = BaseSpeed / _mass;
 			}
 		}
 	}

@@ -83,6 +83,11 @@ namespace Quinn
 			Move(target - (Vector2)transform.position);
 		}
 
+		public void AddVelocity(Vector2 velocity)
+		{
+			_velocitySum += velocity;
+		}
+
 		public void Dash()
 		{
 			if (!IsDashing)

@@ -27,6 +27,10 @@ namespace Quinn
 		{
 			return Team != source;
 		}
+		public bool CanTakeDamage(Damage source)
+		{
+			return Team != source.Team;
+		}
 
 		public bool TakeDamage(DamageInfo info)
 		{
@@ -46,12 +50,12 @@ namespace Quinn
 			float modifier = 1f;
 			var efficiencyType = DamageEfficiencyType.Normal;
 
-			if ((info.Element | Resistances) > 0)
+			if ((info.Element & Resistances) > 0)
 			{
 				modifier += ResistanceDamageFactor;
 				efficiencyType = DamageEfficiencyType.Resistant;
 			}
-			else if ((info.Element | Weaknesses) > 0)
+			else if ((info.Element & Weaknesses) > 0)
 			{
 				modifier += WeaknessDamageFactor;
 				efficiencyType = DamageEfficiencyType.Weak;

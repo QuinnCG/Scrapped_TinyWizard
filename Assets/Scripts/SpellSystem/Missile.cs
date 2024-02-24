@@ -8,6 +8,7 @@ namespace Quinn.SpellSystem
 	public class Missile : MonoBehaviour
 	{
 		public GameObject Attached { get; set; }
+		public float Lifespan { get; set; } = 10f;
 
 		public event Action<GameObject> OnHit;
 		public event Action OnDestroyed;
@@ -49,6 +50,11 @@ namespace Quinn.SpellSystem
 			_info = info;
 
 			GetComponent<CircleCollider2D>().radius = info.HitRadius;
+
+			if (Lifespan > 0f)
+			{
+				Destroy(gameObject, Lifespan);
+			}
 		}
 	}
 }

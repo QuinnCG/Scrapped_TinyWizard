@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DashCooldown: 0.3
-  <EquippedSpellPrefab>k__BackingField: {fileID: 4002628484351460420, guid: 3d0ba6c90dafa5c448386b58dc918bc5, type: 3}
+  <EquippedSpellPrefab>k__BackingField: {fileID: 4002628484351460420, guid: 655c955d43efe72418c5702c9a1e3e5e, type: 3}
   Staff: {fileID: 7796643680482403220}
   StaffOffset: 0.3
   StaffOrigin: {fileID: 3118102807043325839}

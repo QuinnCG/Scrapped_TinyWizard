@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 2877922967651762990}
   - component: {fileID: 2960003836992930123}
   - component: {fileID: -6533609437074267734}
+  - component: {fileID: 7784007720123368604}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -370,8 +371,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 0.78549814
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -418,3 +419,19 @@ MonoBehaviour:
   Weaknesses: 0
   ResistanceDamageFactor: 0.75
   WeaknessDamageFactor: 1.5
+--- !u!114 &7784007720123368604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294514811228691265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c053aae07acc4e4cbf15cb2e4eee79e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseCustomMass: 0
+  Mass: 1
+  BaseSpeed: 8
+  DecayRate: 1

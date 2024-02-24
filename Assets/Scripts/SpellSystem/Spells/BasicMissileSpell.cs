@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Quinn.SpellSystem.Spells
 {
-	public class FireballSpell : Spell
+	public class BasicMissileSpell : Spell
 	{
 		[SerializeField, Required]
 		private GameObject MissileFX;
@@ -42,6 +42,7 @@ namespace Quinn.SpellSystem.Spells
 				Vector2 dir = missile.Velocity.normalized;
 				damage.TakeDamage(new DamageInfo(DamageFactor * BaseDamage, dir, Caster.Damage, Element));
 
+				Destroy(missile.Attached, 0f);
 				Destroy(missile.gameObject);
 			}
 		}

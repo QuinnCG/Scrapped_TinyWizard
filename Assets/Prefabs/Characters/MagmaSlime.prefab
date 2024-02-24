@@ -129,11 +129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.2593765
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.5173637
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.z
@@ -219,7 +219,8 @@ PrefabInstance:
       propertyPath: '_data._objectReferences.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: d9845dd33923bf349aba438f86805766, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3725609375353564673, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
     m_RemovedGameObjects:
     - {fileID: 538541051302596896, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
     - {fileID: 8016650408357611281, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
@@ -229,7 +230,7 @@ PrefabInstance:
       addedObject: {fileID: 2709407333607005793}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
-      insertIndex: 5
+      insertIndex: 4
       addedObject: {fileID: 832060144081426212}
   m_SourcePrefab: {fileID: 100100000, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
 --- !u!1 &7986205367498324435 stripped
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChargeRate: 50
   <SpellOrigin>k__BackingField: {fileID: 2709407333607005793}
+  <BaseDamage>k__BackingField: 19
 --- !u!4 &8646511881691657644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5932719948545797471, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

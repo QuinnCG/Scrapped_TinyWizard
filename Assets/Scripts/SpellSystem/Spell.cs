@@ -43,7 +43,7 @@ namespace Quinn.SpellSystem
 			return Mathf.Abs(charge - MaxOvercharge) < BufferCharge;
 		}
 
-		public void Cast(SpellCaster caster, float charge, float baseDamage, Vector2 target)
+		public virtual void Cast(SpellCaster caster, float charge, float baseDamage, Vector2 target)
 		{
 			Caster = caster;
 			_casterDamage = caster.GetComponent<Damage>();
@@ -53,7 +53,7 @@ namespace Quinn.SpellSystem
 			OnCast(charge, target);
 		}
 
-		protected Missile SpawnMissile(Vector2 position, Vector2 dir, MissileInfo info, GameObject attached = null)
+		protected virtual Missile SpawnMissile(Vector2 position, Vector2 dir, MissileInfo info, GameObject attached = null)
 		{
 			const string key = "Missile.prefab";
 			var instance = Addressables.InstantiateAsync(key, position, Quaternion.identity)
@@ -72,7 +72,7 @@ namespace Quinn.SpellSystem
 			return missile;
 		}
 
-		protected bool CanDamage(GameObject gameObject, out Damage damage)
+		protected virtual bool CanDamage(GameObject gameObject, out Damage damage)
 		{
 			if (gameObject.TryGetComponent(out damage))
 			{

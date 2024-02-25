@@ -7,21 +7,37 @@ namespace Quinn.RoomSystem
 	public class Exit : MonoBehaviour
 	{
 		[field: SerializeField]
-		public ExitDirection Direction { get; private set; }
+		public ExitDirection Direction { get; private set; } = ExitDirection.Right;
 
 		[field: SerializeField]
 		public Room Next { get; private set; }
 
+		[SerializeField]
+		private bool StartArmed;
+
 		public Room Parent { get; set; }
 
 		private bool _isTriggered;
+		private bool _canTrigger;
 
-		private void OnTriggerStay2D(Collider2D collision)
+		private void Awake()
 		{
-			if (_isTriggered && collision.gameObject == PlayerController.Instance.gameObject)
+			_canTrigger = StartArmed;
+		}
+
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			if (!_isTriggered && collision.gameObject == PlayerController.Instance.gameObject)
 			{
-				_isTriggered = true;
-				RoomManager.Instance.LoadRoom(Next, this);
+				if (_canTrigger)
+				{
+					_isTriggered = true;
+					RoomManager.Instance.LoadRoom(Next, this);
+				}
+				else
+				{
+					_canTrigger = true;
+				}
 			}
 		}
 	}

@@ -11,6 +11,7 @@ namespace Quinn.RoomSystem
 		{
 			foreach (var exit in Exits)
 			{
+				Debug.Assert(exit, $"Room: {gameObject.name} is missing a reference to an exit!");
 				exit.Parent = this;
 			}
 		}

@@ -21,7 +21,7 @@ namespace Quinn.RoomSystem
 
 		private IEnumerator LoadRoomSequence(Room next, Exit from)
 		{
-			GameObject nextInstance = Instantiate(next.gameObject);
+			GameObject nextInstance = Instantiate(next.gameObject, transform);
 			Room nextRoom = next.GetComponent<Room>();
 
 			ExitDirection to = (ExitDirection)((int)from.Direction * -1);
@@ -38,6 +38,7 @@ namespace Quinn.RoomSystem
 			Debug.Assert(toExit, "Can't find valid exit!");
 
 			Vector2 offset = from.transform.position - from.Parent.transform.position;
+			offset += (Vector2)(nextRoom.transform.position - toExit.transform.position);
 			nextInstance.transform.position = offset;
 
 			yield break;

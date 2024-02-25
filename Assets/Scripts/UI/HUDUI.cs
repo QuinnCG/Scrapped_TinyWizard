@@ -43,13 +43,13 @@ namespace Quinn.UI
 			}
 		}
 
-		public void ShowBossBar(Enemy enemy)
-		{	
-			_bossHealth = enemy.GetComponent<Health>();
-			BossTitle.text = enemy.BossBarTitle;
+		public void ShowBossBar(string title, Health health)
+		{
+			_bossHealth = health;
+			BossTitle.text = title;
 			BossContainer.SetActive(true);
 
-			enemy.GetComponent<Health>().OnDeath += () => HideBossBar();
+			health.OnDeath += () => HideBossBar();
 		}
 
 		public void HideBossBar()

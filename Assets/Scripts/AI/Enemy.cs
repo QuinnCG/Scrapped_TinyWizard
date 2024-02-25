@@ -14,12 +14,6 @@ namespace Quinn.AI
 	[RequireComponent(typeof(Health))]
 	public abstract class Enemy : MonoBehaviour
 	{
-		[SerializeField, BoxGroup("Boss")]
-		private bool DisplayBossBar;
-
-		[field: SerializeField, ShowIf(nameof(DisplayBossBar)), BoxGroup("Boss")]
-		public string BossBarTitle { get; private set; } = "Enemy Title";
-
 		protected bool IsJumping { get; private set; }
 
 		protected Movement Movement { get; private set; }
@@ -47,13 +41,7 @@ namespace Quinn.AI
 			Caster = GetComponent<SpellCaster>();
 		}
 
-		protected virtual void Start()
-		{
-			if (DisplayBossBar)
-			{
-				HUDUI.Instance.ShowBossBar(this);
-			}
-		}
+		protected virtual void Start() { }
 
 		protected virtual void Update() { }
 

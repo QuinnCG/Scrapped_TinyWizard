@@ -1,3 +1,4 @@
+using Quinn.DialogueSystem;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
@@ -74,12 +75,18 @@ namespace Quinn.Player
 
 		private void Update()
 		{
-			MoveUpdate();
-			DashUpdate();
-			CastUpdate();
+			if (!DialogueManager.Instance.InDialogue)
+			{
+				MoveUpdate();
+				DashUpdate();
+				CastUpdate();
+			}
+
 			CrosshairChargeUpdate();
 			StaffTransformUpdate();
 			CameraTargetUpdate();
+
+			_animator.SetBool("IsMoving", _movement.IsMoving);
 		}
 
 		private void MoveUpdate()
@@ -91,7 +98,6 @@ namespace Quinn.Player
 			}.normalized;
 
 			_movement.Move(moveInput);
-			_animator.SetBool("IsMoving", _movement.IsMoving);
 		}
 
 		private void DashUpdate()

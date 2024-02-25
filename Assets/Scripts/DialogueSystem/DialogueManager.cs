@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using System.Text;
 using TMPro;
@@ -19,9 +20,13 @@ namespace Quinn.DialogueSystem
 		[SerializeField, Required]
 		private TextMeshProUGUI Speaker, Dialogue;
 
+		public event Action<Dialogue> OnDialogueEnd;
+
+		public bool InDialogue { get; private set; }
+
 		private int _index;
 		private Dialogue _dialogue;
-		private bool _shouldSkip;
+		private bool _isWriting;
 
 		private void Awake()
 		{
@@ -31,9 +36,21 @@ namespace Quinn.DialogueSystem
 
 		private void Update()
 		{
-			if (Input.anyKeyDown)
+			if (Input.GetKeyDown(KeyCode.Space)
+				|| Input.GetKeyDown(KeyCode.E)
+				|| Input.GetKeyDown(KeyCode.Escape)
+				|| Input.GetMouseButtonDown(0))
 			{
-				_shouldSkip = true;
+				if (_isWriting)
+				{
+					StopAllCoroutines();
+					Dialogue.text = _dialogue.Messages[_index];
+					_isWriting = false;
+				}
+				else
+				{
+					Next();
+				}
 			}
 		}
 
@@ -43,19 +60,25 @@ namespace Quinn.DialogueSystem
 			_index = -1;
 			_dialogue = dialogue;
 
+			InDialogue = true;
+
 			Speaker.text = dialogue.Speaker;
 			Next();
 		}
 
-		public void Next()
+		private void Next()
 		{
 			_index++;
 
 			if (_index >= _dialogue.Messages.Length)
 			{
+				OnDialogueEnd?.Invoke(_dialogue);
+
 				Hide();
 				_dialogue = null;
 				_index = 0;
+
+				return;
 			}
 
 			StopAllCoroutines();
@@ -65,11 +88,15 @@ namespace Quinn.DialogueSystem
 		private void Hide()
 		{
 			Container.SetActive(false);
+			StopAllCoroutines();
+
+			InDialogue = false;
 		}
 
 		private IEnumerator WriteSequence()
 		{
 			var builder = new StringBuilder();
+			_isWriting = true;
 
 			int count = _dialogue.Messages[_index].Length;
 			for (int i = 0; i < count; i++)
@@ -77,16 +104,10 @@ namespace Quinn.DialogueSystem
 				builder.Append(_dialogue.Messages[_index][i]);
 				Dialogue.text = builder.ToString();
 
-				if (_shouldSkip)
-				{
-					_shouldSkip = false;
-					Dialogue.text = _dialogue.Messages[_index];
-
-					yield break;
-				}
-
 				yield return new WaitForSeconds(WriteInterval);
 			}
+
+			_isWriting = false;
 		}
 	}
 }

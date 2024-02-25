@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -6533609437074267734, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: FlashWhite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6533609437074267734, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}

@@ -44,8 +44,7 @@ namespace Quinn
 
 				if (Time.time > _dashEndTime)
 				{
-					IsDashing = false;
-					OnDashEnd?.Invoke();
+					StopDash();
 				}
 			}
 		}
@@ -71,6 +70,7 @@ namespace Quinn
 				if (dir.sqrMagnitude > 0f)
 				{
 					SetDashDirection(dir);
+					SetFacingDirection(Mathf.Sign(dir.x));
 				}
 			}
 		}
@@ -112,6 +112,15 @@ namespace Quinn
 
 				_dashEndTime = Time.time + DashDuration;
 				OnDashStart?.Invoke();
+			}
+		}
+
+		public void StopDash()
+		{
+			if (IsDashing)
+			{
+				IsDashing = false;
+				OnDashEnd?.Invoke();
 			}
 		}
 	}

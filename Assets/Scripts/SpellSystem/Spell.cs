@@ -49,7 +49,7 @@ namespace Quinn.SpellSystem
 			_casterDamage = caster.GetComponent<Damage>();
 			BaseDamage = baseDamage;
 
-			target += Random.insideUnitCircle * (TargetRadius / 2f);
+			target += TargetRadius * Random.insideUnitCircle / 2f;
 			OnCast(charge, target);
 		}
 

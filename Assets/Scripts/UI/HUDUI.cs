@@ -48,6 +48,8 @@ namespace Quinn.UI
 			_bossHealth = enemy.GetComponent<Health>();
 			BossTitle.text = enemy.BossBarTitle;
 			BossContainer.SetActive(true);
+
+			enemy.GetComponent<Health>().OnDeath += () => HideBossBar();
 		}
 
 		public void HideBossBar()

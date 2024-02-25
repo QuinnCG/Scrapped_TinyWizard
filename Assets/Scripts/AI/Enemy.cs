@@ -1,5 +1,7 @@
 using DG.Tweening;
 using Quinn.Player;
+using Quinn.SpellSystem;
+using Quinn.UI;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -12,54 +14,71 @@ namespace Quinn.AI
 	[RequireComponent(typeof(Health))]
 	public abstract class Enemy : MonoBehaviour
 	{
-		[SerializeField]
+		[SerializeField, BoxGroup("Boss")]
 		private bool DisplayBossBar;
 
-		[field: SerializeField, ShowIf(nameof(DisplayBossBar)), BoxGroup("Core")]
+		[field: SerializeField, ShowIf(nameof(DisplayBossBar)), BoxGroup("Boss")]
 		public string BossBarTitle { get; private set; } = "Enemy Title";
 
-		[SerializeField, BoxGroup("Core")]
-		private float PlayerSpotRadius = 8f;
+		protected bool IsJumping { get; private set; }
 
-		public bool IsJumping { get; private set; }
+		protected Movement Movement { get; private set; }
+		protected SpellCaster Caster { get; private set; }
+
+		protected float HealthPercent => _health.Percent;
+		protected float Health => _health.Current;
+		protected float MaxHealth => _health.Max;
+		protected Vector2 Position => transform.position;
 
 		protected PlayerController Player => PlayerController.Instance;
 		protected Vector2 PlayerPos => Player.transform.position;
 		protected Vector2 PlayerCenter => Player.Center;
 		protected Vector2 PlayerVel => Player.Velocity;
-
-		protected float HealthPercent => _health.Percent;
-		protected float Health => _health.Current;
-		protected float MaxHealth => _health.Max;
+		protected float PlayerDistance => Vector2.Distance(transform.position, PlayerPos);
 
 		private Collider2D _collider;
 		private Health _health;
 
-		private void Awake()
+		protected virtual void Awake()
 		{
 			_collider = GetComponent<Collider2D>();
 			_health = GetComponent<Health>();
+			Movement = GetComponent<Movement>();
+			Caster = GetComponent<SpellCaster>();
 		}
 
-		protected void JumpTo(Vector2 position, float height, float speed)
+		protected virtual void Start()
+		{
+			if (DisplayBossBar)
+			{
+				HUDUI.Instance.ShowBossBar(this);
+			}
+		}
+
+		protected virtual void Update() { }
+
+		protected Tween JumpTo(Vector2 position, float height, float duration)
 		{
 			if (!IsJumping)
 			{
 				IsJumping = true;
 
-				var tween = transform.DOJump(position, height, 1, speed)
-					.SetSpeedBased()
+				var tween = transform.DOJump(position, height, 1, duration)
 					.SetEase(Ease.Linear);
 
 				tween.onKill += () => IsJumping = false;
 				tween.onComplete += () => IsJumping = false;
+
+				return tween;
 			}
+
+			return null;
 		}
 
 		protected bool HasLineOfSight(Vector2 target)
 		{
 			var hit = Physics2D.Linecast(_collider.bounds.center, target, LayerMask.GetMask("Obstacle"));
-			return hit.collider == null;
+			return !hit;
 		}
 	}
 }

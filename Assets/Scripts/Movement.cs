@@ -19,7 +19,7 @@ namespace Quinn
 		public bool IsMoving { get; private set; }
 		public bool IsDashing { get; private set; }
 
-		public Vector2 FacingDirection { get; private set; } = Vector2.right;
+		public float FacingDirection { get; private set; } = 1f;
 		public Vector2 Velocity => _rb.velocity;
 
 		public event Action OnDashStart, OnDashEnd;
@@ -27,6 +27,7 @@ namespace Quinn
 		private Rigidbody2D _rb;
 
 		private Vector2 _velocitySum;
+		private Vector2 _dashDir = Vector2.right;
 		private bool _wasMovingLastFrame;
 		private float _dashEndTime;
 
@@ -39,7 +40,7 @@ namespace Quinn
 		{
 			if (IsDashing)
 			{
-				_velocitySum += DashSpeed * FacingDirection;
+				_velocitySum += DashSpeed * _dashDir;
 
 				if (Time.time > _dashEndTime)
 				{
@@ -69,13 +70,27 @@ namespace Quinn
 
 				if (dir.sqrMagnitude > 0f)
 				{
-					FacingDirection = dir;
-
-					if (dir.x != 0f)
-					{
-						transform.localScale = new Vector3(Mathf.Sign(dir.x), 1f, 1f);
-					}
+					SetDashDirection(dir);
 				}
+			}
+		}
+
+		public void SetDashDirection(Vector2 dir)
+		{
+			_dashDir = dir.normalized;
+		}
+
+		public void SetFacingDirection(float x)
+		{
+			if (x > 0f)
+			{
+				FacingDirection = 1f;
+				transform.localScale = new Vector3(1f, 1f, 1f);
+			}
+			else if (x < 0f)
+			{
+				FacingDirection = -1f;
+				transform.localScale = new Vector3(-1f, 1f, 1f);
 			}
 		}
 

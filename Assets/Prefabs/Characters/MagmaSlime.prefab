@@ -107,6 +107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 699284691175225679, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: m_Mass
+      value: 0.8995987
+      objectReference: {fileID: 0}
     - target: {fileID: 799319515065228235, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: Weaknesses
       value: 2
@@ -129,11 +133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.2593765
+      value: -12.24
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5173637
+      value: 5.98
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.z
@@ -231,6 +235,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       insertIndex: 4
+      addedObject: {fileID: 3402680198510623166}
+    - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      insertIndex: 5
       addedObject: {fileID: 832060144081426212}
   m_SourcePrefab: {fileID: 100100000, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
 --- !u!1 &7986205367498324435 stripped
@@ -238,6 +245,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
   m_PrefabInstance: {fileID: 2714498371264895219}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3402680198510623166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986205367498324435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901ab7b7d184d744db033d8be16af419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisplayBossBar: 0
+  <BossBarTitle>k__BackingField: Enemy Title
+  SpotPlayerRadius: 10
+  StoppingDistance: 0.5
+  DoesHop: 1
+  MaxHopDistance: 1
+  HopHeight: 0.5
+  HopDuration: 0.2
+  HopCooldown: 0.5
+  PatrolRadius: 8
+  PatrolOrigin: 1
+  PatrolWaitDuration: {x: 1, y: 3}
 --- !u!114 &832060144081426212
 MonoBehaviour:
   m_ObjectHideFlags: 0

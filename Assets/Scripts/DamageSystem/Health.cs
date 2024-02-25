@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Quinn
+namespace Quinn.DamageSystem
 {
 	[RequireComponent(typeof(Damage))]
 	public class Health : MonoBehaviour

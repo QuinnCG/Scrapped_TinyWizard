@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-namespace Quinn
+namespace Quinn.DamageSystem
 {
 	public class Damage : MonoBehaviour
 	{

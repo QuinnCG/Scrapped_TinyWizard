@@ -109,6 +109,10 @@ PrefabInstance:
       propertyPath: ImmunityDuration
       value: 1.4
       objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 367928952895826765, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Controller
       value: 
@@ -246,16 +250,10 @@ PrefabInstance:
       addedObject: {fileID: 3339170963623325113}
     - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 494924743403622856}
-    - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8088134924642114816}
     - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2005087234866157101}
-    - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1312708593622746714}
     - targetCorrespondingSourceObject: {fileID: 2971667891182054209, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7792355094613511073}
@@ -333,26 +331,6 @@ MonoBehaviour:
   ChargeRate: 150
   <SpellOrigin>k__BackingField: {fileID: 3026155119094596268}
   <BaseDamage>k__BackingField: 21
---- !u!114 &494924743403622856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055924850260605113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07644939de245d948a3c162291aa2ad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Team>k__BackingField: 2
-  ImmunityDuration: -1
-  Resistances: 0
-  Weaknesses: 0
-  ResistanceDamageFactor: 0.75
-  WeaknessDamageFactor: 1.5
-  FlashWhite: 0
-  BlinkInAndOut: 0
 --- !u!114 &8088134924642114816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,19 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1212de69d8262d5449d59a2c1435391e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1312708593622746714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055924850260605113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f6c515e09b92847a393c129b54ae49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Max>k__BackingField: 100
 --- !u!4 &3693783694292595910 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8940055740882507582, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}

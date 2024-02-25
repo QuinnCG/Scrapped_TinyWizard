@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: <Team>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1663543865695874092, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -78,9 +82,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1432100215469745023}
-    - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2168033720986976895}
   m_SourcePrefab: {fileID: 100100000, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
 --- !u!1 &5440179690449985824 stripped
@@ -88,19 +89,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
   m_PrefabInstance: {fileID: 3333846834459998817}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1432100215469745023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5440179690449985824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f6c515e09b92847a393c129b54ae49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Max>k__BackingField: 100
 --- !u!114 &2168033720986976895
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: Element
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2363259819423699447, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: <Max>k__BackingField
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.24
@@ -257,8 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901ab7b7d184d744db033d8be16af419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayBossBar: 0
-  <BossBarTitle>k__BackingField: Enemy Title
   SpotPlayerRadius: 10
   StoppingDistance: 0.5
   DoesHop: 1

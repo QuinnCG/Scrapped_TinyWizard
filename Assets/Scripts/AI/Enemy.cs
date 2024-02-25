@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Quinn.DamageSystem;
 using Quinn.Player;
 using Quinn.SpellSystem;
 using Quinn.UI;

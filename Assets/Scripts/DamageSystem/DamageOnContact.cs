@@ -1,6 +1,7 @@
+using Quinn.DamageSystem;
 using UnityEngine;
 
-namespace Quinn.AI
+namespace Quinn.DamageSystem
 {
 	[RequireComponent(typeof(CapsuleCollider2D))]
 	[RequireComponent(typeof(Damage))]

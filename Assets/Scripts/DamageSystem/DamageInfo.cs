@@ -1,7 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Quinn
+namespace Quinn.DamageSystem
 {
 	[System.Serializable, Inspectable]
 	public class DamageInfo

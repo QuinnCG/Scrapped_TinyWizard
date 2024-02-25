@@ -1,4 +1,4 @@
-﻿namespace Quinn
+﻿namespace Quinn.DamageSystem
 {
 	public enum Team
 	{

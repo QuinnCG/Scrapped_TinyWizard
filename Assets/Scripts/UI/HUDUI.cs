@@ -1,4 +1,4 @@
-using Quinn.AI;
+using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;

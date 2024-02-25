@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Quinn
+namespace Quinn.DamageSystem
 {
 	[RequireComponent(typeof(Rigidbody2D))]
 	[RequireComponent(typeof(Movement))]

@@ -148,8 +148,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 22
+      x: 24
+      y: 4
       width: 2
       height: 3
     spriteID: 3e0f837c544bbe14f827e67d8dc1c5ac
@@ -160,10 +160,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 20, y: 22}
+    uvTransform: {x: 24, y: 4}
   - name: BabyMagmaSlime
     originalName: 
-    pivot: {x: 0.5, y: 0.16666667}
+    pivot: {x: 0.5, y: 0.14285715}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -171,7 +171,7 @@ ScriptedImporter:
       x: 4
       y: 22
       width: 8
-      height: 6
+      height: 7
     spriteID: 219ce281e594e9b4d9622b17fe44c4c3
     spriteBone: []
     spriteOutline: []
@@ -221,7 +221,7 @@ ScriptedImporter:
         x: 12
         y: 7
         width: 8
-        height: 6
+        height: 7
       spriteId: 219ce281e594e9b4d9622b17fe44c4c3
     linkedCells: []
     parentIndex: -1

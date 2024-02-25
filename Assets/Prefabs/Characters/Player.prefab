@@ -105,6 +105,10 @@ PrefabInstance:
       propertyPath: BlinkInAndOut
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6533609437074267734, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: ImmunityDuration
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 367928952895826765, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Controller
       value: 
@@ -342,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Team>k__BackingField: 2
+  ImmunityDuration: -1
   Resistances: 0
   Weaknesses: 0
   ResistanceDamageFactor: 0.75

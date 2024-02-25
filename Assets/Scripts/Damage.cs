@@ -2,6 +2,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Linq;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 namespace Quinn
@@ -11,16 +12,19 @@ namespace Quinn
 		[field: SerializeField]
 		public Team Team { get; private set; }
 
+		[SerializeField]
+		private float ImmunityDuration = -1f;
+
 		[SerializeField, BoxGroup("Elemental")]
 		private ElementType Resistances;
 
 		[SerializeField, BoxGroup("Elemental")]
 		private ElementType Weaknesses;
 
-		[Space, SerializeField, BoxGroup("Elemental"), HideIf(nameof(Resistances), 0)]
+		[Space, SerializeField, BoxGroup("Elemental"), HideIf(nameof(Resistances), (ElementType)0)]
 		private float ResistanceDamageFactor = 0.75f;
 
-		[SerializeField, BoxGroup("Elemental"), HideIf(nameof(Weaknesses), 0)]
+		[SerializeField, BoxGroup("Elemental"), HideIf(nameof(Weaknesses), (ElementType)0)]
 		private float WeaknessDamageFactor = 1.5f;
 
 		[SerializeField, BoxGroup("VFX")]
@@ -34,6 +38,7 @@ namespace Quinn
 		private SpriteRenderer[] _renderers;
 
 		private Health _health;
+		private float _nextCanDamageTime;
 
 		private void Awake()
 		{
@@ -48,7 +53,7 @@ namespace Quinn
 				return false;
 			}
 
-			return Team != source;
+			return Team != source && Time.time > _nextCanDamageTime;
 		}
 		public bool CanTakeDamage(Damage source)
 		{
@@ -61,6 +66,8 @@ namespace Quinn
 			{
 				return false;
 			}
+
+			_nextCanDamageTime = Time.time + ImmunityDuration;
 
 			var efficiencyType = ModifyDamage(info);
 			OnDamaged?.Invoke(info, efficiencyType);
@@ -148,7 +155,7 @@ namespace Quinn
 			const float FadeInRate = 1f / 0.1f;
 			const float IntervalDuration = 0.15f;
 
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 4; i++)
 			{
 				while (_renderers.Any(x => x.color.a > 0f))
 				{

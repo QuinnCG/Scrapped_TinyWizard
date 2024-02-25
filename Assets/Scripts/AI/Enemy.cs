@@ -29,7 +29,8 @@ namespace Quinn.AI
 		protected Vector2 PlayerPos => Player.transform.position;
 		protected Vector2 PlayerCenter => Player.Center;
 		protected Vector2 PlayerVel => Player.Velocity;
-		protected float PlayerDistance => Vector2.Distance(transform.position, PlayerPos);
+		protected float PlayerDist => Vector2.Distance(transform.position, PlayerPos);
+		protected Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
 		private Collider2D _collider;
 		private Health _health;
@@ -40,11 +41,24 @@ namespace Quinn.AI
 			_health = GetComponent<Health>();
 			Movement = GetComponent<Movement>();
 			Caster = GetComponent<SpellCaster>();
+
+			GetComponent<Damage>().OnDamaged += OnDamaged;
+			_health.OnHeal += OnHealed;
+			_health.OnDeath += OnDeath;
 		}
 
 		protected virtual void Start() { }
 
 		protected virtual void Update() { }
+
+		protected virtual void OnHealed(float health) { }
+
+		protected virtual void OnDamaged(DamageInfo info, DamageEfficiencyType type) { }
+
+		protected virtual void OnDeath()
+		{
+			Destroy(gameObject);
+		}
 
 		protected Tween JumpTo(Vector2 position, float height, float duration)
 		{

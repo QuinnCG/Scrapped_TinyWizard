@@ -98,6 +98,9 @@ namespace Quinn.Player
 			}.normalized;
 
 			_movement.Move(moveInput);
+
+			var dirToCrosshair = Crosshair.Instance.Position - Center;
+			_movement.SetFacingDirection(dirToCrosshair.normalized.x);
 		}
 
 		private void DashUpdate()

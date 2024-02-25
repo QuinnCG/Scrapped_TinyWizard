@@ -58,7 +58,7 @@ namespace Quinn.AI.Enemies
 			{
 				_targetPos = PlayerPos;
 
-				if (PlayerDistance > 0.3f)
+				if (PlayerDist > 0.3f)
 				{
 					Move();
 				}
@@ -83,7 +83,7 @@ namespace Quinn.AI.Enemies
 
 		private void LookForPlayer()
 		{
-			if (!_spottedPlayer && PlayerDistance < SpotPlayerRadius)
+			if (!_spottedPlayer && PlayerDist < SpotPlayerRadius)
 			{
 				if (HasLineOfSight(PlayerPos))
 				{

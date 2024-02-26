@@ -1,9 +1,8 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Quinn.DamageSystem
 {
-	[System.Serializable, Inspectable]
+	[System.Serializable]
 	public class DamageInfo
 	{
 		public float Damage;

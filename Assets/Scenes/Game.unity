@@ -212,18 +212,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
-      propertyPath: UsePerlin
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
-      propertyPath: PerlinBias
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
-      propertyPath: PerlinScale
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7986205367498324435, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_Name
       value: BabyMagmaSlime
@@ -1319,18 +1307,6 @@ PrefabInstance:
     - target: {fileID: 2087974497944047294, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
-      propertyPath: UsePerlin
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
-      propertyPath: PerlinBias
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
-      propertyPath: PerlinScale
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7986205367498324435, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_Name

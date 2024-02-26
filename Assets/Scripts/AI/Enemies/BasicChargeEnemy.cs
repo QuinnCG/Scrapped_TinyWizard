@@ -9,7 +9,19 @@ namespace Quinn.AI.Enemies
 		private float SpotPlayerRadius = 10f;
 
 		[SerializeField, BoxGroup("Movement")]
-		private float StoppingDistance = 0.5f;
+		private float StoppingDistance = 0.2f;
+
+		[SerializeField, BoxGroup("Movement/Perlin")]
+		private bool UsePerlin;
+
+		[SerializeField, BoxGroup("Movement/Perlin"), ShowIf(nameof(UsePerlin))]
+		private float PerlinBias = 0.5f;
+
+		[SerializeField, BoxGroup("Movement/Perlin"), ShowIf(nameof(UsePerlin))]
+		private float PerlinFrequency = 1f;
+
+		[SerializeField, BoxGroup("Movement/Perlin"), ShowIf(nameof(UsePerlin))]
+		private float PerlinAmplitude = 4f;
 
 		[SerializeField, BoxGroup("Patrolling")]
 		private float PatrolRadius = 8f;
@@ -19,11 +31,11 @@ namespace Quinn.AI.Enemies
 
 		[SerializeField, BoxGroup("Patrolling"), MinMaxSlider(0f, 10f, ShowFields = true)]
 		private Vector2 PatrolWaitDuration = new();
+		protected Vector2 TargetPos { get; set; }
 
-		private bool _spottedPlayer;
+		protected bool IsPlayerSpotted { get; private set; }
 
 		private Vector2 _origin;
-		private Vector2 _targetPos;
 		private float _nextPatrolTime;
 
 		protected override void Awake()
@@ -31,29 +43,32 @@ namespace Quinn.AI.Enemies
 			base.Awake();
 
 			_origin = transform.position;
-			_targetPos = _origin;
+			TargetPos = _origin;
 		}
 
 		protected override void Update()
 		{
-			LookForPlayer();
-
-			if (_spottedPlayer)
+			if (!IsPlayerSpotted)
 			{
-				_targetPos = PlayerPos;
+				IsPlayerSpotted = ShouldSpotPlayer();
+			}
 
-				if (PlayerDist > 0.3f)
+			if (IsPlayerSpotted)
+			{
+				TargetPos = PlayerPos;
+
+				if (PlayerDist > StoppingDistance)
 				{
-					Move();
+					Move(UsePerlin);
 				}
 			}
 			else
 			{
-				float dst = Vector2.Distance(transform.position, _targetPos);
+				float dst = Vector2.Distance(transform.position, TargetPos);
 				if (dst < StoppingDistance)
 				{
 					Vector2 origin = PatrolOrigin ? _origin : transform.position;
-					_targetPos = origin + (PatrolRadius * Random.insideUnitCircle / 2f);
+					TargetPos = origin + (PatrolRadius * Random.insideUnitCircle / 2f);
 
 					_nextPatrolTime = Time.time + Random.Range(PatrolWaitDuration.x, PatrolWaitDuration.y);
 				}
@@ -65,20 +80,39 @@ namespace Quinn.AI.Enemies
 			}
 		}
 
-		private void LookForPlayer()
+		protected virtual bool ShouldSpotPlayer()
 		{
-			if (!_spottedPlayer && PlayerDist < SpotPlayerRadius)
+			if (!IsPlayerSpotted && PlayerDist < SpotPlayerRadius)
 			{
 				if (HasLineOfSight(PlayerPos))
 				{
-					_spottedPlayer = true;
+					return true;
 				}
 			}
+
+			return false;
 		}
 
-		private void Move()
+		protected virtual void Move(bool usePerlin = false)
 		{
-			Movement.MoveTowards(_targetPos);
+			if (usePerlin)
+			{
+				float value = Mathf.PerlinNoise1D(Time.time * PerlinFrequency);
+				value = (value - 0.5f) * 2f;
+				value *= PerlinAmplitude;
+
+				Vector2 targetDir = (TargetPos - Position).normalized;
+				var perpen = new Vector2(targetDir.y, -targetDir.x);
+
+				Vector2 finalDir = Vector2.Lerp(targetDir, perpen.normalized * value, PerlinBias);
+
+				Movement.Move(finalDir);
+				Movement.SetFacingDirection(targetDir.x);
+			}
+			else
+			{
+				Movement.MoveTowards(TargetPos);
+			}
 		}
 	}
 }

@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.24
+      value: -11.798906
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.98
+      value: 2.6063356
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.z
@@ -188,9 +188,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpotPlayerRadius: 10
   StoppingDistance: 0.5
-  UsePerlin: 0
-  PerlinBias: 0
-  PerlinScale: 1
+  UsePerlin: 1
+  PerlinBias: 0.3
+  PerlinFrequency: 0.2
+  PerlinAmplitude: 8
   PatrolRadius: 8
   PatrolOrigin: 1
   PatrolWaitDuration: {x: 1, y: 3}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using UnityEngine;
 
 namespace Quinn.RoomSystem
@@ -7,11 +8,24 @@ namespace Quinn.RoomSystem
 	{
 		public static RoomManager Instance { get; private set; }
 
+		[SerializeField, Tooltip("The gap between room connections.")]
+		private float RoomGap = 1f;
+
+		[SerializeField, Required]
+		private Room DefaultRoom;
+
 		private Room _loadedRoom;
 
 		private void Awake()
 		{
 			Instance = this;
+			LoadDefaultRoom();
+		}
+
+		public void LoadDefaultRoom()
+		{
+			var instance = Instantiate(DefaultRoom.gameObject, transform);
+			_loadedRoom = instance.GetComponent<Room>();
 		}
 
 		public void LoadRoom(Room next, Exit from)
@@ -21,27 +35,49 @@ namespace Quinn.RoomSystem
 
 		private IEnumerator LoadRoomSequence(Room next, Exit from)
 		{
+			Room nextRoom = SpawnRoom(next, from);
+
+			// Unload previous room.
+			Destroy(_loadedRoom.gameObject);
+
+			// Set _loadedRoom.
+			_loadedRoom = nextRoom;
+
+			yield break;
+		}
+
+		private Room SpawnRoom(Room next, Exit from)
+		{
+			// Spawn next room.
 			GameObject nextInstance = Instantiate(next.gameObject, transform);
-			Room nextRoom = next.GetComponent<Room>();
+			Room nextRoom = nextInstance.GetComponent<Room>();
 
+			// Get inverted direction.
 			ExitDirection to = (ExitDirection)((int)from.Direction * -1);
-			Exit toExit = null;
+			Exit nextExit = null;
 
+			// Find corrosponding exit.
 			foreach (var exit in nextRoom.Exits)
 			{
 				if (exit.Direction == to)
 				{
-					toExit = exit;
+					nextExit = exit;
 				}
 			}
 
-			Debug.Assert(toExit, "Can't find valid exit!");
+			Debug.Assert(nextExit, "Can't find valid exit!");
 
-			Vector2 offset = from.transform.position - from.Parent.transform.position;
-			offset += (Vector2)(nextRoom.transform.position - toExit.transform.position);
-			nextInstance.transform.position = offset;
+			// Position next room.
+			Vector2 origin = from.transform.position;
+			Vector2 offset = next.transform.position - nextExit.transform.position;
+			Vector2 position = origin + offset + (offset.normalized * RoomGap);
 
-			yield break;
+			nextInstance.transform.position = position;
+
+			// Prime exit of next room.
+			nextExit.IgnoreNextTrigger = true;
+
+			return nextRoom;
 		}
 	}
 }

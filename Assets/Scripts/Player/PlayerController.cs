@@ -1,4 +1,3 @@
-using Quinn.DialogueSystem;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
@@ -7,6 +6,7 @@ using UnityEngine;
 namespace Quinn.Player
 {
 	[RequireComponent(typeof(Animator))]
+	[RequireComponent(typeof(InputReader))]
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(SpellCaster))]
 	[RequireComponent(typeof(Collider2D))]
@@ -45,6 +45,7 @@ namespace Quinn.Player
 		public Vector2 Center => _collider.bounds.center;
 
 		private Animator _animator;
+		private InputReader _input;
 		private Movement _movement;
 		private SpellCaster _caster;
 		private Collider2D _collider;
@@ -62,6 +63,7 @@ namespace Quinn.Player
 			EquipSpell(EquippedSpellPrefab);
 
 			_animator = GetComponent<Animator>();
+			_input = GetComponent<InputReader>();
 			_movement = GetComponent<Movement>();
 			_caster = GetComponent<SpellCaster>();
 			_collider = GetComponent<Collider2D>();
@@ -71,41 +73,33 @@ namespace Quinn.Player
 
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
+
+			_input.OnDash += OnDash;
+			_input.OnCastPress += OnCastPress;
+			_input.OnCastRelease += OnCastRelease;
 		}
 
 		private void Update()
 		{
-			if (!DialogueManager.Instance.InDialogue)
-			{
-				MoveUpdate();
-				DashUpdate();
-				CastUpdate();
-			}
+			MoveUpdate();
+			_animator.SetBool("IsMoving", _movement.IsMoving);
 
 			CrosshairChargeUpdate();
 			StaffTransformUpdate();
 			CameraTargetUpdate();
-
-			_animator.SetBool("IsMoving", _movement.IsMoving);
 		}
 
 		private void MoveUpdate()
 		{
-			var moveInput = new Vector2()
-			{
-				x = Input.GetAxisRaw("Horizontal"),
-				y = Input.GetAxisRaw("Vertical")
-			}.normalized;
-
-			_movement.Move(moveInput);
+			_movement.Move(_input.MoveInput);
 
 			var dirToCrosshair = Crosshair.Instance.Position - Center;
 			_movement.SetFacingDirection(dirToCrosshair.normalized.x);
 		}
 
-		private void DashUpdate()
+		private void OnDash()
 		{
-			if (Input.GetKeyDown(KeyCode.Space) && Time.time > _nextDashTime)
+			if (Time.time > _nextDashTime)
 			{
 				_nextDashTime = Time.time + _movement.DashDuration + DashCooldown;
 
@@ -114,18 +108,15 @@ namespace Quinn.Player
 			}
 		}
 
-		private void CastUpdate()
+		private void OnCastPress()
 		{
-			if (Input.GetMouseButtonDown(0))
-			{
-				_caster.BeginCharge();
-			}
+			_caster.BeginCharge();
+		}
 
-			if (Input.GetMouseButtonUp(0))
-			{
-				Vector2 target = Crosshair.Instance.Position;
-				_caster.ReleaseCharge(EquippedSpellPrefab, target);
-			}
+		private void OnCastRelease()
+		{
+			Vector2 target = Crosshair.Instance.Position;
+			_caster.ReleaseCharge(EquippedSpellPrefab, target);
 		}
 
 		private void OnStopCharge(float charge)

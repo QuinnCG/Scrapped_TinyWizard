@@ -12,31 +12,24 @@ namespace Quinn.RoomSystem
 		[field: SerializeField]
 		public Room Next { get; private set; }
 
-		[SerializeField]
-		private bool StartArmed;
-
 		public Room Parent { get; set; }
+		public bool IgnoreNextTrigger { get; set; }
 
 		private bool _isTriggered;
-		private bool _canTrigger;
-
-		private void Awake()
-		{
-			_canTrigger = StartArmed;
-		}
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
-			if (!_isTriggered && collision.gameObject == PlayerController.Instance.gameObject)
+			if (!_isTriggered
+				&& collision.gameObject == PlayerController.Instance.gameObject)
 			{
-				if (_canTrigger)
+				if (IgnoreNextTrigger)
 				{
-					_isTriggered = true;
-					RoomManager.Instance.LoadRoom(Next, this);
+					IgnoreNextTrigger = false;
 				}
 				else
 				{
-					_canTrigger = true;
+					_isTriggered = true;
+					RoomManager.Instance.LoadRoom(Next, this);
 				}
 			}
 		}

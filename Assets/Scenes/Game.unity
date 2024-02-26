@@ -218,7 +218,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: PerlinBias
-      value: 0.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
+      propertyPath: PerlinScale
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7986205367498324435, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_Name
@@ -847,6 +851,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8985563959999630003, guid: c079c0b1e5f90484d93810d15fe53fb2, type: 3}
+      propertyPath: BaseSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985563959999630003, guid: c079c0b1e5f90484d93810d15fe53fb2, type: 3}
+      propertyPath: DecayRate
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8985563959999630003, guid: c079c0b1e5f90484d93810d15fe53fb2, type: 3}
+      propertyPath: UseCustomMass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1310,7 +1326,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: PerlinBias
-      value: 0.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
+      propertyPath: PerlinScale
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7986205367498324435, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_Name

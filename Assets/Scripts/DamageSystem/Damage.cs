@@ -124,7 +124,7 @@ namespace Quinn.DamageSystem
 		private IEnumerator FlashWhiteSequence()
 		{
 			const float FlashInRate = 1f / 0.05f;
-			const float FlashOutRate = 1f / 0.05f;
+			const float FlashOutRate = 1f / 0.1f;
 
 			while (_renderers.Any(x => x.material.GetFloat("_Hurt") < 1f))
 			{

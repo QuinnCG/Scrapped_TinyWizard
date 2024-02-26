@@ -75,6 +75,11 @@ namespace Quinn
 			}
 		}
 
+		public void MoveTowards(Vector2 target)
+		{
+			Move(target - (Vector2)transform.position);
+		}
+
 		public void SetDashDirection(Vector2 dir)
 		{
 			_dashDir = dir.normalized;
@@ -92,11 +97,6 @@ namespace Quinn
 				FacingDirection = -1f;
 				transform.localScale = new Vector3(-1f, 1f, 1f);
 			}
-		}
-
-		public void MoveTowards(Vector2 target)
-		{
-			Move(target - (Vector2)transform.position);
 		}
 
 		public void AddVelocity(Vector2 velocity)

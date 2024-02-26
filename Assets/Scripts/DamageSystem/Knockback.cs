@@ -66,7 +66,7 @@ namespace Quinn.DamageSystem
 				_shouldKnockback = true;
 
 				_knockbacDir = info.Direction.normalized;
-				_knockbackSpeed = BaseSpeed / _mass;
+				_knockbackSpeed = BaseSpeed / Mathf.Lerp(1f, _mass, 0.3f);
 			}
 		}
 	}

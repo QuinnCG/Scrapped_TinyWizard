@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 526991279700949802, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: <MoveSpeed>k__BackingField
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 699284691175225679, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Mass
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2168033720986976895, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: Damage
-      value: 34
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2168033720986976895, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: Element
@@ -39,6 +39,14 @@ PrefabInstance:
     - target: {fileID: 2363259819423699447, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: <Max>k__BackingField
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3125235798960738604, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2fae532dc398d6b4ba699964960ad82e, type: 2}
+    - target: {fileID: 3254731613286001092, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: Resistances
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,11 +188,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpotPlayerRadius: 10
   StoppingDistance: 0.5
-  DoesHop: 1
-  MaxHopDistance: 1
-  HopHeight: 0.5
-  HopDuration: 0.2
-  HopCooldown: 0.5
+  UsePerlin: 0
+  PerlinBias: 0
+  PerlinScale: 1
   PatrolRadius: 8
   PatrolOrigin: 1
   PatrolWaitDuration: {x: 1, y: 3}

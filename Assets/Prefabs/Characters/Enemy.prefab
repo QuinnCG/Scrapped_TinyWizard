@@ -17,6 +17,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: FlashWhite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <Team>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -83,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2168033720986976895}
+    - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4637368039579735854}
   m_SourcePrefab: {fileID: 100100000, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
 --- !u!1 &5440179690449985824 stripped
 GameObject:
@@ -103,3 +110,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 18
   Element: 0
+--- !u!114 &4637368039579735854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5440179690449985824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4043a88b3a9e77748b5697c8943e871b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseSpeed: 6
+  DecayRate: 32
+  UseCustomMass: 0
+  Mass: 1

@@ -7,7 +7,7 @@ namespace Quinn.Player
 	[CreateAssetMenu(fileName = "Spell", menuName = "Inventory/Spell", order = 1)]
 	public class SpellItem : Item
 	{
-		[Required]
+		[Required, AssetList(CustomFilterMethod = nameof(CustomFilterMethod), Path = "Prefabs/Spells")]
 		public GameObject SpellPrefab;
 
 		[HideInInspector]
@@ -19,6 +19,11 @@ namespace Quinn.Player
 			{
 				Element = SpellPrefab.GetComponent<Spell>().Element;
 			}
+		}
+
+		private static bool CustomFilterMethod(GameObject asset)
+		{
+			return asset.TryGetComponent(out Spell _);
 		}
 	}
 }

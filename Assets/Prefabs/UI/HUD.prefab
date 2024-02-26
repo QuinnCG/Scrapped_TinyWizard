@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1257898800705432897}
   PlayerHealth: {fileID: 0}
-  PlayerHealthToWidthRatio: 1
+  PlayerHealthToWidthRatio: 3
   BossContainer: {fileID: 2738639356730669384}
   BossTitle: {fileID: 6612425709070463523}
   BossBar: {fileID: 2996747458799255415}

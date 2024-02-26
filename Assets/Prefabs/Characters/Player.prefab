@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseSpeed: 8
   DecayRate: 16
-  UseCustomMass: 0
+  UseCustomMass: 1
   Mass: 1
 --- !u!4 &3693783694292595910 stripped
 Transform:

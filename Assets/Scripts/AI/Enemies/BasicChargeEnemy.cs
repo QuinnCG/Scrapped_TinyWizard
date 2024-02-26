@@ -3,28 +3,13 @@ using UnityEngine;
 
 namespace Quinn.AI.Enemies
 {
-	public class BasicEnemy : Enemy
+	public class BasicChargeEnemy : Enemy
 	{
 		[SerializeField, BoxGroup("Senses")]
 		private float SpotPlayerRadius = 10f;
 
 		[SerializeField, BoxGroup("Movement")]
 		private float StoppingDistance = 0.5f;
-
-		[SerializeField, BoxGroup("Movement")]
-		private bool DoesHop;
-
-		[SerializeField, BoxGroup("Movement"), ShowIf(nameof(DoesHop))]
-		private float MaxHopDistance = 2f;
-
-		[SerializeField, BoxGroup("Movement"), ShowIf(nameof(DoesHop))]
-		private float HopHeight = 1f;
-
-		[SerializeField, BoxGroup("Movement"), ShowIf(nameof(DoesHop))]
-		private float HopDuration = 0.3f;
-
-		[SerializeField, BoxGroup("Movement"), ShowIf(nameof(DoesHop))]
-		private float HopCooldown = 0.5f;
 
 		[SerializeField, BoxGroup("Patrolling")]
 		private float PatrolRadius = 8f;
@@ -40,7 +25,6 @@ namespace Quinn.AI.Enemies
 		private Vector2 _origin;
 		private Vector2 _targetPos;
 		private float _nextPatrolTime;
-		private float _nextHopTime;
 
 		protected override void Awake()
 		{
@@ -94,29 +78,7 @@ namespace Quinn.AI.Enemies
 
 		private void Move()
 		{
-			if (DoesHop)
-			{
-				if (!IsJumping && Time.time > _nextHopTime)
-				{
-					var difference = _targetPos - Position;
-					float dst = difference.magnitude;
-					Vector2 dir = difference.normalized;
-
-					Vector2 target = Position + (dir * Mathf.Min(dst, MaxHopDistance));
-					var tween = JumpTo(target, HopHeight, HopDuration);
-
-					tween.onComplete += () =>
-					{
-						_nextHopTime = Time.time + HopCooldown;
-					};
-
-					Movement.SetFacingDirection(dir.x);
-				}
-			}
-			else
-			{
-				Movement.MoveTowards(_targetPos);
-			}
+			Movement.MoveTowards(_targetPos);
 		}
 	}
 }

@@ -212,6 +212,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
+      propertyPath: UsePerlin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
+      propertyPath: PerlinBias
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7986205367498324435, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_Name
       value: BabyMagmaSlime
@@ -1296,6 +1304,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
+      propertyPath: UsePerlin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3402680198510623166, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
+      propertyPath: PerlinBias
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7986205367498324435, guid: ac275dc9f4263614083f1b3f99c2ade4, type: 3}
       propertyPath: m_Name
       value: BabyMagmaSlime
@@ -1364,6 +1380,14 @@ PrefabInstance:
     - target: {fileID: 1969093368466273848, guid: df905e59021484645a0ca122d22e46a4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918721399095968686, guid: df905e59021484645a0ca122d22e46a4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2918721399095968686, guid: df905e59021484645a0ca122d22e46a4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4756373538522432796, guid: df905e59021484645a0ca122d22e46a4, type: 3}
       propertyPath: m_Camera
@@ -1485,6 +1509,10 @@ PrefabInstance:
       propertyPath: PlayerHealth
       value: 
       objectReference: {fileID: 1147884732}
+    - target: {fileID: 8650866909311248332, guid: df905e59021484645a0ca122d22e46a4, type: 3}
+      propertyPath: PlayerHealthToWidthRatio
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1502,8 +1530,8 @@ SceneRoots:
   - {fileID: 367647638161881632}
   - {fileID: 1064147196}
   - {fileID: 710696931}
-  - {fileID: 345717920}
-  - {fileID: 1970235447}
   - {fileID: 837629734}
   - {fileID: 342289497}
   - {fileID: 482631281}
+  - {fileID: 345717920}
+  - {fileID: 1970235447}

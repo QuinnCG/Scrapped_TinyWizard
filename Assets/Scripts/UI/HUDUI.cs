@@ -1,5 +1,7 @@
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +18,9 @@ namespace Quinn.UI
 		[SerializeField, Required, BoxGroup("Health")]
 		private Health PlayerHealth;
 
+		[SerializeField]
+		private float PlayerHealthToWidthRatio = 1f;
+
 		[SerializeField, Required, BoxGroup("Boss")]
 		private GameObject BossContainer;
 
@@ -26,11 +31,15 @@ namespace Quinn.UI
 		private Slider BossBar;
 
 		private Health _bossHealth;
+		private RectTransform _playerHealthBarRect;
 
 		private void Awake()
 		{
 			Instance = this;
 			BossContainer.SetActive(false);
+
+			_playerHealthBarRect = HealthBar.GetComponent<RectTransform>();
+			PlayerHealth.OnMaxChange += OnMaxChange;
 		}
 
 		private void Update()
@@ -57,6 +66,14 @@ namespace Quinn.UI
 			_bossHealth = null;
 			BossTitle.text = "Boss Title";
 			BossContainer.SetActive(false);
+		}
+
+		private void OnMaxChange(float max)
+		{
+			var size = _playerHealthBarRect.sizeDelta;
+			size.x = max * PlayerHealthToWidthRatio;
+
+			_playerHealthBarRect.sizeDelta = size;
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace Quinn.DamageSystem
 	public class Health : MonoBehaviour
 	{
 		[field: SerializeField]
-		public float Max { get; set; } = 100f;
+		public float Max { get; private set; } = 100f;
 
 		public float Current { get; private set; }
 		public float Percent => Current / Max;
@@ -15,6 +15,7 @@ namespace Quinn.DamageSystem
 
 		public event Action<float> OnHeal, OnDamage;
 		public event Action OnDeath;
+		public event Action<float> OnMaxChange;
 
 		private void Awake()
 		{
@@ -42,6 +43,12 @@ namespace Quinn.DamageSystem
 				IsDead = true;
 				OnDeath?.Invoke();
 			}
+		}
+
+		public void SetMax(float max)
+		{
+			Max = max;
+			OnMaxChange?.Invoke(max);
 		}
 	}
 }

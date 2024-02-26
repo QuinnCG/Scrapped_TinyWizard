@@ -463,7 +463,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7986205367498324435, guid: 27fdc11796cd8e24cbf25138091c7729, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 813505546}
+    - targetCorrespondingSourceObject: {fileID: 7986205367498324435, guid: 27fdc11796cd8e24cbf25138091c7729, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 813505545}
   m_SourcePrefab: {fileID: 100100000, guid: 27fdc11796cd8e24cbf25138091c7729, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -786,6 +792,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &813505534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7986205367498324435, guid: 27fdc11796cd8e24cbf25138091c7729, type: 3}
+  m_PrefabInstance: {fileID: 482631281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &813505545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813505534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe58df89b5b74a97a123b5ed2b70422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: c6979ae1ca6696e4f88b7bab61fa85ec, type: 2}
+--- !u!114 &813505546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813505534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
 --- !u!1001 &832754783
 PrefabInstance:
   m_ObjectHideFlags: 0

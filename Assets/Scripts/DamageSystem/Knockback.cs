@@ -26,6 +26,8 @@ namespace Quinn.DamageSystem
 		[SerializeField, ShowIf(nameof(UseCustomMass))]
 		private float Mass = 1f;
 
+		public Vector2 Velocity => _knockbacDir * _knockbackSpeed;
+
 		private Movement _movement;
 
 		private float _mass;

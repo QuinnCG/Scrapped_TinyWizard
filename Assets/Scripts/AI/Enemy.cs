@@ -51,6 +51,11 @@ namespace Quinn.AI
 
 		protected virtual void Update() { }
 
+		protected virtual void OnDestroy()
+		{
+			transform.DOKill();
+		}
+
 		protected virtual void OnHealed(float health) { }
 
 		protected virtual void OnDamaged(DamageInfo info, DamageEfficiencyType type) { }

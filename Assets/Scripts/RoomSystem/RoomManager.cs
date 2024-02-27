@@ -1,4 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using Cinemachine;
+using Quinn.Player;
+using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +16,11 @@ namespace Quinn.RoomSystem
 		[SerializeField, Required]
 		private Room DefaultRoom;
 
+		[SerializeField]
+		private float TransitionMoveDistance = 4f;
+
+		public CinemachineVirtualCamera DefaultVirtualCamera { get; private set; }
+
 		private Room _loadedRoom;
 
 		private void Awake()
@@ -26,6 +33,8 @@ namespace Quinn.RoomSystem
 		{
 			var instance = Instantiate(DefaultRoom.gameObject, transform);
 			_loadedRoom = instance.GetComponent<Room>();
+
+			DefaultVirtualCamera = instance.GetComponentInChildren<CinemachineVirtualCamera>();
 		}
 
 		public void LoadRoom(Room next, Exit from)
@@ -35,18 +44,53 @@ namespace Quinn.RoomSystem
 
 		private IEnumerator LoadRoomSequence(Room next, Exit from)
 		{
-			Room nextRoom = SpawnRoom(next, from);
+			Room nextRoom = SpawnRoom(next, from, out Vector2 dir);
+
+			// Fade to black.
+			CameraManager.Instance.FadeToBlack();
+
+			// Animate player moving into next room.
+			StartCoroutine(AnimatePlayer(dir));
+
+			float fadeToBlack = CameraManager.Instance.FadeToBlackDuration;
+			yield return new WaitForSeconds(fadeToBlack);
 
 			// Unload previous room.
 			Destroy(_loadedRoom.gameObject);
 
+			// Fade from black.
+			CameraManager.Instance.FadeFromBlack();
+
 			// Set _loadedRoom.
 			_loadedRoom = nextRoom;
-
-			yield break;
 		}
 
-		private Room SpawnRoom(Room next, Exit from)
+		private IEnumerator AnimatePlayer(Vector2 dir)
+		{
+			var player = PlayerController.Instance;
+			var input = player.GetComponent<InputReader>();
+			var move = player.GetComponent<Movement>();
+			move.StopDash();
+
+			input.enabled = false;
+
+			var dst = float.PositiveInfinity;
+
+			Vector2 start = player.transform.position;
+			Vector2 target = start + (dir * TransitionMoveDistance);
+
+			while (dst > 0.2f)
+			{
+				dst = Vector2.Distance(player.transform.position, target);
+				move.Move(dir);
+
+				yield return null;
+			}
+
+			input.enabled = true;
+		}
+
+		private Room SpawnRoom(Room next, Exit from, out Vector2 dir)
 		{
 			// Spawn next room.
 			GameObject nextInstance = Instantiate(next.gameObject, transform);
@@ -76,6 +120,9 @@ namespace Quinn.RoomSystem
 
 			// Prime exit of next room.
 			nextExit.IgnoreNextTrigger = true;
+
+			dir = nextRoom.transform.position - nextExit.transform.position;
+			dir.Normalize();
 
 			return nextRoom;
 		}

@@ -32,6 +32,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomB
       objectReference: {fileID: 0}
+    - target: {fileID: 5064950262958902663, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064950262958902663, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064950262958902663, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064950262958902663, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
+      value: 25.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064950262958902663, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 25.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5192481716472616875, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

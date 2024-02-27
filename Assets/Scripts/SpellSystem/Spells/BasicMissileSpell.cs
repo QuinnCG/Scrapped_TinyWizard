@@ -42,10 +42,14 @@ namespace Quinn.SpellSystem.Spells
 			{
 				Vector2 dir = missile.Velocity.normalized;
 				damage.TakeDamage(new DamageInfo(DamageFactor * BaseDamage, dir, Caster.Damage, Element));
-
-				Destroy(missile.Attached, 0f);
-				Destroy(missile.gameObject);
 			}
+			else if (!hit.IsLayer(GameManager.ObstacleLayerName))
+			{
+				return;
+			}
+
+			Destroy(missile.Attached);
+			Destroy(missile.gameObject);
 		}
 	}
 }

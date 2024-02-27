@@ -18,7 +18,7 @@ namespace Quinn.UI
 		[SerializeField, Required, BoxGroup("Health")]
 		private Health PlayerHealth;
 
-		[SerializeField]
+		[SerializeField, BoxGroup("Health")]
 		private float PlayerHealthToWidthRatio = 1f;
 
 		[SerializeField, Required, BoxGroup("Boss")]

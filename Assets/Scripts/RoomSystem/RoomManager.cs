@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using Quinn.Player;
+using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System.Collections;
 using UnityEngine;
@@ -71,6 +72,7 @@ namespace Quinn.RoomSystem
 			var input = player.GetComponent<InputReader>();
 			var move = player.GetComponent<Movement>();
 			move.StopDash();
+			player.GetComponent<SpellCaster>().CancelCharge();
 
 			input.enabled = false;
 

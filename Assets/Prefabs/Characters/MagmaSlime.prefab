@@ -113,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 699284691175225679, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Mass
-      value: 0.8995987
+      value: 0.8344331
       objectReference: {fileID: 0}
     - target: {fileID: 799319515065228235, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: Weaknesses
@@ -197,19 +197,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.x
-      value: 1.1090362
+      value: 1.1090363
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.y
-      value: 1.0076147
+      value: 0.9140717
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Offset.x
-      value: -0.028862193
+      value: -0.028862188
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Offset.y
-      value: 0.40787858
+      value: 0.4546519
       objectReference: {fileID: 0}
     - target: {fileID: 8818845372677451699, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.x
@@ -296,7 +296,8 @@ MonoBehaviour:
   StoppingDistance: 0.2
   UsePerlin: 0
   PerlinBias: 0.5
-  PerlinScale: 1
+  PerlinFrequency: 1
+  PerlinAmplitude: 4
   PatrolRadius: 8
   PatrolOrigin: 1
   PatrolWaitDuration: {x: 0, y: 0}

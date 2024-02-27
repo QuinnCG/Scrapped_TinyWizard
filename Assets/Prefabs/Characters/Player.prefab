@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2877922967651762990, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Mass
-      value: 0.15558822
+      value: 0.2048136
       objectReference: {fileID: 0}
     - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: DashSpeed
@@ -199,19 +199,19 @@ PrefabInstance:
       objectReference: {fileID: -2634244760402885326, guid: 57bb5ee0fb1f0d746bfb9b3b275b4497, type: 3}
     - target: {fileID: 4649226225175434076, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Size.x
-      value: 0.46969545
+      value: 0.72623116
       objectReference: {fileID: 0}
     - target: {fileID: 4649226225175434076, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Size.y
-      value: 0.40690085
+      value: 0.31051454
       objectReference: {fileID: 0}
     - target: {fileID: 4649226225175434076, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Offset.x
-      value: 0.000000025036725
+      value: 0.000000030781816
       objectReference: {fileID: 0}
     - target: {fileID: 4649226225175434076, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Offset.y
-      value: 0.2100233
+      value: 0.25821662
       objectReference: {fileID: 0}
     - target: {fileID: 6063781528067184082, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Sprite
@@ -297,7 +297,7 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_SortAtRoot: 0
+  m_SortAtRoot: 1
 --- !u!1 &3055924850260605113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}

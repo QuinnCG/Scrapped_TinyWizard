@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 699284691175225679, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Mass
-      value: 0.30339622
+      value: 0.27009118
       objectReference: {fileID: 0}
     - target: {fileID: 799319515065228235, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: Weaknesses
@@ -94,19 +94,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.x
-      value: 0.74623454
+      value: 0.7462346
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.y
-      value: 0.47013137
+      value: 0.41036752
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Offset.x
-      value: 0.07026448
+      value: 0.07026449
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Offset.y
-      value: 0.13912934
+      value: 0.16901228
       objectReference: {fileID: 0}
     - target: {fileID: 8818845372677451699, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.x

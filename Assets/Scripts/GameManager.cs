@@ -6,7 +6,16 @@ namespace Quinn
 {
 	public class GameManager : MonoBehaviour
 	{
+		public const string ObstacleLayerName = "Obstacle";
+		public const string CharacterLayerName = "Character";
+
 		public static GameManager Instance { get; private set; }
+
+		[field: SerializeField]
+		public LayerMask ObstacleLayer { get; private set; }
+
+		[field: SerializeField]
+		public LayerMask CharacterLayer { get; private set; }
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		private static void Bootstrap()
@@ -19,6 +28,7 @@ namespace Quinn
 
 		private async void Awake()
 		{
+			Instance = this;
 			await UnityServices.InitializeAsync();
 		}
 	}

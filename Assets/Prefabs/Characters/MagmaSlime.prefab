@@ -292,15 +292,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901ab7b7d184d744db033d8be16af419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpotPlayerRadius: 10
+  SpotPlayerRadius: 7
   StoppingDistance: 0.2
   UsePerlin: 0
   PerlinBias: 0.5
   PerlinFrequency: 1
   PerlinAmplitude: 4
-  PatrolRadius: 8
+  PatrolRadius: 15
   PatrolOrigin: 1
-  PatrolWaitDuration: {x: 0, y: 0}
+  PatrolWaitDuration: {x: 3.156499, y: 6.0212226}
 --- !u!4 &8646511881691657644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5932719948545797471, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

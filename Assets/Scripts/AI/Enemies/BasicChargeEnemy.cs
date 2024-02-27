@@ -78,6 +78,8 @@ namespace Quinn.AI.Enemies
 					Move();
 				}
 			}
+
+			Animator.SetBool("IsMoving", Movement.IsMoving);
 		}
 
 		protected virtual bool ShouldSpotPlayer()

@@ -10,6 +10,7 @@ using UnityEngine;
 
 namespace Quinn.AI
 {
+	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(Collider2D))]
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(Health))]
@@ -17,6 +18,8 @@ namespace Quinn.AI
 	{
 		protected bool IsJumping { get; private set; }
 
+		protected Animator Animator { get; private set; }
+		protected Collider2D Collider { get; private set; }
 		protected Movement Movement { get; private set; }
 		protected SpellCaster Caster { get; private set; }
 
@@ -32,12 +35,12 @@ namespace Quinn.AI
 		protected float PlayerDist => Vector2.Distance(transform.position, PlayerPos);
 		protected Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
-		private Collider2D _collider;
 		private Health _health;
 
 		protected virtual void Awake()
 		{
-			_collider = GetComponent<Collider2D>();
+			Animator = GetComponent<Animator>();
+			Collider = GetComponent<Collider2D>();
 			_health = GetComponent<Health>();
 			Movement = GetComponent<Movement>();
 			Caster = GetComponent<SpellCaster>();
@@ -85,7 +88,7 @@ namespace Quinn.AI
 
 		protected bool HasLineOfSight(Vector2 target)
 		{
-			var hit = Physics2D.Linecast(_collider.bounds.center, target, LayerMask.GetMask("Obstacle"));
+			var hit = Physics2D.Linecast(Collider.bounds.center, target, LayerMask.GetMask("Obstacle"));
 			return !hit;
 		}
 	}

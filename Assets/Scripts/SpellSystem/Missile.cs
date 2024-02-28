@@ -37,11 +37,6 @@ namespace Quinn.SpellSystem
 		protected virtual void OnDestroy()
 		{
 			OnDestroyed?.Invoke();
-
-			if (Attached)
-			{
-				Attached.transform.parent = null;
-			}
 		}
 
 		public void Launch(Vector2 dir, MissileInfo info)

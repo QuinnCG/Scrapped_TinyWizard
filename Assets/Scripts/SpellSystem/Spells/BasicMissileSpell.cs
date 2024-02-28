@@ -1,6 +1,8 @@
+using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Quinn.SpellSystem.Spells
 {
@@ -18,6 +20,21 @@ namespace Quinn.SpellSystem.Spells
 		[SerializeField]
 		private float HitRadius = 0.5f;
 
+		[SerializeField]
+		private EventReference CastSound, HitSound;
+
+		[SerializeField]
+		private GameObject SpawnOnHit;
+
+		[SerializeField]
+		private float SpawnOnHitLifespan = 3f;
+
+		[SerializeField]
+		private bool DetachParticlesOnHit;
+
+		[SerializeField, Tooltip("0f or below will disable lifespan.")]
+		private float DetachedParticlesLifespan = 5f;
+
 		protected override void OnCast(float charge, Vector2 target)
 		{
 			Vector2 pos = Caster.SpellOrigin.position;
@@ -30,10 +47,8 @@ namespace Quinn.SpellSystem.Spells
 
 			var missile = SpawnMissile(pos, dir, info, MissileFX);
 			missile.OnHit += hit => OnHit(missile, hit);
-			missile.OnDestroyed += () =>
-			{
-				Destroy(missile.Attached, 2f);
-			};
+
+			AudioManager.Play(CastSound, missile.transform.position);
 		}
 
 		private void OnHit(Missile missile, GameObject hit)
@@ -48,7 +63,27 @@ namespace Quinn.SpellSystem.Spells
 				return;
 			}
 
-			Destroy(missile.Attached);
+			if (missile.Attached && DetachParticlesOnHit)
+			{
+				var vfx = missile.Attached.GetComponentInChildren<VisualEffect>();
+				if (vfx)
+				{
+					vfx.transform.parent = null;
+					Destroy(vfx.gameObject, DetachedParticlesLifespan);
+				}
+			}
+
+			if (SpawnOnHit != null)
+			{
+				var instance = Instantiate(SpawnOnHit, missile.transform.position, Quaternion.identity);
+
+				if (SpawnOnHitLifespan > 0f)
+				{
+					Destroy(instance, SpawnOnHitLifespan);
+				}
+			}
+
+			AudioManager.Play(HitSound, missile.transform.position);
 			Destroy(missile.gameObject);
 		}
 	}

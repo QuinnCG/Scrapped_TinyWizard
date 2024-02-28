@@ -357,6 +357,13 @@ MonoBehaviour:
   ChargeRate: 150
   <SpellOrigin>k__BackingField: {fileID: 3026155119094596268}
   <BaseDamage>k__BackingField: 21
+  FireCastVFX: {fileID: 3388942292501137428, guid: c51c2a1fc7d5a624fac11076dc4b73a8, type: 3}
+  WaterCastVFX: {fileID: 3388942292501137428, guid: cc47b0c1bd079044eaa4b0985fd3d7d7, type: 3}
+  EarthCastVFX: {fileID: 3388942292501137428, guid: b7f6a68ce9095b343b2ecef654cdeb7c, type: 3}
+  LightningCastVFX: {fileID: 3388942292501137428, guid: d91d52711e42cab4887f984c83003f47, type: 3}
+  HolyCastVFX: {fileID: 3388942292501137428, guid: 1943530ee1ef26e45bfa191e27eafe98, type: 3}
+  NatureCastVFX: {fileID: 3388942292501137428, guid: bd46b101917e6654284dad51b739350f, type: 3}
+  DarkCastVFX: {fileID: 3388942292501137428, guid: c0d30e8f6cb8c8446b7dbcc46a42e306, type: 3}
 --- !u!114 &8088134924642114816
 MonoBehaviour:
   m_ObjectHideFlags: 0

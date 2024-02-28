@@ -24,6 +24,9 @@ namespace Quinn.SpellSystem
 		[field: SerializeField]
 		public ElementType Element { get; private set; }
 
+		[field: SerializeField]
+		public float CasterKnockbackSpeed { get; private set; } = 5f;
+
 		protected SpellCaster Caster { get; private set; }
 		protected float BaseDamage { get; private set; }
 

@@ -59,14 +59,19 @@ namespace Quinn.DamageSystem
 			}
 		}
 
+		public void ApplyKnockback(Vector2 dir, float speed)
+		{
+			_shouldKnockback = true;
+
+			_knockbacDir = dir.normalized;
+			_knockbackSpeed = speed;
+		}
+
 		private void OnDamaged(DamageInfo info, DamageEfficiencyType type)
 		{
 			if (type != DamageEfficiencyType.Resistant)
 			{
-				_shouldKnockback = true;
-
-				_knockbacDir = info.Direction.normalized;
-				_knockbackSpeed = (BaseSpeed / Mathf.Lerp(1f, _mass, 0.3f) * info.KnockbackScale);
+				ApplyKnockback(info.Direction, BaseSpeed / Mathf.Lerp(1f, _mass, 0.3f) * info.KnockbackScale);
 			}
 		}
 	}

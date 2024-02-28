@@ -18,6 +18,9 @@ namespace Quinn.SpellSystem
 		[field: SerializeField]
 		public float BaseDamage { get; set; } = 19f;
 
+		[SerializeField]
+		private float CasterKnockbackScale = 1f;
+
 		[SerializeField, FoldoutGroup("Cast VFX")]
 		private GameObject FireCastVFX;
 
@@ -46,11 +49,13 @@ namespace Quinn.SpellSystem
 		public event Action OnBeginCharge;
 		public event Action<float> OnReleaseCharge, OnCancelCharge;
 
+		private Knockback _knockback;
 		private readonly List<Spell> _spells = new();
 
 		private void Awake()
 		{
 			Damage = GetComponent<Damage>();
+			TryGetComponent(out _knockback);
 		}
 
 		private void Update()
@@ -115,6 +120,11 @@ namespace Quinn.SpellSystem
 
 			SpawnCastVFX(spell.Element);
 			spell.Cast(this, Charge, BaseDamage, target);
+
+			if (_knockback)
+			{
+				_knockback.ApplyKnockback((Vector2)SpellOrigin.position - target, spell.CasterKnockbackSpeed * CasterKnockbackScale);
+			}
 		}
 
 		private void SpawnCastVFX(ElementType element)

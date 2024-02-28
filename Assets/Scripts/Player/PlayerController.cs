@@ -50,7 +50,6 @@ namespace Quinn.Player
 		private SpellCaster _caster;
 		private Collider2D _collider;
 
-		private Spell _equippedSpell;
 		private Material _staffMat;
 
 		private float _nextDashTime;
@@ -60,7 +59,6 @@ namespace Quinn.Player
 			Instance = this;
 
 			_staffMat = StaffRenderer.material;
-			EquipSpell(EquippedSpellPrefab);
 
 			_animator = GetComponent<Animator>();
 			_input = GetComponent<InputReader>();
@@ -77,6 +75,12 @@ namespace Quinn.Player
 			_input.OnDash += OnDash;
 			_input.OnCastPress += OnCastPress;
 			_input.OnCastRelease += OnCastRelease;
+		}
+
+		private void Start()
+		{
+			Inventory.Instance.OnSpellSelected += UpdateStaffColor;
+			UpdateStaffColor(Inventory.Instance.ActiveSpell);
 		}
 
 		private void Update()
@@ -126,14 +130,16 @@ namespace Quinn.Player
 
 		private void CrosshairChargeUpdate()
 		{
-			if (_equippedSpell)
+			var spell = Inventory.Instance.ActiveSpell.Prefab.GetComponent<Spell>();
+
+			if (spell)
 			{
-				Crosshair.Instance.SetAccuracy(_equippedSpell.TargetRadius);
+				Crosshair.Instance.SetAccuracy(spell.TargetRadius);
 			}
 
 			if (_caster.IsCharging)
 			{
-				Crosshair.Instance.SetCharge(_caster.Charge / _equippedSpell.MaxCharge);
+				Crosshair.Instance.SetCharge(_caster.Charge / spell.MaxCharge);
 			}
 		}
 
@@ -159,10 +165,9 @@ namespace Quinn.Player
 			CameraTarget.position = target;
 		}
 
-		private void EquipSpell(GameObject spellPrefab)
+		private void UpdateStaffColor(SpellItem spell)
 		{
-			_equippedSpell = spellPrefab.GetComponent<Spell>();
-			_staffMat.SetColor("_Color", _equippedSpell.Element switch
+			_staffMat.SetColor("_Color", spell.Element switch
 			{
 				ElementType.Fire => Fire,
 				ElementType.Water => Water,
@@ -172,7 +177,7 @@ namespace Quinn.Player
 				ElementType.Nature => Nature,
 				ElementType.Dark => Dark,
 
-				_ => throw new NotImplementedException($"The element {_equippedSpell.Element} is not implemented!")
+				_ => throw new NotImplementedException($"The element {Inventory.Instance.ActiveSpell.Element} is not implemented!")
 			});
 		}
 	}

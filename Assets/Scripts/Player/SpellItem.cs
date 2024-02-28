@@ -8,16 +8,16 @@ namespace Quinn.Player
 	public class SpellItem : Item
 	{
 		[Required, AssetList(CustomFilterMethod = nameof(CustomFilterMethod), Path = "Prefabs/Spells")]
-		public GameObject SpellPrefab;
+		public GameObject Prefab;
 
 		[HideInInspector]
 		public ElementType Element;
 
 		private void OnEnable()
 		{
-			if (SpellPrefab != null)
+			if (Prefab != null)
 			{
-				Element = SpellPrefab.GetComponent<Spell>().Element;
+				Element = Prefab.GetComponent<Spell>().Element;
 			}
 		}
 

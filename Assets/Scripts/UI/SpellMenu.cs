@@ -1,10 +1,15 @@
 ﻿using DG.Tweening;
+using Quinn.Player;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Quinn.UI
 {
 	public class SpellMenu : MonoBehaviour
 	{
+		[SerializeField, Required]
+		private GameObject SpellSlot;
+
 		[SerializeField]
 		private float SlotDistance = 300f;
 
@@ -21,16 +26,28 @@ namespace Quinn.UI
 		private RectTransform[] _children;
 
 		private RectTransform _selectedSlot;
-		private Vector2 _delta;
+		private Vector2 _mouseDelta;
 
-		private void Start()
+		private void Awake()
 		{
 			_rect = GetComponent<RectTransform>();
+		}
 
-			_children = new RectTransform[transform.childCount];
-			for (int i = 0; i < _children.Length; i++)
+		private void OnEnable()
+		{
+			if (transform.childCount > 0)
 			{
-				_children[i] = transform.GetChild(i).GetComponent<RectTransform>();
+				Destroy(transform.GetChild(0).gameObject);
+			}
+
+			var parent = new GameObject("Slots").transform;
+			parent.parent = transform;
+
+			foreach (var spell in Inventory.Instance.EquippedSpells)
+			{
+				var instance = Instantiate(SpellSlot, parent);
+				var slot = instance.GetComponent<SpellSlot>();
+				slot.SetSpell(spell);
 			}
 
 			UpdateLayout();
@@ -39,10 +56,10 @@ namespace Quinn.UI
 		private void Update()
 		{
 			Vector2 delta = Input.mousePositionDelta;
-			_delta += delta;
-			_delta = _delta.normalized * Mathf.Min(_delta.magnitude, SelectionMaxDelta);
+			_mouseDelta += delta;
+			_mouseDelta = _mouseDelta.normalized * Mathf.Min(_mouseDelta.magnitude, SelectionMaxDelta);
 
-			Vector2 dir = _delta.normalized;
+			Vector2 dir = _mouseDelta.normalized;
 			Vector2 selection = _rect.anchoredPosition + (dir * SlotDistance);
 
 			RectTransform closestSlot = GetNearestSlot(selection);
@@ -56,12 +73,27 @@ namespace Quinn.UI
 		{
 			if (_selectedSlot)
 			{
-				Debug.Log(_selectedSlot.gameObject.name);
+				for (int i = 0; i < _children.Length; i++)
+				{
+					if (_children[i] == _selectedSlot)
+					{
+						Inventory.Instance.SelectSpell(i);
+						break;
+					}
+				}
 			}
 		}
 
 		private void UpdateLayout()
 		{
+			var parent = transform.GetChild(0);
+
+			_children = new RectTransform[parent.childCount];
+			for (int i = 0; i < _children.Length; i++)
+			{
+				_children[i] = parent.GetChild(i).GetComponent<RectTransform>();
+			}
+
 			int count = _children.Length;
 			float delta = Mathf.PI * 2f / count;
 			float offset = (_children.Length % 2) == 0 ? (delta / 2f) : (delta / 4f);
@@ -106,10 +138,13 @@ namespace Quinn.UI
 			{
 				child.DOKill(true);
 				child.DOScale(1f, SlotDeselectDuration).SetEase(Ease.OutBack);
+
+				child.GetComponent<SpellSlot>().Select();
 			}
 
 			rect.DOKill(true);
 			rect.DOScale(SelectedSlotScale, SlotSelectDuration).SetEase(Ease.OutBack);
+			rect.GetComponent<SpellSlot>().Select();
 
 			_selectedSlot = rect;
 		}

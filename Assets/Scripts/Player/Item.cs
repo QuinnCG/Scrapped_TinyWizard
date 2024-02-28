@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Quinn.Player
 {
@@ -9,5 +10,8 @@ namespace Quinn.Player
 
 		[Multiline]
 		public string Description = "This is the item's description.";
+
+		[Required]
+		public Sprite Icon;
 	}
 }

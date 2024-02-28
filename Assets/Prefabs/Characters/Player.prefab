@@ -357,6 +357,7 @@ MonoBehaviour:
   ChargeRate: 150
   <SpellOrigin>k__BackingField: {fileID: 3026155119094596268}
   <BaseDamage>k__BackingField: 21
+  CasterKnockbackScale: 1
   FireCastVFX: {fileID: 3388942292501137428, guid: c51c2a1fc7d5a624fac11076dc4b73a8, type: 3}
   WaterCastVFX: {fileID: 3388942292501137428, guid: cc47b0c1bd079044eaa4b0985fd3d7d7, type: 3}
   EarthCastVFX: {fileID: 3388942292501137428, guid: b7f6a68ce9095b343b2ecef654cdeb7c, type: 3}
@@ -389,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1212de69d8262d5449d59a2c1435391e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultSpell: {fileID: 11400000, guid: 17aaed03f4fb8b942b7667e7a7c63164, type: 2}
 --- !u!114 &8985563959999630003
 MonoBehaviour:
   m_ObjectHideFlags: 0

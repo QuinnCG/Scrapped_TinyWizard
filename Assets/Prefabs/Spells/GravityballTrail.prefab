@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1674250145711543985}
   - component: {fileID: 5499749322913415309}
   m_Layer: 0
-  m_Name: DarkMatterBallAttachment
+  m_Name: GravityballTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -49,7 +49,26 @@ MonoBehaviour:
   <MaxOvercharge>k__BackingField: 120
   <TargetRadius>k__BackingField: 1
   <Element>k__BackingField: 1
-  MissileFX: {fileID: 4431279572644365563, guid: 760901db8a653324e8268db64fc14b0e, type: 3}
+  <CasterKnockbackSpeed>k__BackingField: 5
+  MissileFX: {fileID: 4683029367638373840, guid: 254de5ba5a147124e83b9231df52e85c, type: 3}
   Speed: 10
-  Damage: 16
+  DamageFactor: 1
   HitRadius: 0.25
+  CastSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  HitSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  SpawnOnHit: {fileID: 2164128285846265074, guid: 2b61c720bff6d5f46bdd38abf1491bfd, type: 3}
+  SpawnOnHitLifespan: 2
+  DetachParticlesOnHit: 1
+  DetachedParticlesLifespan: 2

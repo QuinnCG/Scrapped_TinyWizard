@@ -1,4 +1,3 @@
-using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +9,8 @@ namespace Quinn.Player
 	{
 		public static Inventory Instance { get; private set; }
 
-		[SerializeField, Required]
-		private SpellItem DefaultSpell;
+		[SerializeField]
+		private SpellItem[] DefaultSpells;
 
 		public IEnumerable<Item> Items => _inventory.Keys.AsEnumerable();
 		public IEnumerable<SpellItem> EquippedSpells => _equippedSpells.AsEnumerable();
@@ -26,7 +25,11 @@ namespace Quinn.Player
 		{
 			Instance = this;
 
-			EquipSpell(DefaultSpell);
+			foreach (var spell in DefaultSpells)
+			{
+				EquipSpell(spell);
+			}
+
 			SelectSpell(0);
 		}
 
@@ -47,8 +50,6 @@ namespace Quinn.Player
 		{
 			ActiveSpell = _equippedSpells[index];
 			OnSpellSelected?.Invoke(ActiveSpell);
-
-			Debug.Log(ActiveSpell.name);
 		}
 
 		public bool ContainsItem(Item item)

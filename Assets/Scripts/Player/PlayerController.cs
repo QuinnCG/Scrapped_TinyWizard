@@ -17,9 +17,6 @@ namespace Quinn.Player
 		[SerializeField, BoxGroup("Movement")]
 		private float DashCooldown = 0.2f;
 
-		[field: SerializeField, BoxGroup("Spell")]
-		public GameObject EquippedSpellPrefab { get; private set; }
-
 		[SerializeField, Required, BoxGroup("Spell")]
 		private Transform Staff;
 
@@ -120,7 +117,7 @@ namespace Quinn.Player
 		private void OnCastRelease()
 		{
 			Vector2 target = Crosshair.Instance.Position;
-			_caster.ReleaseCharge(EquippedSpellPrefab, target);
+			_caster.ReleaseCharge(Inventory.Instance.ActiveSpell.Prefab, target);
 		}
 
 		private void OnStopCharge(float charge)

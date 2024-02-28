@@ -1,6 +1,6 @@
-﻿using DG.Tweening;
-using Quinn.Player;
+﻿using Quinn.Player;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quinn.UI
@@ -16,14 +16,8 @@ namespace Quinn.UI
 		[SerializeField]
 		private float SelectionMaxDelta = 2f;
 
-		[SerializeField]
-		private float SelectedSlotScale = 1.3f;
-
-		[SerializeField]
-		private float SlotSelectDuration = 0.2f, SlotDeselectDuration = 0.2f;
-
 		private RectTransform _rect;
-		private RectTransform[] _children;
+		private readonly List<RectTransform> _children = new();
 
 		private RectTransform _selectedSlot;
 		private Vector2 _mouseDelta;
@@ -35,19 +29,19 @@ namespace Quinn.UI
 
 		private void OnEnable()
 		{
-			if (transform.childCount > 0)
+			while (_children.Count > 0)
 			{
-				Destroy(transform.GetChild(0).gameObject);
+				Destroy(_children[0].gameObject);
+				_children.RemoveAt(0);
 			}
-
-			var parent = new GameObject("Slots").transform;
-			parent.parent = transform;
 
 			foreach (var spell in Inventory.Instance.EquippedSpells)
 			{
-				var instance = Instantiate(SpellSlot, parent);
+				var instance = Instantiate(SpellSlot, transform);
 				var slot = instance.GetComponent<SpellSlot>();
 				slot.SetSpell(spell);
+
+				_children.Add(instance.GetComponent<RectTransform>());
 			}
 
 			UpdateLayout();
@@ -73,7 +67,7 @@ namespace Quinn.UI
 		{
 			if (_selectedSlot)
 			{
-				for (int i = 0; i < _children.Length; i++)
+				for (int i = 0; i < _children.Count; i++)
 				{
 					if (_children[i] == _selectedSlot)
 					{
@@ -86,24 +80,16 @@ namespace Quinn.UI
 
 		private void UpdateLayout()
 		{
-			var parent = transform.GetChild(0);
-
-			_children = new RectTransform[parent.childCount];
-			for (int i = 0; i < _children.Length; i++)
-			{
-				_children[i] = parent.GetChild(i).GetComponent<RectTransform>();
-			}
-
-			int count = _children.Length;
+			int count = _children.Count;
 			float delta = Mathf.PI * 2f / count;
-			float offset = (_children.Length % 2) == 0 ? (delta / 2f) : (delta / 4f);
+			float offset = (_children.Count % 2) == 0 ? (delta / 2f) : (delta / 4f);
 
 			for (int i = 0; i < count; i++)
 			{
 				float angle = delta * i;
-				angle += offset + delta;
+				angle += offset + (delta * 3f);
 
-				var dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+				var dir = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle));
 				dir.Normalize();
 
 				Vector3 pos = dir * SlotDistance;
@@ -133,20 +119,14 @@ namespace Quinn.UI
 		private void SelectSlot(RectTransform rect)
 		{
 			if (_selectedSlot == rect) return;
+			_selectedSlot = rect;
 
 			foreach (var child in _children)
 			{
-				child.DOKill(true);
-				child.DOScale(1f, SlotDeselectDuration).SetEase(Ease.OutBack);
-
-				child.GetComponent<SpellSlot>().Select();
+				child.GetComponent<SpellSlot>().Deselect();
 			}
 
-			rect.DOKill(true);
-			rect.DOScale(SelectedSlotScale, SlotSelectDuration).SetEase(Ease.OutBack);
 			rect.GetComponent<SpellSlot>().Select();
-
-			_selectedSlot = rect;
 		}
 	}
 }

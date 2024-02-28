@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Quinn.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -13,6 +14,19 @@ namespace Quinn.UI
 		[SerializeField, Required]
 		private GameObject Outline;
 
+		[SerializeField]
+		private float SelectedSlotScale = 1.2f;
+
+		[SerializeField]
+		private float SlotSelectDuration = 0.2f, SlotDeselectDuration = 0.2f;
+
+		private RectTransform _rect;
+
+		private void Awake()
+		{
+			_rect = GetComponent<RectTransform>();
+		}
+
 		public void SetSpell(SpellItem spell)
 		{
 			Icon.sprite = spell.Icon;
@@ -21,11 +35,17 @@ namespace Quinn.UI
 		public void Select()
 		{
 			Outline.SetActive(true);
+
+			_rect.DOKill(true);
+			_rect.DOScale(SelectedSlotScale, SlotSelectDuration).SetEase(Ease.OutBack);
 		}
 
 		public void Deselect()
 		{
 			Outline.SetActive(false);
+
+			_rect.DOKill(true);
+			_rect.DOScale(1f, SlotDeselectDuration).SetEase(Ease.OutBack);
 		}
 	}
 }

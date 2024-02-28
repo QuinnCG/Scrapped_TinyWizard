@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b060bd840b1c6684497963378d3741f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxCharge>k__BackingField: 35
+  <MaxCharge>k__BackingField: 50
   <CanOvercharge>k__BackingField: 0
   <MaxOvercharge>k__BackingField: 120
   <TargetRadius>k__BackingField: 1

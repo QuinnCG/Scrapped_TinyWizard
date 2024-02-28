@@ -50,7 +50,25 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.15
+        m_Name: Radius
+        m_Overridden: 1
+      - m_Value: 0.4
+        m_Name: MaxLifespan
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: MinLifespan
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: Intensity
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: MinSpeed
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: MaxSpeed
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -64,10 +82,57 @@ VisualEffect:
       - m_Value: 64
         m_Name: Count
         m_Overridden: 1
+      - m_Value: 12
+        m_Name: SpawnRate
+        m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.48999023
+            inSlope: 5.6665244
+            outSlope: 5.6665244
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.18874526
+            value: 1.2656466
+            inSlope: -1.4530833
+            outSlope: -1.4530833
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.07280683
+          - serializedVersion: 3
+            time: 0.6666
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 0
+            inSlope: -7.4589825
+            outSlope: -7.4589825
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: SizeFactor
+        m_Overridden: 1
     m_Gradient:
       m_Array:
       - m_Value:

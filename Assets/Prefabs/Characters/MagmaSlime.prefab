@@ -280,6 +280,14 @@ MonoBehaviour:
   ChargeRate: 50
   <SpellOrigin>k__BackingField: {fileID: 2709407333607005793}
   <BaseDamage>k__BackingField: 19
+  CasterKnockbackScale: 1
+  FireCastVFX: {fileID: 0}
+  WaterCastVFX: {fileID: 0}
+  EarthCastVFX: {fileID: 0}
+  LightningCastVFX: {fileID: 0}
+  HolyCastVFX: {fileID: 0}
+  NatureCastVFX: {fileID: 0}
+  DarkCastVFX: {fileID: 0}
 --- !u!114 &4614154622875072358
 MonoBehaviour:
   m_ObjectHideFlags: 0

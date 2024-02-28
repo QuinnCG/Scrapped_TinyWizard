@@ -99,7 +99,7 @@ namespace Quinn.Player
 
 		private void OnDash()
 		{
-			if (Time.time > _nextDashTime)
+			if (Time.time > _nextDashTime && !_caster.IsCharging)
 			{
 				_nextDashTime = Time.time + _movement.DashDuration + DashCooldown;
 

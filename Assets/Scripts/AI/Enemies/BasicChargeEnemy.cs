@@ -1,3 +1,5 @@
+using Quinn.DamageSystem;
+using Quinn.Player;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -114,6 +116,14 @@ namespace Quinn.AI.Enemies
 			else
 			{
 				Movement.MoveTowards(TargetPos);
+			}
+		}
+
+		protected override void OnDamaged(DamageInfo info, DamageEfficiencyType type)
+		{
+			if (info.Source.gameObject == PlayerController.Instance.gameObject)
+			{
+				IsPlayerSpotted = true;
 			}
 		}
 	}

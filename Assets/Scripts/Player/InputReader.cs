@@ -8,7 +8,10 @@ namespace Quinn.Player
 	{
 		public static InputReader Instance { get; private set; }
 
-		public class InputDisablerHandle { }
+		public class InputDisablerHandle
+		{
+			public bool AllowMovement;
+		}
 
 		public Vector2 MoveInput { get; private set; }
 
@@ -24,29 +27,45 @@ namespace Quinn.Player
 
 		private void Update()
 		{
-			if (_disablerHandles.Count > 0) return;
+			bool inputEnabled = _disablerHandles.Count == 0;
+			bool allowMovement = true;
 
-			MoveInput = new Vector2()
+			foreach (var handle in _disablerHandles)
 			{
-				x = Input.GetAxisRaw("Horizontal"),
-				y = Input.GetAxisRaw("Vertical")
-			}.normalized;
-
-			if (Input.GetKeyDown(KeyCode.Space)
-				|| Input.GetKeyDown(KeyCode.LeftShift)
-				|| Input.GetKeyDown(KeyCode.LeftControl)
-				|| Input.GetMouseButtonDown(1))
-			{
-				OnDash?.Invoke();
+				if (!handle.AllowMovement)
+				{
+					allowMovement = false;
+					break;
+				}
 			}
 
-			if (Input.GetMouseButtonDown(0))
+			if (inputEnabled || allowMovement)
 			{
-				OnCastPress?.Invoke();
+				MoveInput = new Vector2()
+				{
+					x = Input.GetAxisRaw("Horizontal"),
+					y = Input.GetAxisRaw("Vertical")
+				}.normalized;
+
+				if (Input.GetKeyDown(KeyCode.Space)
+					|| Input.GetKeyDown(KeyCode.LeftShift)
+					|| Input.GetKeyDown(KeyCode.LeftControl)
+					|| Input.GetMouseButtonDown(1))
+				{
+					OnDash?.Invoke();
+				}
 			}
-			else if (Input.GetMouseButtonUp(0))
+
+			if (inputEnabled)
 			{
-				OnCastRelease?.Invoke();
+				if (Input.GetMouseButtonDown(0))
+				{
+					OnCastPress?.Invoke();
+				}
+				else if (Input.GetMouseButtonUp(0))
+				{
+					OnCastRelease?.Invoke();
+				}
 			}
 		}
 
@@ -55,9 +74,13 @@ namespace Quinn.Player
 			MoveInput = Vector2.zero;
 		}
 
-		public InputDisablerHandle DisableInput()
+		public InputDisablerHandle DisableInput(bool allowMovement = false)
 		{
-			var handle = new InputDisablerHandle();
+			var handle = new InputDisablerHandle()
+			{
+				AllowMovement = allowMovement
+			};
+
 			_disablerHandles.Add(handle);
 			return handle;
 		}

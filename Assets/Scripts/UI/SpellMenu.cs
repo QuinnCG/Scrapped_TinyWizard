@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Quinn.UI
 {
@@ -7,24 +8,63 @@ namespace Quinn.UI
 		[SerializeField]
 		private float SlotDistance = 300f;
 
-		private RectTransform[] Children;
+		[SerializeField]
+		private float SelectionMaxDelta = 2f;
+
+		[SerializeField]
+		private float SelectedSlotScale = 1.3f;
+
+		[SerializeField]
+		private float SlotSelectDuration = 0.2f, SlotDeselectDuration = 0.2f;
+
+		private RectTransform _rect;
+		private RectTransform[] _children;
+
+		private RectTransform _selectedSlot;
+		private Vector2 _delta;
 
 		private void Start()
 		{
-			Children = new RectTransform[transform.childCount];
-			for (int i = 0; i < Children.Length; i++)
+			_rect = GetComponent<RectTransform>();
+
+			_children = new RectTransform[transform.childCount];
+			for (int i = 0; i < _children.Length; i++)
 			{
-				Children[i] = transform.GetChild(i).GetComponent<RectTransform>();
+				_children[i] = transform.GetChild(i).GetComponent<RectTransform>();
 			}
 
 			UpdateLayout();
 		}
 
+		private void Update()
+		{
+			Vector2 delta = Input.mousePositionDelta;
+			_delta += delta;
+			_delta = _delta.normalized * Mathf.Min(_delta.magnitude, SelectionMaxDelta);
+
+			Vector2 dir = _delta.normalized;
+			Vector2 selection = _rect.anchoredPosition + (dir * SlotDistance);
+
+			RectTransform closestSlot = GetNearestSlot(selection);
+			if (closestSlot)
+			{
+				SelectSlot(closestSlot);
+			}
+		}
+
+		private void OnDisable()
+		{
+			if (_selectedSlot)
+			{
+				Debug.Log(_selectedSlot.gameObject.name);
+			}
+		}
+
 		private void UpdateLayout()
 		{
-			int count = Children.Length;
+			int count = _children.Length;
 			float delta = Mathf.PI * 2f / count;
-			float offset = (Children.Length % 2) == 0 ? (delta / 2f) : (delta / 4f);
+			float offset = (_children.Length % 2) == 0 ? (delta / 2f) : (delta / 4f);
 
 			for (int i = 0; i < count; i++)
 			{
@@ -35,8 +75,43 @@ namespace Quinn.UI
 				dir.Normalize();
 
 				Vector3 pos = dir * SlotDistance;
-				Children[i].anchoredPosition = pos;
+				_children[i].anchoredPosition = pos;
 			}
+		}
+
+		private RectTransform GetNearestSlot(Vector2 pos)
+		{
+			float bestDst = float.PositiveInfinity;
+			RectTransform bestSlot = null;
+
+			foreach (var child in _children)
+			{
+				float dst = Vector2.Distance(pos, child.position);
+
+				if (dst < bestDst)
+				{
+					bestDst = dst;
+					bestSlot = child;
+				}
+			}
+
+			return bestSlot;
+		}
+
+		private void SelectSlot(RectTransform rect)
+		{
+			if (_selectedSlot == rect) return;
+
+			foreach (var child in _children)
+			{
+				child.DOKill(true);
+				child.DOScale(1f, SlotDeselectDuration).SetEase(Ease.OutBack);
+			}
+
+			rect.DOKill(true);
+			rect.DOScale(SelectedSlotScale, SlotSelectDuration).SetEase(Ease.OutBack);
+
+			_selectedSlot = rect;
 		}
 	}
 }

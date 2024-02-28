@@ -1,4 +1,5 @@
 using Quinn.DamageSystem;
+using Quinn.Player;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -30,8 +31,17 @@ namespace Quinn.UI
 		[SerializeField, Required, BoxGroup("Boss")]
 		private Slider BossBar;
 
+		[SerializeField, Required]
+		private GameObject PauseMenu;
+
+		[SerializeField, Required]
+		private GameObject SpellMenu;
+
 		private Health _bossHealth;
 		private RectTransform _playerHealthBarRect;
+
+		private bool _isSpellMenuOpen;
+		private InputReader.InputDisablerHandle _spellMenuInputHandle;
 
 		private void Awake()
 		{
@@ -50,6 +60,48 @@ namespace Quinn.UI
 			{
 				BossBar.value = _bossHealth.Percent;
 			}
+
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+				// TODO: Toggle pause menu.
+			}
+
+			if (Input.GetKeyDown(KeyCode.Tab))
+			{
+				if (!_isSpellMenuOpen)
+				{
+					_isSpellMenuOpen = true;
+					SpellMenu.SetActive(true);
+					_spellMenuInputHandle = InputReader.Instance.DisableInput(true);
+					Crosshair.Instance.enabled = false;
+
+					Cursor.lockState = CursorLockMode.Locked;
+				}
+			}
+			else if (Input.GetKeyUp(KeyCode.Tab))
+			{
+				if (_isSpellMenuOpen)
+				{
+					_isSpellMenuOpen = false;
+					SpellMenu.SetActive(false);
+					InputReader.Instance.EnableInput(_spellMenuInputHandle);
+					Crosshair.Instance.enabled = true;
+
+					Cursor.lockState = CursorLockMode.Confined;
+				}
+			}
+		}
+
+		public static void ShowCursor()
+		{
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.Confined;
+		}
+
+		public static void HideCursor()
+		{
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Confined;
 		}
 
 		public void ShowBossBar(string title, Health health)

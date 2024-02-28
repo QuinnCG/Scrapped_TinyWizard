@@ -124,6 +124,8 @@ MonoBehaviour:
   BossContainer: {fileID: 2738639356730669384}
   BossTitle: {fileID: 6612425709070463523}
   BossBar: {fileID: 2996747458799255415}
+  PauseMenu: {fileID: 0}
+  SpellMenu: {fileID: 2830518990012318786}
 --- !u!1001 &748051592631427152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +218,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3254302576867845138, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291106616528441496, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
+      propertyPath: SelectedSlotScale
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291106616528441496, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
+      propertyPath: SelectionMaxDelta
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269981046136788046, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7269981046136788046, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -224,6 +246,11 @@ PrefabInstance:
 --- !u!224 &361716637200567836 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1109169363074051660, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
+  m_PrefabInstance: {fileID: 748051592631427152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2830518990012318786 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3254302576867845138, guid: 010c2ea34b36d134ba000561c7515397, type: 3}
   m_PrefabInstance: {fileID: 748051592631427152}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783752496268078794

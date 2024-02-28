@@ -1112,10 +1112,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2830518990012318786, guid: df905e59021484645a0ca122d22e46a4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4756373538522432796, guid: df905e59021484645a0ca122d22e46a4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1215,18 +1211,6 @@ PrefabInstance:
     - target: {fileID: 7395907700453470301, guid: df905e59021484645a0ca122d22e46a4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7963971402220467230, guid: df905e59021484645a0ca122d22e46a4, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7963971402220467230, guid: df905e59021484645a0ca122d22e46a4, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7963971402220467230, guid: df905e59021484645a0ca122d22e46a4, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8425005523643327364, guid: df905e59021484645a0ca122d22e46a4, type: 3}
       propertyPath: m_AnchorMax.y

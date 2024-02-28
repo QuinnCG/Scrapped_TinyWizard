@@ -30,20 +30,17 @@ namespace Quinn.Player
 
 		private void OnEnable()
 		{
-			_crosshair = Instantiate(Prefab); ;
-			_crosshairMat = _crosshair.GetComponent<SpriteRenderer>().material;
-		}
-
-		private void Start()
-		{
 			_main = Camera.main;
+
+			_crosshair = Instantiate(Prefab, GetMousePos(), Quaternion.identity);
+			_crosshairMat = _crosshair.GetComponent<SpriteRenderer>().material;
 		}
 
 		private void Update()
 		{
 			if (_crosshair != null)
 			{
-				Vector2 pos = _main.ScreenToWorldPoint(Input.mousePosition);
+				Vector2 pos = GetMousePos();
 				_crosshair.transform.position = pos;
 			}
 		}
@@ -68,6 +65,11 @@ namespace Quinn.Player
 			{
 				_crosshair.transform.localScale = Vector3.one * radius;
 			}
+		}
+
+		private Vector2 GetMousePos()
+		{
+			return _main.ScreenToWorldPoint(Input.mousePosition);
 		}
 	}
 }

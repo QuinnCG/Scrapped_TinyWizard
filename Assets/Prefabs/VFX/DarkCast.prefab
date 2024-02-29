@@ -51,8 +51,26 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 100
+      - m_Value: 2
         m_Name: Intensity
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: MinLifespan
+        m_Overridden: 1
+      - m_Value: 1.5
+        m_Name: MaxLifespan
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: MinSpeed
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: MaxSpeed
+        m_Overridden: 1
+      - m_Value: 0.6
+        m_Name: Size
+        m_Overridden: 1
+      - m_Value: 0.4
+        m_Name: Radius
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -102,14 +120,46 @@ VisualEffect:
           m_NumAlphaKeys: 4
         m_Name: Gradient
         m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 0.5226686, g: 0, b: 2.670157, a: 0}
+          key1: {r: 0, g: 0, b: 0, a: 1}
+          key2: {r: 0, g: 0, b: 0, a: 1}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 65535
+          ctime2: 0
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 6554
+          atime2: 31688
+          atime3: 65535
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 2
+          m_ColorSpace: 1
+          m_NumColorKeys: 2
+          m_NumAlphaKeys: 4
+        m_Name: Color
+        m_Overridden: 1
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: a07ce8cf5c1de29439dbae3969e78ad2, type: 3}
+      - m_Value: {fileID: 2800000, guid: 69d3a8603b6cb184383474d96b73c8a8, type: 3}
         m_Name: Texture
         m_Overridden: 1
     m_Bool:
       m_Array:
-      - m_Value: 0
+      - m_Value: 1
         m_Name: UseTurbulence
         m_Overridden: 1
 --- !u!73398921 &3761184694064000439

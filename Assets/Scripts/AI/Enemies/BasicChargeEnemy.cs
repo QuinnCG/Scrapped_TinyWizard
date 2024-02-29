@@ -7,7 +7,10 @@ namespace Quinn.AI.Enemies
 {
 	public class BasicChargeEnemy : Enemy
 	{
-		[SerializeField, BoxGroup("Senses")]
+		[SerializeField]
+		private bool StartWithPlayerSpotted;
+
+		[SerializeField, BoxGroup("Senses"), HideIf(nameof(StartWithPlayerSpotted))]
 		private float SpotPlayerRadius = 10f;
 
 		[SerializeField, BoxGroup("Movement")]
@@ -46,6 +49,11 @@ namespace Quinn.AI.Enemies
 
 			_origin = transform.position;
 			TargetPos = _origin;
+
+			if (StartWithPlayerSpotted)
+			{
+				IsPlayerSpotted = true;
+			}
 		}
 
 		protected override void Update()

@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3345024265336785886, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: DebugSpawnPoint
+      value: 
+      objectReference: {fileID: 6650939538483737808}
+    - target: {fileID: -3345024265336785886, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
       propertyPath: <Exits>k__BackingField.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -15090,7 +15094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4255626062198773353, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
       propertyPath: m_Name
-      value: RoomB
+      value: TestingRoomB
       objectReference: {fileID: 0}
     - target: {fileID: 5064950262958902663, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
@@ -15176,12 +15180,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 8513373930961598546, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8513373930961598546, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8398349599851643042, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+--- !u!4 &6650939538483737808 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8513373930961598546, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}
+  m_PrefabInstance: {fileID: 3056103812132834434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7153803119138054543 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5273183212282785037, guid: e0879027feb4f734fa7e195ad5f284cf, type: 3}

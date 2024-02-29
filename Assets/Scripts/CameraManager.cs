@@ -28,15 +28,6 @@ namespace Quinn
 			Instance = this;
 		}
 
-		private void Start()
-		{
-			var cam = RoomManager.Instance.DefaultVirtualCamera;
-			cam.enabled = true;
-			cam.gameObject.SetActive(true);
-
-			_activeVCam = cam;
-		}
-
 		public void SetVirtualCamera(CinemachineVirtualCamera virtualCamera)
 		{
 			if (_activeVCam != null)

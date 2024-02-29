@@ -27,15 +27,30 @@ namespace Quinn.RoomSystem
 		private void Awake()
 		{
 			Instance = this;
-			LoadDefaultRoom();
 		}
 
-		public void LoadDefaultRoom()
+		private void Start()
 		{
-			var instance = Instantiate(DefaultRoom.gameObject, transform);
+			if (_loadedRoom == null)
+			{
+				LoadDefaultRoom();
+			}
+		}
+
+		public void LoadDefaultRoom(GameObject room = null)
+		{
+			GameObject prefab = DefaultRoom.gameObject;
+
+			if (room != null)
+			{
+				prefab = room;
+			}
+
+			var instance = Instantiate(prefab, transform);
 			_loadedRoom = instance.GetComponent<Room>();
 
 			DefaultVirtualCamera = instance.GetComponentInChildren<CinemachineVirtualCamera>();
+			CameraManager.Instance.SetVirtualCamera(DefaultVirtualCamera);
 		}
 
 		public void LoadRoom(Room next, Exit from)

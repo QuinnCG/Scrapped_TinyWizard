@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ae998be0-ea76-4f87-be17-ddcb6101e3e0}">
+		<property name="assetPath">
+			<value>Spell/Fireball Loop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.0243229166666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8492e222-3225-4453-9c5d-22894c098308}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -11,6 +11,6 @@ namespace Quinn
 		Lightning = 8,
 		Holy = 16,
 		Nature = 32,
-		Dark = 64
+		Gravity = 64
 	}
 }

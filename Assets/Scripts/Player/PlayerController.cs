@@ -27,7 +27,7 @@ namespace Quinn.Player
 		private Transform StaffOrigin;
 
 		[SerializeField, FoldoutGroup("Spell/StaffColors")]
-		private Color Fire, Water, Earth, Lightning, Holy, Nature, Dark;
+		private Color Fire, Water, Earth, Lightning, Holy, Nature, Gravity;
 
 		[SerializeField, Required, BoxGroup("Spell")]
 		private SpriteRenderer StaffRenderer;
@@ -174,7 +174,7 @@ namespace Quinn.Player
 				ElementType.Lightning => Lightning,
 				ElementType.Holy => Holy,
 				ElementType.Nature => Nature,
-				ElementType.Dark => Dark,
+				ElementType.Gravity => Gravity,
 
 				_ => throw new NotImplementedException($"The element {Inventory.Instance.ActiveSpell.Element} is not implemented!")
 			});

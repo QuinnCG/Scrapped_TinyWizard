@@ -137,7 +137,7 @@ namespace Quinn.SpellSystem
 				ElementType.Lightning => LightningCastVFX,
 				ElementType.Holy => HolyCastVFX,
 				ElementType.Nature => NatureCastVFX,
-				ElementType.Dark => DarkCastVFX,
+				ElementType.Gravity => DarkCastVFX,
 				_ => null
 			};
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerGroup" id="{6c76164c-cb89-4dda-ab40-435e20c5b5e6}">
+		<property name="color">
+			<value>Yellow</value>
+		</property>
 		<property name="name">
 			<value>SFX</value>
 		</property>
@@ -24,7 +27,37 @@
 	<object class="MixerBusFader" id="{bc264429-062e-4aa4-a23a-217c8c9c30d4}" />
 	<object class="SFXReverbEffect" id="{8a662b6c-0478-4d1f-89d6-8400459bd081}">
 		<property name="decayTime">
-			<value>600</value>
+			<value>800</value>
+		</property>
+		<property name="wetLevel">
+			<value>-14.5</value>
+		</property>
+		<relationship name="automators">
+			<destination>{665b14a2-a8e8-41d6-8a95-c70004fdd56b}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{665b14a2-a8e8-41d6-8a95-c70004fdd56b}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>wetLevel</value>
+		</property>
+		<relationship name="automationCurves">
+			<destination>{8e9f75c7-19a7-4c56-9d05-f889e69f1ad8}</destination>
+		</relationship>
+	</object>
+	<object class="AutomationCurve" id="{8e9f75c7-19a7-4c56-9d05-f889e69f1ad8}">
+		<relationship name="parameter">
+			<destination>{5fd825bb-a596-4c7a-a1d2-6cd71cd9b9d7}</destination>
+		</relationship>
+		<relationship name="automationPoints">
+			<destination>{3d4ac839-a20c-4591-9e3c-63afae00bb79}</destination>
+		</relationship>
+	</object>
+	<object class="AutomationPoint" id="{3d4ac839-a20c-4591-9e3c-63afae00bb79}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="value">
+			<value>-7</value>
 		</property>
 	</object>
 </objects>

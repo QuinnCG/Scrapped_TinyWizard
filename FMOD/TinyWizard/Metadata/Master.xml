@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerMaster" id="{9f03f5ec-f87b-493b-bb0b-ea1b4952d13a}">
+		<property name="color">
+			<value>Blue</value>
+		</property>
+		<property name="volume">
+			<value>-10</value>
+		</property>
 		<property name="name">
 			<value>Master Bus</value>
 		</property>

@@ -170,8 +170,11 @@
 		<property name="length">
 			<value>7</value>
 		</property>
+		<property name="startOffset">
+			<value>12</value>
+		</property>
 		<property name="volume">
-			<value>-2.5</value>
+			<value>-1.5</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{8d746030-292d-4314-a063-2a47c298dc0e}</destination>

@@ -344,6 +344,13 @@ MonoBehaviour:
   StaffRenderer: {fileID: 7792355094613511073}
   CameraTarget: {fileID: 672410304654386847}
   CameraCrosshairBias: 0.1
+  DashSound:
+    Guid:
+      Data1: 129245754
+      Data2: 1124908692
+      Data3: -1029213785
+      Data4: -1941991361
+    Path: event:/Player/Dash
 --- !u!114 &3339170963623325113
 MonoBehaviour:
   m_ObjectHideFlags: 0

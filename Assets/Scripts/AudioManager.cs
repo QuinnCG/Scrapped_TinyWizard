@@ -27,6 +27,13 @@ namespace Quinn
 			OnRegionChange(RoomManager.Instance.CurrentRegion);
 		}
 
+		public static void Play(EventReference sound)
+		{
+			if (!sound.IsNull)
+			{
+				RuntimeManager.PlayOneShot(sound);
+			}	
+		}
 		public static void Play(EventReference sound, Vector2 position)
 		{
 			if (!sound.IsNull)

@@ -1,3 +1,4 @@
+using FMODUnity;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
@@ -37,6 +38,9 @@ namespace Quinn.Player
 
 		[SerializeField, Required, BoxGroup("Camera")]
 		private float CameraCrosshairBias = 0.2f;
+
+		[SerializeField, BoxGroup("Audio")]
+		private EventReference DashSound;
 
 		public Vector2 Velocity => _movement.Velocity;
 		public Vector2 Center => _collider.bounds.center;
@@ -108,6 +112,8 @@ namespace Quinn.Player
 
 				_movement.Dash();
 				_animator.SetTrigger("Dash");
+
+				AudioManager.Play(DashSound, transform);
 			}
 		}
 

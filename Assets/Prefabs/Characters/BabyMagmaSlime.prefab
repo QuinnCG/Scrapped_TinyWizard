@@ -153,7 +153,67 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3402680198510623166}
+    - targetCorrespondingSourceObject: {fileID: 3822911962237669763, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 564285076810908589}
   m_SourcePrefab: {fileID: 100100000, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+--- !u!1 &1199756088067115376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3822911962237669763, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+  m_PrefabInstance: {fileID: 2714498371264895219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &564285076810908589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199756088067115376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 2
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 0.39719626, b: 0, a: 1}
+  m_Intensity: 0.5
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 73ee6a8200000000f364a9c84347bd51
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 3
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &7986205367498324435 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
@@ -174,6 +234,14 @@ MonoBehaviour:
   ChargeRate: 50
   <SpellOrigin>k__BackingField: {fileID: 0}
   <BaseDamage>k__BackingField: 19
+  CasterKnockbackScale: 1
+  FireCastVFX: {fileID: 0}
+  WaterCastVFX: {fileID: 0}
+  EarthCastVFX: {fileID: 0}
+  LightningCastVFX: {fileID: 0}
+  HolyCastVFX: {fileID: 0}
+  NatureCastVFX: {fileID: 0}
+  DarkCastVFX: {fileID: 0}
 --- !u!114 &3402680198510623166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901ab7b7d184d744db033d8be16af419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartWithPlayerSpotted: 0
   SpotPlayerRadius: 10
   StoppingDistance: 0.5
   UsePerlin: 1

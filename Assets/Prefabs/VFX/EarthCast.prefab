@@ -54,8 +54,29 @@ VisualEffect:
       - m_Value: 1
         m_Name: Size
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 3
         m_Name: Count
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: Radius
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: MinSpeed
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: MaxSpeed
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: MinLifespan
+        m_Overridden: 1
+      - m_Value: 1.5
+        m_Name: MaxLifespan
+        m_Overridden: 1
+      - m_Value: 3
+        m_Name: Intensity
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: Frequency
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -107,8 +128,8 @@ VisualEffect:
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0.33251008, g: 0.20828412, b: 0.18005733, a: 0}
-          key1: {r: 0.33251008, g: 0.20828412, b: 0.18005733, a: 0.69803923}
+          key0: {r: 0.12452829, g: 0.09552886, b: 0.09092914, a: 0}
+          key1: {r: 0.12452829, g: 0.09552886, b: 0.09092914, a: 0.69803923}
           key2: {r: 0, g: 0, b: 0, a: 0.7647059}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -139,11 +160,14 @@ VisualEffect:
         m_Overridden: 1
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: 7006b2ae83e9117469238c7c2ba195c7, type: 3}
+      - m_Value: {fileID: 2800000, guid: a07ce8cf5c1de29439dbae3969e78ad2, type: 3}
         m_Name: Texture
         m_Overridden: 1
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: UseTurbulence
+        m_Overridden: 1
 --- !u!73398921 &3761184694064000439
 VFXRenderer:
   serializedVersion: 1

@@ -44,16 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b060bd840b1c6684497963378d3741f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxCharge>k__BackingField: 75
+  <MaxCharge>k__BackingField: 45
   <CanOvercharge>k__BackingField: 0
   <MaxOvercharge>k__BackingField: 120
   <TargetRadius>k__BackingField: 1
   <Element>k__BackingField: 4
-  <CasterKnockbackSpeed>k__BackingField: 5
+  <CasterKnockbackSpeed>k__BackingField: 2
   MissileFX: {fileID: 4683029367638373840, guid: 17fc4f40f0152b34181cacff1f57e008, type: 3}
-  Speed: 4
-  DamageFactor: 1
-  HitRadius: 0.25
+  Speed: 12
+  DamageFactor: 0.6
+  HitRadius: 0.2
   CastSound:
     Guid:
       Data1: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  SpawnOnHit: {fileID: 0}
+  SpawnOnHit: {fileID: 6970771688676637555, guid: 8f75e7b5bc9b14f4e96b4ec7d8e25909, type: 3}
   SpawnOnHitLifespan: 2
   DetachParticlesOnHit: 0
   DetachedParticlesLifespan: 2

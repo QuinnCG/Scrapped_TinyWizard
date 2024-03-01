@@ -90,6 +90,8 @@ namespace Quinn.Player
 			CameraTargetUpdate();
 		}
 
+		public Transform GetCameraTarget() => CameraTarget;
+
 		private void MoveUpdate()
 		{
 			_movement.Move(_input.MoveInput);

@@ -37,8 +37,9 @@ namespace Quinn
 
 			_activeVCam = virtualCamera;
 
-			virtualCamera.Follow = PlayerController.Instance.transform;
+			virtualCamera.Follow = PlayerController.Instance.GetCameraTarget();
 			virtualCamera.enabled = true;
+
 		}
 
 		public float FadeToBlack()

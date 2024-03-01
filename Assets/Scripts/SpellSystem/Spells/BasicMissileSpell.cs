@@ -21,9 +21,6 @@ namespace Quinn.SpellSystem.Spells
 		private float HitRadius = 0.5f;
 
 		[SerializeField]
-		private EventReference CastSound, HitSound;
-
-		[SerializeField]
 		private GameObject SpawnOnHit;
 
 		[SerializeField]
@@ -50,8 +47,6 @@ namespace Quinn.SpellSystem.Spells
 
 			var missile = SpawnMissile(pos, dir, info, MissileFX);
 			missile.OnHit += hit => OnHit(missile, hit);
-
-			AudioManager.Play(CastSound, missile.transform.position);
 		}
 
 		private void OnHit(Missile missile, GameObject hit)
@@ -96,7 +91,6 @@ namespace Quinn.SpellSystem.Spells
 				}
 			}
 
-			AudioManager.Play(HitSound, missile.transform.position);
 			Destroy(missile.gameObject);
 		}
 	}

@@ -114,8 +114,8 @@
 	<object class="MixerBusFader" id="{97878846-c93c-48c2-ad4e-ea4ab4df58d4}" />
 	<object class="MixerBusFader" id="{f694ed52-f3c7-43b7-a962-bea685a5ec6d}" />
 	<object class="SpatialiserEffect" id="{52f5d09b-0fe0-4535-bd13-a547788a03cf}">
-		<property name="overrideRange">
-			<value>true</value>
+		<property name="distanceRolloffType">
+			<value>1</value>
 		</property>
 	</object>
 </objects>

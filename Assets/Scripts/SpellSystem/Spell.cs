@@ -1,3 +1,4 @@
+using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -27,6 +28,9 @@ namespace Quinn.SpellSystem
 		[field: SerializeField]
 		public float CasterKnockbackSpeed { get; private set; } = 5f;
 
+		[SerializeField, BoxGroup("Audio")]
+		private EventReference CastSound, LoopSound, HitSound;
+
 		protected SpellCaster Caster { get; private set; }
 		protected float BaseDamage { get; private set; }
 
@@ -55,6 +59,8 @@ namespace Quinn.SpellSystem
 
 			target += TargetRadius * Random.insideUnitCircle / 2f;
 			OnCast(charge, target);
+
+			AudioManager.Play(CastSound, caster.transform.position);
 		}
 
 		protected virtual Missile SpawnMissile(Vector2 position, Vector2 dir, MissileInfo info, GameObject attached = null)
@@ -71,7 +77,17 @@ namespace Quinn.SpellSystem
 				missile.Attached = a;
 			}
 
+			if (!LoopSound.IsNull)
+			{
+				var sound = RuntimeManager.CreateInstance(LoopSound);
+				sound.set3DAttributes(RuntimeUtils.To3DAttributes(missile.transform));
+				sound.start();
+
+				missile.OnHit += _ => sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+			}
+
 			missile.Launch(dir, info);
+			missile.OnHit += _ => AudioManager.Play(HitSound, missile.transform.position);
 
 			return missile;
 		}

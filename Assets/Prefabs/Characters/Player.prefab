@@ -271,6 +271,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4650833273920180469}
+    - targetCorrespondingSourceObject: {fileID: 1966245805656959970, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3625323173567533048}
     - targetCorrespondingSourceObject: {fileID: 2971667891182054209, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7792355094613511073}
@@ -445,6 +448,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8940055740882507582, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
   m_PrefabInstance: {fileID: 5716055183282070520}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6060160388916709402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1966245805656959970, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+  m_PrefabInstance: {fileID: 5716055183282070520}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3625323173567533048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060160388916709402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_Priority: 0
+  m_ComponentVersion: 5
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_AlphaCutoff: 0.1
+  m_ApplyToSortingLayers: 73ee6a8200000000f364a9c84347bd51
+  m_ShapePath:
+  - {x: -0.22717828, y: 0.107161626, z: 0}
+  - {x: -0.22684585, y: 0.36525968, z: 0}
+  - {x: -0.09310959, y: 0.3545607, z: 0}
+  - {x: -0.0984592, y: 0.52039343, z: 0}
+  - {x: -0.23219527, y: 0.515044, z: 0}
+  - {x: -0.23754472, y: 0.60330987, z: 0}
+  - {x: -0.09310959, y: 0.6140088, z: 0}
+  - {x: -0.09578448, y: 0.7718173, z: 0}
+  - {x: -0.22684585, y: 0.7691426, z: 0}
+  - {x: -0.22447696, y: 0.8475832, z: 0}
+  - {x: -0.025613427, y: 0.85182214, z: 0}
+  - {x: -0.018217549, y: 0.7236724, z: 0}
+  - {x: 0.09679564, y: 0.7236724, z: 0}
+  - {x: 0.09679564, y: 0.60330987, z: 0}
+  - {x: 0.23588102, y: 0.6059846, z: 0}
+  - {x: 0.23588102, y: 0.50167036, z: 0}
+  - {x: 0.11284381, y: 0.5177188, z: 0}
+  - {x: 0.10749453, y: 0.3545607, z: 0}
+  - {x: 0.22518212, y: 0.35723552, z: 0}
+  - {x: 0.22785701, y: 0.10313697, z: 0}
+  - {x: 0.35356873, y: 0.10313697, z: 0}
+  - {x: 0.3508942, y: 0.0068469346, z: 0}
+  - {x: -0.35255778, y: 0.01487115, z: 0}
+  - {x: -0.35056126, y: 0.11251122, z: 0}
+  m_ShapePathHash: 333418728
+  m_InstanceId: 0
+  m_ShadowShape2DComponent: {fileID: 0}
+  m_ShadowShape2DProvider:
+    rid: -2
+  m_ShadowCastingSource: 1
+  m_ShadowMesh:
+    m_Mesh: {fileID: 0}
+    m_LocalBounds:
+      m_Center: {x: 0.0005054772, y: 0.42933455, z: 0}
+      m_Extent: {x: 0.35306326, y: 0.42248762, z: 0}
+    m_EdgeProcessing: 1
+    m_TrimEdge: 0
+    m_FlipX: 0
+    m_FlipY: 0
+    m_InitialTrim: 0
+  m_CastingOption: 1
+  m_PreviousTrimEdge: 0
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
+  m_PreviousShadowShape2DSource: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!4 &6360659045008527316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1663543865695874092, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}

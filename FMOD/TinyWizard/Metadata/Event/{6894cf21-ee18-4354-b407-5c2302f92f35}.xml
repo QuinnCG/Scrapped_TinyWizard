@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{6894cf21-ee18-4354-b407-5c2302f92f35}">
 		<property name="name">
-			<value>MineAmbience</value>
+			<value>FerrariaMines</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -35,6 +35,7 @@
 		</relationship>
 		<relationship name="banks">
 			<destination>{c32698e0-c5fb-45bb-b760-645f2f7a3ec2}</destination>
+			<destination>{33eda71d-6998-4993-9211-c2de184b199b}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{d509f979-9af7-4f8a-8ae5-0e341a103870}">

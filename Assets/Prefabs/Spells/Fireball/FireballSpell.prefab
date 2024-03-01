@@ -57,20 +57,6 @@ MonoBehaviour:
       Data3: 1767171471
       Data4: 13150786
     Path: event:/Spell/FireballCast
-  LoopSound:
-    Guid:
-      Data1: 710426986
-      Data2: 1229871211
-      Data3: 579423151
-      Data4: 1926944331
-    Path: event:/Spell/FireballLoop
-  HitSound:
-    Guid:
-      Data1: -1076836336
-      Data2: 1292837498
-      Data3: -91607908
-      Data4: 624283866
-    Path: event:/Spell/FireballHit
   MissileFX: {fileID: 4683029367638373840, guid: 254de5ba5a147124e83b9231df52e85c, type: 3}
   Speed: 10
   DamageFactor: 1
@@ -78,5 +64,13 @@ MonoBehaviour:
   SpawnOnHit: {fileID: 2164128285846265074, guid: 2b61c720bff6d5f46bdd38abf1491bfd, type: 3}
   SpawnOnHitLifespan: 2
   DetachParticlesOnHit: 1
-  DisableSpritesOnHit: 0
   DetachedParticlesLifespan: 2
+  DisableSpritesOnHit: 1
+  DisableLightOnHit: 1
+  HitSound:
+    Guid:
+      Data1: -1076836336
+      Data2: 1292837498
+      Data3: -91607908
+      Data4: 624283866
+    Path: event:/Spell/FireballHit

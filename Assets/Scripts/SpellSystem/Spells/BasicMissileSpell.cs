@@ -2,6 +2,7 @@ using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
 
 namespace Quinn.SpellSystem.Spells
@@ -29,11 +30,14 @@ namespace Quinn.SpellSystem.Spells
 		[SerializeField]
 		private bool DetachParticlesOnHit;
 
+		[SerializeField, Tooltip("0f or below will disable lifespan.")]
+		private float DetachedParticlesLifespan = 5f;
+
 		[SerializeField, EnableIf(nameof(DetachParticlesOnHit))]
 		private bool DisableSpritesOnHit = true;
 
-		[SerializeField, Tooltip("0f or below will disable lifespan.")]
-		private float DetachedParticlesLifespan = 5f;
+		[SerializeField, EnableIf(nameof(DetachParticlesOnHit))]
+		private bool DisableLightOnHit = true;
 
 		[SerializeField, BoxGroup("Audio")]
 		private EventReference HitSound;
@@ -77,9 +81,17 @@ namespace Quinn.SpellSystem.Spells
 
 				if (DisableSpritesOnHit)
 				{
-					foreach (var renderer in attached.GetComponents<SpriteRenderer>())
+					foreach (var renderer in attached.GetComponentsInChildren<SpriteRenderer>())
 					{
 						renderer.enabled = false;
+					}
+				}
+
+				if (DisableLightOnHit)
+				{
+					foreach (var light in attached.GetComponentsInChildren<Light2D>())
+					{
+						light.enabled = false;
 					}
 				}
 			}

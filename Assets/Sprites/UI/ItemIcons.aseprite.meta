@@ -128,8 +128,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 17
+      x: 18
+      y: 4
       width: 3
       height: 8
     spriteID: f769b53f01c46ad4389736e5a0857e3b
@@ -140,7 +140,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 17}
+    uvTransform: {x: 18, y: 4}
   - name: Fireball Spell Icon
     originalName: 
     pivot: {x: 0.6666667, y: 0.33333334}
@@ -148,8 +148,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 15
-      y: 17
+      x: 18
+      y: 20
       width: 3
       height: 6
     spriteID: d9ddc4b08c816c341acc221d8f976c3b
@@ -160,7 +160,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 15, y: 17}
+    uvTransform: {x: 18, y: 20}
   - name: Micro Blackhole Icon
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -169,10 +169,30 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 18
       width: 5
       height: 5
     spriteID: 914032ba38a7d874e93921a4e3a717b0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 18}
+  - name: Rock Throw Icon
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 6
+      height: 6
+    spriteID: 17f51bc1ca0659a4ea1a342243ee07ee
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -261,6 +281,23 @@ ScriptedImporter:
         width: 5
         height: 5
       spriteId: 914032ba38a7d874e93921a4e3a717b0
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 4
+    guid: -979570440
+    name: Rock Throw Icon
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Rock Throw Icon
+      frameIndex: 0
+      cellRect:
+        x: 5
+        y: 5
+        width: 6
+        height: 6
+      spriteId: 17f51bc1ca0659a4ea1a342243ee07ee
     linkedCells: []
     parentIndex: 0
   platformSettings:

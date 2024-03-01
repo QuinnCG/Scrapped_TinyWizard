@@ -337,7 +337,7 @@ MonoBehaviour:
   Lightning: {r: 1, g: 0.86824596, b: 0, a: 1}
   Holy: {r: 1, g: 0.96556497, b: 0.76037735, a: 1}
   Nature: {r: 0.19312914, g: 0.6603774, b: 0.27963933, a: 1}
-  Dark: {r: 0.16345255, g: 0.10301882, b: 0.3433962, a: 1}
+  Dark: {r: 0.35599947, g: 0, b: 1, a: 1}
   StaffRenderer: {fileID: 7792355094613511073}
   CameraTarget: {fileID: 672410304654386847}
   CameraCrosshairBias: 0.1
@@ -393,6 +393,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17aaed03f4fb8b942b7667e7a7c63164, type: 2}
   - {fileID: 11400000, guid: af8d8e895bee76e4d8dbadb7cd49cd4b, type: 2}
   - {fileID: 11400000, guid: e29115bf42aa32844b108e6606162020, type: 2}
+  - {fileID: 11400000, guid: 62c8e6199c0d4d44da530a2bc2da5904, type: 2}
 --- !u!114 &8985563959999630003
 MonoBehaviour:
   m_ObjectHideFlags: 0

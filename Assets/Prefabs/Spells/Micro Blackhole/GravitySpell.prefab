@@ -68,7 +68,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  SpawnOnHit: {fileID: 4822291235147194672, guid: c1a01421bdb086347be2d6ed5ec9479b, type: 3}
+  SpawnOnHit: {fileID: 0}
   SpawnOnHitLifespan: 2
   DetachParticlesOnHit: 1
   DetachedParticlesLifespan: 2

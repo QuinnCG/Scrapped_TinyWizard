@@ -7,6 +7,9 @@ namespace Quinn.RoomSystem
 		[field: SerializeField]
 		public RegionType Region { get; private set; }
 
+		[field: SerializeField]
+		public bool IsInnerSection { get; private set; } = true;
+
 		[SerializeField]
 		private Transform FallbackSpawnPoint;
 

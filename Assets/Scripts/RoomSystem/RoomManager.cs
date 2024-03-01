@@ -22,12 +22,11 @@ namespace Quinn.RoomSystem
 		[SerializeField]
 		private float TransitionMoveDistance = 4f;
 
+		public Room CurrentRoom { get; private set; }
 		public CinemachineVirtualCamera DefaultVirtualCamera { get; private set; }
 		public RegionType CurrentRegion { get; private set; }
 
 		public event Action<RegionType> OnRegionChange;
-
-		private Room _loadedRoom;
 
 		private void Awake()
 		{
@@ -36,7 +35,7 @@ namespace Quinn.RoomSystem
 
 		private void Start()
 		{
-			if (_loadedRoom == null)
+			if (CurrentRoom == null)
 			{
 				LoadDefaultRoom();
 			}
@@ -52,9 +51,9 @@ namespace Quinn.RoomSystem
 			}
 
 			var instance = Instantiate(prefab, transform);
-			_loadedRoom = instance.GetComponent<Room>();
+			CurrentRoom = instance.GetComponent<Room>();
 
-			ChangeRegion(_loadedRoom);
+			ChangeRegion(CurrentRoom);
 
 			DefaultVirtualCamera = instance.GetComponentInChildren<CinemachineVirtualCamera>();
 			CameraManager.Instance.SetVirtualCamera(DefaultVirtualCamera);
@@ -80,13 +79,13 @@ namespace Quinn.RoomSystem
 			yield return new WaitForSeconds(fadeToBlack);
 
 			// Unload previous room.
-			Destroy(_loadedRoom.gameObject);
+			Destroy(CurrentRoom.gameObject);
 
 			// Fade from black.
 			CameraManager.Instance.FadeFromBlack();
 
 			// Set _loadedRoom.
-			_loadedRoom = nextRoom;
+			CurrentRoom = nextRoom;
 		}
 
 		private IEnumerator AnimatePlayer(Vector2 dir, Vector2 exitOrigin)

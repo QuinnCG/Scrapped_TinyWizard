@@ -71,7 +71,14 @@ MonoBehaviour:
       Data2: 1129639448
       Data3: 593233844
       Data4: 892336386
-    Path: event:/Ambience/MineAmbience
+    Path: event:/Ambience/FerrariaMines
+  MineMusic:
+    Guid:
+      Data1: -1498131914
+      Data2: 1124933156
+      Data3: 1666181051
+      Data4: -405187604
+    Path: event:/Music/FerrariaMines
 --- !u!114 &-3510697115525843998
 MonoBehaviour:
   m_ObjectHideFlags: 0

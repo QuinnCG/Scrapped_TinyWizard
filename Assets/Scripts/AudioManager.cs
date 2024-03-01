@@ -11,10 +11,14 @@ namespace Quinn
 	{
 		public static AudioManager Instance { get; private set; }
 
-		[SerializeField, BoxGroup("Ambience")]
+		[SerializeField, FoldoutGroup("Ambience")]
 		private EventReference MineAmbience;
 
+		[SerializeField, FoldoutGroup("Music")]
+		private EventReference MineMusic;
+
 		private EventInstance _ambience;
+		private EventInstance _music;
 
 		private void Awake()
 		{
@@ -25,6 +29,12 @@ namespace Quinn
 		{
 			RoomManager.Instance.OnRegionChange += OnRegionChange;
 			OnRegionChange(RoomManager.Instance.CurrentRegion);
+		}
+
+		private void Update()
+		{
+			bool isInner = RoomManager.Instance.CurrentRoom.IsInnerSection;
+			RuntimeManager.StudioSystem.setParameterByName("in-inner-region", isInner ? 1f : 0f);
 		}
 
 		public static void Play(EventReference sound)
@@ -51,7 +61,7 @@ namespace Quinn
 
 		private void OnRegionChange(RegionType type)
 		{
-			EventReference sound = type switch
+			EventReference ambience = type switch
 			{
 				RegionType.None => throw new Exception("Cannot set region type to 'None'!"),
 				RegionType.Mine => MineAmbience,
@@ -59,8 +69,18 @@ namespace Quinn
 			};
 
 			_ambience.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-			_ambience = RuntimeManager.CreateInstance(sound);
+			_ambience = RuntimeManager.CreateInstance(ambience);
 			_ambience.start();
+
+			EventReference music = type switch
+			{
+				RegionType.Mine => MineMusic,
+				_ => throw new NotImplementedException()
+			};
+
+			_music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+			_music = RuntimeManager.CreateInstance(music);
+			_music.start();
 		}
 	}
 }

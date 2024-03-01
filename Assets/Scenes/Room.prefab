@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8513373930961598546}
   m_Layer: 0
-  m_Name: DebugSpawn
+  m_Name: FallbackSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -249,9 +249,9 @@ Transform:
   m_Children:
   - {fileID: 3042166723767025426}
   - {fileID: 5232996551431564815}
+  - {fileID: 7492452944890424647}
   - {fileID: 7400290173444307784}
   - {fileID: 8513373930961598546}
-  - {fileID: 7492452944890424647}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-3345024265336785886
@@ -269,7 +269,7 @@ MonoBehaviour:
   <Exits>k__BackingField:
   - {fileID: 5273183212282785037}
   - {fileID: 5217291270197148418}
-  DebugSpawnPoint: {fileID: 0}
+  FallbackSpawnPoint: {fileID: 8513373930961598546}
 --- !u!1 &5537785317860723307
 GameObject:
   m_ObjectHideFlags: 0

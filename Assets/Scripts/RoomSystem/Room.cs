@@ -8,15 +8,15 @@ namespace Quinn.RoomSystem
 		public Exit[] Exits { get; private set; }
 
 		[SerializeField]
-		private Transform DebugSpawnPoint;
+		private Transform FallbackSpawnPoint;
 
 		public Vector2 DebugSpawnPosition
 		{
 			get
 			{
-				if (DebugSpawnPoint != null)
+				if (FallbackSpawnPoint != null)
 				{
-					return DebugSpawnPoint.position;
+					return FallbackSpawnPoint.position;
 				}
 
 				if (Exits.Length > 0)

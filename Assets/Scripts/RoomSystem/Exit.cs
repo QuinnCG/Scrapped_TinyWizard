@@ -33,5 +33,19 @@ namespace Quinn.RoomSystem
 				}
 			}
 		}
+
+		private void OnDrawGizmos()
+		{
+			Vector3 dir = Direction switch
+			{
+				ExitDirection.Up => Vector2.up,
+				ExitDirection.Down => Vector2.down,
+				ExitDirection.Left => Vector2.left,
+				ExitDirection.Right => Vector2.right,
+				_ => throw new System.Exception("Invalid exit direction!")
+			};
+
+			Gizmos.DrawLine(transform.position, transform.position + (dir * 4f));
+		}
 	}
 }

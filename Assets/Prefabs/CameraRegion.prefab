@@ -80,10 +80,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -20, y: -10}
-      - {x: -20, y: 10}
-      - {x: 20, y: 10}
-      - {x: 20, y: -10}
+    - - {x: -10, y: -6}
+      - {x: -10, y: 6}
+      - {x: 10, y: 6}
+      - {x: 10, y: -6}
   m_UseDelaunayMesh: 0
 --- !u!114 &1988640825470979226
 MonoBehaviour:

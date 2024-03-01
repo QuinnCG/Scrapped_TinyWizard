@@ -66,7 +66,7 @@ namespace Quinn.RoomSystem
 			CameraManager.Instance.FadeToBlack();
 
 			// Animate player moving into next room.
-			StartCoroutine(AnimatePlayer(dir));
+			StartCoroutine(AnimatePlayer(dir, from.transform.position));
 
 			float fadeToBlack = CameraManager.Instance.FadeToBlackDuration;
 			yield return new WaitForSeconds(fadeToBlack);
@@ -81,7 +81,7 @@ namespace Quinn.RoomSystem
 			_loadedRoom = nextRoom;
 		}
 
-		private IEnumerator AnimatePlayer(Vector2 dir)
+		private IEnumerator AnimatePlayer(Vector2 dir, Vector2 exitOrigin)
 		{
 			var player = PlayerController.Instance;
 			var input = player.GetComponent<InputReader>();
@@ -93,10 +93,10 @@ namespace Quinn.RoomSystem
 
 			var dst = float.PositiveInfinity;
 
-			Vector2 start = player.transform.position;
+			Vector2 start = exitOrigin;
 			Vector2 target = start + (dir * TransitionMoveDistance);
 
-			while (dst > 0.2f)
+			while (dst > 1.5f)
 			{
 				dst = Vector2.Distance(player.transform.position, target);
 				move.Move(dir);

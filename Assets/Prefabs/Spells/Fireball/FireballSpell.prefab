@@ -47,7 +47,7 @@ MonoBehaviour:
   <MaxCharge>k__BackingField: 75
   <CanOvercharge>k__BackingField: 0
   <MaxOvercharge>k__BackingField: 120
-  <TargetRadius>k__BackingField: 1
+  <TargetRadius>k__BackingField: 1.25
   <Element>k__BackingField: 1
   <CasterKnockbackSpeed>k__BackingField: 5
   MissileFX: {fileID: 4683029367638373840, guid: 254de5ba5a147124e83b9231df52e85c, type: 3}
@@ -71,4 +71,5 @@ MonoBehaviour:
   SpawnOnHit: {fileID: 2164128285846265074, guid: 2b61c720bff6d5f46bdd38abf1491bfd, type: 3}
   SpawnOnHitLifespan: 2
   DetachParticlesOnHit: 1
+  DisableSpritesOnHit: 0
   DetachedParticlesLifespan: 2

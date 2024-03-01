@@ -71,9 +71,9 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
-    importHiddenLayers: 1
-    layerImportMode: 0
+    fileImportMode: 0
+    importHiddenLayers: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -84,9 +84,9 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
-    importHiddenLayers: 1
-    layerImportMode: 0
+    fileImportMode: 0
+    importHiddenLayers: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638446753425730348
+  platformSettingsDirtyTick: 638448427347486888
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -128,8 +128,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 18
-      y: 4
+      x: 4
+      y: 17
       width: 3
       height: 8
     spriteID: f769b53f01c46ad4389736e5a0857e3b
@@ -140,7 +140,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 18, y: 4}
+    uvTransform: {x: 4, y: 17}
   - name: Fireball Spell Icon
     originalName: 
     pivot: {x: 0.6666667, y: 0.33333334}
@@ -148,8 +148,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 18
-      y: 20
+      x: 15
+      y: 17
       width: 3
       height: 6
     spriteID: d9ddc4b08c816c341acc221d8f976c3b
@@ -160,7 +160,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 18, y: 20}
+    uvTransform: {x: 15, y: 17}
   - name: Micro Blackhole Icon
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -169,7 +169,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 18
+      y: 4
       width: 5
       height: 5
     spriteID: 914032ba38a7d874e93921a4e3a717b0
@@ -180,18 +180,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 18}
+    uvTransform: {x: 4, y: 4}
   - name: Rock Throw Icon
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.33333334, y: 0.33333334}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 17
       y: 4
-      width: 6
-      height: 6
+      width: 3
+      height: 3
     spriteID: 17f51bc1ca0659a4ea1a342243ee07ee
     spriteBone: []
     spriteOutline: []
@@ -200,9 +200,29 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 17, y: 4}
   spriteSheetImportData:
-  - name: FireballIcon_0
+  - name: RockThrowIcon
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2
+      y: 11
+      width: 7
+      height: 7
+    spriteID: 03e451fd40d3f4a40b1c110f8d1888a7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: FireballIcon
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -213,7 +233,47 @@ ScriptedImporter:
       y: 3
       width: 7
       height: 8
-    spriteID: 2397e5c193a72484290b1700568c5c8b
+    spriteID: 1257fdf0c4c48e246ad22e2e7a8eb9bb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: WaterballIcon
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 11
+      y: 11
+      width: 7
+      height: 8
+    spriteID: 3a40b7a6bd11e5f409cce0933955fec8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: MicroBlackholeIcon
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 11
+      y: 3
+      width: 7
+      height: 7
+    spriteID: 516cec4a8ddfa4d479ed259ccb8cbf51
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -224,82 +284,22 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 1168152310
-    name: Spell Icons
-    layerFlags: 3
-    layerType: 1
+    guid: -1230083139
+    name: ItemIcons
+    layerFlags: 0
+    layerType: 0
     blendMode: 0
-    cells: []
+    cells:
+    - name: ItemIcons
+      frameIndex: 0
+      cellRect:
+        x: 2
+        y: 1
+        width: 13
+        height: 15
+      spriteId: 3b6561734d131f14b815f09d32f78cc0
     linkedCells: []
     parentIndex: -1
-  - layerIndex: 1
-    guid: 466138334
-    name: Waterball Spell Icon
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Waterball Spell Icon
-      frameIndex: 0
-      cellRect:
-        x: 6
-        y: 5
-        width: 3
-        height: 8
-      spriteId: f769b53f01c46ad4389736e5a0857e3b
-    linkedCells: []
-    parentIndex: 0
-  - layerIndex: 2
-    guid: 315905132
-    name: Fireball Spell Icon
-    layerFlags: 2
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Fireball Spell Icon
-      frameIndex: 0
-      cellRect:
-        x: 6
-        y: 6
-        width: 3
-        height: 6
-      spriteId: d9ddc4b08c816c341acc221d8f976c3b
-    linkedCells: []
-    parentIndex: 0
-  - layerIndex: 3
-    guid: -1823939845
-    name: Micro Blackhole Icon
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Micro Blackhole Icon
-      frameIndex: 0
-      cellRect:
-        x: 5
-        y: 5
-        width: 5
-        height: 5
-      spriteId: 914032ba38a7d874e93921a4e3a717b0
-    linkedCells: []
-    parentIndex: 0
-  - layerIndex: 4
-    guid: -979570440
-    name: Rock Throw Icon
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Rock Throw Icon
-      frameIndex: 0
-      cellRect:
-        x: 5
-        y: 5
-        width: 6
-        height: 6
-      spriteId: 17f51bc1ca0659a4ea1a342243ee07ee
-    linkedCells: []
-    parentIndex: 0
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0

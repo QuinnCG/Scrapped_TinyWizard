@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Rock Throw
   Description: You a chunky rock at your foes.
-  Icon: {fileID: -325643180983719294, guid: 21af32736b34ff34c95260e6c875433a, type: 3}
+  Icon: {fileID: -6222578417135009383, guid: 21af32736b34ff34c95260e6c875433a, type: 3}
   Prefab: {fileID: 4002628484351460420, guid: b0abc6926b00c7c41b71a1c3f7ce1560, type: 3}
-  Element: 2
+  Element: 4

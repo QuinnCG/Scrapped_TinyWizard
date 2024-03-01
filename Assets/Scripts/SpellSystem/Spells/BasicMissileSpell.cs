@@ -32,6 +32,9 @@ namespace Quinn.SpellSystem.Spells
 		[SerializeField]
 		private bool DetachParticlesOnHit;
 
+		[SerializeField, EnableIf(nameof(DetachParticlesOnHit))]
+		private bool DisableSpritesOnHit = true;
+
 		[SerializeField, Tooltip("0f or below will disable lifespan.")]
 		private float DetachedParticlesLifespan = 5f;
 
@@ -65,11 +68,21 @@ namespace Quinn.SpellSystem.Spells
 
 			if (missile.Attached && DetachParticlesOnHit)
 			{
-				var vfx = missile.Attached.GetComponentInChildren<VisualEffect>();
+				GameObject attached = missile.Attached;
+				var vfx = attached.GetComponentInChildren<VisualEffect>();
+
 				if (vfx)
 				{
 					vfx.transform.parent = null;
 					Destroy(vfx.gameObject, DetachedParticlesLifespan);
+				}
+
+				if (DisableSpritesOnHit)
+				{
+					foreach (var renderer in attached.GetComponents<SpriteRenderer>())
+					{
+						renderer.enabled = false;
+					}
 				}
 			}
 

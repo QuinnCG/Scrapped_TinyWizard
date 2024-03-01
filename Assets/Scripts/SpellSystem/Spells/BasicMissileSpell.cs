@@ -35,6 +35,9 @@ namespace Quinn.SpellSystem.Spells
 		[SerializeField, Tooltip("0f or below will disable lifespan.")]
 		private float DetachedParticlesLifespan = 5f;
 
+		[SerializeField, BoxGroup("Audio")]
+		private EventReference HitSound;
+
 		protected override void OnCast(float charge, Vector2 target)
 		{
 			Vector2 pos = Caster.SpellOrigin.position;
@@ -92,6 +95,8 @@ namespace Quinn.SpellSystem.Spells
 			}
 
 			Destroy(missile.gameObject);
+
+			AudioManager.Play(HitSound, transform.position);
 		}
 	}
 }

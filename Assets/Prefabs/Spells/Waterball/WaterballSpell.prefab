@@ -50,11 +50,14 @@ MonoBehaviour:
   <TargetRadius>k__BackingField: 1
   <Element>k__BackingField: 2
   <CasterKnockbackSpeed>k__BackingField: 5
-  MissileFX: {fileID: 4431279572644365563, guid: 2d78f8e9485d8894c93a976a4502c9c5, type: 3}
-  Speed: 7
-  DamageFactor: 0.8
-  HitRadius: 0.4
   CastSound:
+    Guid:
+      Data1: -566238277
+      Data2: 1100272470
+      Data3: 1215866301
+      Data4: -220588819
+    Path: event:/Spell/WaterballCast
+  LoopSound:
     Guid:
       Data1: 0
       Data2: 0
@@ -63,12 +66,17 @@ MonoBehaviour:
     Path: 
   HitSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 120411455
+      Data2: 1293574381
+      Data3: -994975827
+      Data4: 1643944196
+    Path: event:/Spell/WaterballHit
+  MissileFX: {fileID: 4431279572644365563, guid: 2d78f8e9485d8894c93a976a4502c9c5, type: 3}
+  Speed: 7
+  DamageFactor: 0.8
+  HitRadius: 0.4
   SpawnOnHit: {fileID: 4822291235147194672, guid: c1a01421bdb086347be2d6ed5ec9479b, type: 3}
   SpawnOnHitLifespan: 2
   DetachParticlesOnHit: 1
+  DisableSpritesOnHit: 1
   DetachedParticlesLifespan: 2

@@ -29,7 +29,7 @@ namespace Quinn.SpellSystem
 		public float CasterKnockbackSpeed { get; private set; } = 5f;
 
 		[SerializeField, BoxGroup("Audio")]
-		private EventReference CastSound, LoopSound, HitSound;
+		private EventReference CastSound;
 
 		protected SpellCaster Caster { get; private set; }
 		protected float BaseDamage { get; private set; }
@@ -77,18 +77,7 @@ namespace Quinn.SpellSystem
 				missile.Attached = a;
 			}
 
-			if (!LoopSound.IsNull)
-			{
-				var sound = RuntimeManager.CreateInstance(LoopSound);
-				sound.set3DAttributes(RuntimeUtils.To3DAttributes(missile.transform));
-				sound.start();
-
-				missile.OnHit += _ => sound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-			}
-
 			missile.Launch(dir, info);
-			missile.OnHit += _ => AudioManager.Play(HitSound, missile.transform.position);
-
 			return missile;
 		}
 

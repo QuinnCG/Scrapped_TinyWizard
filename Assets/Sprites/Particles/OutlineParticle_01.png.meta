@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7006b2ae83e9117469238c7c2ba195c7
+guid: 34da646cbcf56ba479d3d2f39f7ec719
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5867406977019045593
-    second: Particle_06_0
+      213: -114197139961795376
+    second: Particle_10_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,22 +100,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Particle_06_0
+      name: OutlineParticle_01
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 12
-        height: 13
+        x: 0
+        y: 0
+        width: 5
+        height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d66ed90f873d6150800000000000000
-      internalID: 5867406977019045593
+      spriteID: 0dc26366e4a4a6ef0800000000000000
+      internalID: -114197139961795376
       vertices: []
       indices: 
       edges: []
@@ -123,7 +123,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 12f8d74968a8e6342bd004f418680670
     internalID: 0
     vertices: []
     indices: 
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Particle_06_0: 5867406977019045593
+      OutlineParticle_01: -114197139961795376
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

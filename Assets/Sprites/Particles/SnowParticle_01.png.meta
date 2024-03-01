@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6fc46d7e282b9c243b2c5b132ab73b74
+guid: 8430187750b9ead4c8d26bb348e8c6b7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3514901514056666879
-    second: Particle_04_0
+      213: 2495265978635181405
+    second: Particle_07_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,22 +100,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Particle_04_0
+      name: SnowParticle_01
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 5
-        height: 5
+        x: 1
+        y: 1
+        width: 3
+        height: 3
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ffe84d5ed4077c030800000000000000
-      internalID: 3514901514056666879
+      spriteID: 948936bf614ff9e4d93c18e72d066257
+      internalID: -1369772352
       vertices: []
       indices: 
       edges: []
@@ -123,7 +123,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ac74609bb470c9043bd18d8fd81d8ebf
     internalID: 0
     vertices: []
     indices: 
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Particle_04_0: 3514901514056666879
+      SnowParticle_01: -1369772352
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

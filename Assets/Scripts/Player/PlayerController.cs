@@ -3,6 +3,7 @@ using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Quinn.Player
 {
@@ -26,6 +27,9 @@ namespace Quinn.Player
 
 		[SerializeField, Required, BoxGroup("Spell")]
 		private Transform StaffOrigin;
+
+		[SerializeField, Required, FoldoutGroup("Spell/StaffColors")]
+		private Light2D StaffLight;
 
 		[SerializeField, FoldoutGroup("Spell/StaffColors")]
 		private Color Fire, Water, Earth, Lightning, Holy, Nature, Gravity;
@@ -172,7 +176,7 @@ namespace Quinn.Player
 
 		private void UpdateStaffColor(SpellItem spell)
 		{
-			_staffMat.SetColor("_Color", spell.Element switch
+			var color = spell.Element switch
 			{
 				ElementType.Fire => Fire,
 				ElementType.Water => Water,
@@ -183,7 +187,10 @@ namespace Quinn.Player
 				ElementType.Gravity => Gravity,
 
 				_ => throw new NotImplementedException($"The element {Inventory.Instance.ActiveSpell.Element} is not implemented!")
-			});
+			};
+
+			_staffMat.SetColor("_Color", color);
+			StaffLight.color = color;
 		}
 	}
 }

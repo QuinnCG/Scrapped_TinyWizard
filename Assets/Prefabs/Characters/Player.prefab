@@ -71,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3026155119094596268}
+  - component: {fileID: 1265771207984542354}
   m_Layer: 6
   m_Name: SpellOrigin
   m_TagString: Untagged
@@ -93,6 +94,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7796643680482403220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265771207984542354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7093067580941691123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 2
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.5
+  m_LightVolumeIntensity: 1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 73ee6a8200000000f364a9c84347bd51
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0.3
+  m_PointLightOuterRadius: 5
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &5716055183282070520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -337,6 +390,7 @@ MonoBehaviour:
   Staff: {fileID: 7796643680482403220}
   StaffOffset: 0.3
   StaffOrigin: {fileID: 3118102807043325839}
+  StaffLight: {fileID: 1265771207984542354}
   Fire: {r: 1, g: 0.30784342, b: 0, a: 1}
   Water: {r: 0, g: 0.7967129, b: 1, a: 1}
   Earth: {r: 0.3433962, g: 0.26975748, b: 0.24037732, a: 1}
@@ -475,31 +529,31 @@ MonoBehaviour:
   m_AlphaCutoff: 0.1
   m_ApplyToSortingLayers: 73ee6a8200000000f364a9c84347bd51
   m_ShapePath:
-  - {x: -0.22717828, y: 0.107161626, z: 0}
-  - {x: -0.22684585, y: 0.36525968, z: 0}
-  - {x: -0.09310959, y: 0.3545607, z: 0}
-  - {x: -0.0984592, y: 0.52039343, z: 0}
-  - {x: -0.23219527, y: 0.515044, z: 0}
-  - {x: -0.23754472, y: 0.60330987, z: 0}
-  - {x: -0.09310959, y: 0.6140088, z: 0}
-  - {x: -0.09578448, y: 0.7718173, z: 0}
-  - {x: -0.22684585, y: 0.7691426, z: 0}
-  - {x: -0.22447696, y: 0.8475832, z: 0}
-  - {x: -0.025613427, y: 0.85182214, z: 0}
-  - {x: -0.018217549, y: 0.7236724, z: 0}
-  - {x: 0.09679564, y: 0.7236724, z: 0}
-  - {x: 0.09679564, y: 0.60330987, z: 0}
-  - {x: 0.23588102, y: 0.6059846, z: 0}
-  - {x: 0.23588102, y: 0.50167036, z: 0}
-  - {x: 0.11284381, y: 0.5177188, z: 0}
-  - {x: 0.10749453, y: 0.3545607, z: 0}
-  - {x: 0.22518212, y: 0.35723552, z: 0}
-  - {x: 0.22785701, y: 0.10313697, z: 0}
-  - {x: 0.35356873, y: 0.10313697, z: 0}
-  - {x: 0.3508942, y: 0.0068469346, z: 0}
-  - {x: -0.35255778, y: 0.01487115, z: 0}
-  - {x: -0.35056126, y: 0.11251122, z: 0}
-  m_ShapePathHash: 333418728
+  - {x: -0.24019626, y: 0.11562332, z: 0}
+  - {x: -0.2424077, y: 0.36892128, z: 0}
+  - {x: -0.11370616, y: 0.36600322, z: 0}
+  - {x: -0.11717332, y: 0.5083067, z: 0}
+  - {x: -0.24504507, y: 0.5105157, z: 0}
+  - {x: -0.24145013, y: 0.61697876, z: 0}
+  - {x: -0.113287464, y: 0.61465967, z: 0}
+  - {x: -0.11596231, y: 0.7601012, z: 0}
+  - {x: -0.2398638, y: 0.7619828, z: 0}
+  - {x: -0.24009854, y: 0.86190295, z: 0}
+  - {x: -0.011944618, y: 0.8674437, z: 0}
+  - {x: -0.009755919, y: 0.7438502, z: 0}
+  - {x: 0.113718994, y: 0.7418975, z: 0}
+  - {x: 0.112417184, y: 0.61372423, z: 0}
+  - {x: 0.23913549, y: 0.61444634, z: 0}
+  - {x: 0.23712678, y: 0.50976765, z: 0}
+  - {x: 0.12218684, y: 0.5108673, z: 0}
+  - {x: 0.12214101, y: 0.36463013, z: 0}
+  - {x: 0.24165937, y: 0.36547416, z: 0}
+  - {x: 0.2395732, y: 0.11420222, z: 0}
+  - {x: 0.3652849, y: 0.11159865, z: 0}
+  - {x: 0.36391217, y: 0.004243344, z: 0}
+  - {x: -0.36232126, y: 0.0044567436, z: 0}
+  - {x: -0.3642301, y: 0.11251122, z: 0}
+  m_ShapePathHash: -1220866715
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
@@ -508,8 +562,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0.0005054772, y: 0.42933455, z: 0}
-      m_Extent: {x: 0.35306326, y: 0.42248762, z: 0}
+      m_Center: {x: 0.0005273819, y: 0.4358435, z: 0}
+      m_Extent: {x: 0.36475748, y: 0.43160015, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0
     m_FlipX: 0

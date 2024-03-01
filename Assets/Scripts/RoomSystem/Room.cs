@@ -5,12 +5,15 @@ namespace Quinn.RoomSystem
 	public class Room : MonoBehaviour
 	{
 		[field: SerializeField]
-		public Exit[] Exits { get; private set; }
+		public RegionType Region { get; private set; }
 
 		[SerializeField]
 		private Transform FallbackSpawnPoint;
 
-		public Vector2 DebugSpawnPosition
+		[field: SerializeField]
+		public Exit[] Exits { get; private set; }
+
+		public Vector2 SpawnPosition
 		{
 			get
 			{

@@ -20,7 +20,7 @@ namespace Quinn.Editor
 				if (prefab.TryGetComponent(out Room room))
 				{
 					RoomManager.Instance.LoadDefaultRoom(prefab);
-					PlayerController.Instance.transform.position = room.DebugSpawnPosition;
+					PlayerController.Instance.transform.position = room.SpawnPosition;
 				}
 			}
 		}

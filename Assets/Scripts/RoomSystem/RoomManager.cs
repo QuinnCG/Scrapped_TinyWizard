@@ -1,7 +1,9 @@
 ﻿using Cinemachine;
+using FMODUnity;
 using Quinn.Player;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +23,9 @@ namespace Quinn.RoomSystem
 		private float TransitionMoveDistance = 4f;
 
 		public CinemachineVirtualCamera DefaultVirtualCamera { get; private set; }
+		public RegionType CurrentRegion { get; private set; }
+
+		public event Action<RegionType> OnRegionChange;
 
 		private Room _loadedRoom;
 
@@ -49,6 +54,8 @@ namespace Quinn.RoomSystem
 			var instance = Instantiate(prefab, transform);
 			_loadedRoom = instance.GetComponent<Room>();
 
+			ChangeRegion(_loadedRoom);
+
 			DefaultVirtualCamera = instance.GetComponentInChildren<CinemachineVirtualCamera>();
 			CameraManager.Instance.SetVirtualCamera(DefaultVirtualCamera);
 		}
@@ -56,6 +63,7 @@ namespace Quinn.RoomSystem
 		public void LoadRoom(Room next, Exit from)
 		{
 			StartCoroutine(LoadRoomSequence(next, from));
+			ChangeRegion(next);
 		}
 
 		private IEnumerator LoadRoomSequence(Room next, Exit from)
@@ -142,6 +150,17 @@ namespace Quinn.RoomSystem
 			dir.Normalize();
 
 			return nextRoom;
+		}
+
+		private void ChangeRegion(Room room)
+		{
+			if (CurrentRegion != room.Region)
+			{
+				CurrentRegion = room.Region;
+
+				//RuntimeManager.StudioSystem.setParameterByName("region", (float)region);
+				OnRegionChange?.Invoke(CurrentRegion);
+			}
 		}
 	}
 }

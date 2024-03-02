@@ -393,11 +393,18 @@ MonoBehaviour:
   StaffLight: {fileID: 1265771207984542354}
   Fire: {r: 1, g: 0.30784342, b: 0, a: 1}
   Water: {r: 0, g: 0.7967129, b: 1, a: 1}
-  Earth: {r: 0.6075471, g: 0.4857405, b: 0.43445352, a: 1}
+  Earth: {r: 0.4867924, g: 0.3942559, b: 0.35545027, a: 1}
   Lightning: {r: 1, g: 0.86824596, b: 0, a: 1}
   Holy: {r: 1, g: 0.96556497, b: 0.76037735, a: 1}
   Nature: {r: 0.19312914, g: 0.6603774, b: 0.27963933, a: 1}
   Gravity: {r: 0.5513544, g: 0, b: 1, a: 0}
+  FireDash: {fileID: 5710955786156717883, guid: 0a22d4e07a0df3240872815da8cd81e0, type: 3}
+  WaterDash: {fileID: 1112584271298608307, guid: 19a786e277e938341840cbbbbab88a2e, type: 3}
+  EarthDash: {fileID: 0}
+  LightningDash: {fileID: 0}
+  HolyDash: {fileID: 0}
+  NatureDash: {fileID: 0}
+  GravityDash: {fileID: 0}
   StaffRenderer: {fileID: 7792355094613511073}
   CameraTarget: {fileID: 672410304654386847}
   CameraCrosshairBias: 0.1

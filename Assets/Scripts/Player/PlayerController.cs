@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.VFX;
 
 namespace Quinn.Player
 {
@@ -34,6 +35,9 @@ namespace Quinn.Player
 		[SerializeField, FoldoutGroup("Spell/StaffColors")]
 		private Color Fire, Water, Earth, Lightning, Holy, Nature, Gravity;
 
+		[SerializeField, FoldoutGroup("Spell/Dash VFX")]
+		private VisualEffect FireDash, WaterDash, EarthDash, LightningDash, HolyDash, NatureDash, GravityDash;
+
 		[SerializeField, Required, BoxGroup("Spell")]
 		private SpriteRenderer StaffRenderer;
 
@@ -58,6 +62,7 @@ namespace Quinn.Player
 		private Material _staffMat;
 
 		private float _nextDashTime;
+		private GameObject _dashTrail;
 
 		private void Awake()
 		{
@@ -80,6 +85,12 @@ namespace Quinn.Player
 			_input.OnDash += OnDash;
 			_input.OnCastPress += OnCastPress;
 			_input.OnCastRelease += OnCastRelease;
+
+			_movement.OnDashEnd += () =>
+			{
+				_dashTrail.transform.parent = null;
+				Destroy(_dashTrail, 2f);
+			};
 		}
 
 		private void Start()
@@ -118,6 +129,23 @@ namespace Quinn.Player
 				_animator.SetTrigger("Dash");
 
 				AudioManager.Play(DashSound, transform);
+
+				var prefab = Inventory.Instance.ActiveSpell.Element switch
+				{
+					ElementType.Fire => FireDash.gameObject,
+					ElementType.Water => WaterDash.gameObject,
+					ElementType.Earth => EarthDash.gameObject,
+					ElementType.Lightning => LightningDash.gameObject,
+					ElementType.Holy => HolyDash.gameObject,
+					ElementType.Nature => NatureDash.gameObject,
+					ElementType.Gravity => GravityDash.gameObject,
+					_ => null
+				};
+
+				if (prefab)
+				{
+					_dashTrail = Instantiate(prefab, transform);
+				}
 			}
 		}
 

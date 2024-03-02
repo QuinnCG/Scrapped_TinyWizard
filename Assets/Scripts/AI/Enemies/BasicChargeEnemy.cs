@@ -67,7 +67,7 @@ namespace Quinn.AI.Enemies
 			{
 				TargetPos = PlayerPos;
 
-				if (PlayerDist > StoppingDistance)
+				if (PlayerDst > StoppingDistance)
 				{
 					Move(UsePerlin);
 				}
@@ -94,7 +94,7 @@ namespace Quinn.AI.Enemies
 
 		protected virtual bool ShouldSpotPlayer()
 		{
-			if (!IsPlayerSpotted && PlayerDist < SpotPlayerRadius)
+			if (!IsPlayerSpotted && PlayerDst < SpotPlayerRadius)
 			{
 				if (HasLineOfSight(PlayerPos))
 				{

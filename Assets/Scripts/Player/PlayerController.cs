@@ -1,4 +1,6 @@
+using FMOD;
 using FMODUnity;
+using Quinn.DamageSystem;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
@@ -10,6 +12,7 @@ namespace Quinn.Player
 {
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(InputReader))]
+	[RequireComponent(typeof(Damage))]
 	[RequireComponent(typeof(Movement))]
 	[RequireComponent(typeof(SpellCaster))]
 	[RequireComponent(typeof(Collider2D))]
@@ -58,6 +61,7 @@ namespace Quinn.Player
 		private Movement _movement;
 		private SpellCaster _caster;
 		private Collider2D _collider;
+		private Damage _damage;
 
 		private Material _staffMat;
 
@@ -75,6 +79,7 @@ namespace Quinn.Player
 			_movement = GetComponent<Movement>();
 			_caster = GetComponent<SpellCaster>();
 			_collider = GetComponent<Collider2D>();
+			_damage = GetComponent<Damage>();
 
 			_caster.OnReleaseCharge += OnStopCharge;
 			_caster.OnCancelCharge += OnStopCharge;
@@ -86,11 +91,7 @@ namespace Quinn.Player
 			_input.OnCastPress += OnCastPress;
 			_input.OnCastRelease += OnCastRelease;
 
-			_movement.OnDashEnd += () =>
-			{
-				_dashTrail.transform.parent = null;
-				Destroy(_dashTrail, 2f);
-			};
+			_movement.OnDashEnd += OnDashEnd;
 		}
 
 		private void Start()
@@ -123,6 +124,8 @@ namespace Quinn.Player
 		{
 			if (Time.time > _nextDashTime && !_caster.IsCharging)
 			{
+				_damage.DisableDamage = true;
+
 				_nextDashTime = Time.time + _movement.DashDuration + DashCooldown;
 
 				_movement.Dash();
@@ -219,6 +222,14 @@ namespace Quinn.Player
 
 			_staffMat.SetColor("_Color", color);
 			StaffLight.color = color;
+		}
+
+		private void OnDashEnd()
+		{
+			_dashTrail.transform.parent = null;
+			Destroy(_dashTrail, 2f);
+
+			_damage.DisableDamage = false;
 		}
 	}
 }

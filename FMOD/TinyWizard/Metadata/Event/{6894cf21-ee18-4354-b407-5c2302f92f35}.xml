@@ -5,7 +5,7 @@
 			<value>FerrariaMines</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{33c6dfd1-e6df-486b-9622-b29d721fb0b1}</destination>
@@ -261,6 +261,8 @@
 		<relationship name="effects">
 			<destination>{7d337f0e-21ee-43ff-a70d-539d84fd9d0a}</destination>
 			<destination>{b82e165c-4444-4905-80f9-0f5a202366eb}</destination>
+			<destination>{c0c8288c-8be4-4fc4-a0c7-227465f3ae86}</destination>
+			<destination>{93d44895-767b-4ae3-8c46-526f4236f7a7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{011c26ef-1c19-4a64-99ab-e3f621badada}" />
@@ -286,6 +288,19 @@
 	<object class="MixerBusPanner" id="{56085a68-7e41-4c9b-8313-227a800d971c}" />
 	<object class="MixerBusFader" id="{7d337f0e-21ee-43ff-a70d-539d84fd9d0a}" />
 	<object class="SFXReverbEffect" id="{b82e165c-4444-4905-80f9-0f5a202366eb}" />
+	<object class="ChannelMixEffect" id="{c0c8288c-8be4-4fc4-a0c7-227465f3ae86}">
+		<property name="outputGrouping">
+			<value>1</value>
+		</property>
+	</object>
+	<object class="MultibandEqEffect" id="{93d44895-767b-4ae3-8c46-526f4236f7a7}">
+		<property name="frequencyA">
+			<value>2603.80005</value>
+		</property>
+		<property name="qualityA">
+			<value>0.751586199</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{22000d28-8afd-4a65-b1ed-dd390fab21f6}" />
 	<object class="MixerBusFader" id="{5e273bb3-c792-43ed-a787-5aedf4ac51dd}" />
 	<object class="PannerEffect" id="{85cd6bc7-c0a0-444b-9a9e-1bd1d3bcec48}">

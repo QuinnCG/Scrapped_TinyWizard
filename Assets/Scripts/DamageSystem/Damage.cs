@@ -33,6 +33,8 @@ namespace Quinn.DamageSystem
 		[SerializeField, BoxGroup("VFX")]
 		private bool BlinkInAndOut;
 
+		public bool DisableDamage { get; set; }
+
 		public event Action<DamageInfo, DamageEfficiencyType> OnDamaged;
 
 		private SpriteRenderer[] _renderers;
@@ -49,6 +51,11 @@ namespace Quinn.DamageSystem
 		public bool CanTakeDamage(Team source)
 		{
 			if (_health && _health.IsDead)
+			{
+				return false;
+			}
+
+			if (DisableDamage)
 			{
 				return false;
 			}

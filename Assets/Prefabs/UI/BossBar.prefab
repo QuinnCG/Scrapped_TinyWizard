@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 416517207773415286, guid: bafcad42368f4b44faba272996f8b27e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 416517207773415286, guid: bafcad42368f4b44faba272996f8b27e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1397912289061383404, guid: bafcad42368f4b44faba272996f8b27e, type: 3}
       propertyPath: m_Name
       value: BossBar
@@ -32,6 +40,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4918056353326584428, guid: f889dc228a4b49d419faee7726af76fe, type: 3}
+    - target: {fileID: 2271531745498406258, guid: bafcad42368f4b44faba272996f8b27e, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2271531745498406258, guid: bafcad42368f4b44faba272996f8b27e, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 0.2

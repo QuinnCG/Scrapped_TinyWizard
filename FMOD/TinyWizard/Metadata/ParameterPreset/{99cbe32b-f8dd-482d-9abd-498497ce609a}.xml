@@ -19,10 +19,13 @@
 			<value>0</value>
 		</property>
 		<property name="seekSpeed">
-			<value>1.5</value>
+			<value>0.69999998807907104</value>
 		</property>
 		<property name="seekSpeedDescending">
-			<value>0.019999999552965164</value>
+			<value>0.34999999403953552</value>
+		</property>
+		<property name="seekSpeedAsymmetric">
+			<value>true</value>
 		</property>
 		<property name="isExposedRecursively">
 			<value>false</value>

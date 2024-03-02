@@ -32,10 +32,11 @@ namespace Quinn.AI
 		protected Vector2 PlayerPos => Player.transform.position;
 		protected Vector2 PlayerCenter => Player.Center;
 		protected Vector2 PlayerVel => Player.Velocity;
-		protected float PlayerDist => Vector2.Distance(transform.position, PlayerPos);
+		protected float PlayerDst => Vector2.Distance(transform.position, PlayerPos);
 		protected Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
 		protected State CurrentState { get; private set; }
+		protected bool BlockGlobalConnections { get; set; }
 
 		private readonly List<(Condition condition, State next)> _globalConnections = new();
 		private readonly Dictionary<State, HashSet<(Condition condition, State next)>> _states = new();
@@ -56,7 +57,10 @@ namespace Quinn.AI
 			_health.OnDeath += OnDeath;
 		}
 
-		protected virtual void Start() { }
+		protected virtual void Start()
+		{
+			OnRegisterStates();
+		}
 
 		protected virtual void Update()
 		{
@@ -67,13 +71,16 @@ namespace Quinn.AI
 				_previousState = CurrentState;
 			}
 
-			foreach (var (connection, next) in _globalConnections)
+			if (!BlockGlobalConnections)
 			{
-				bool success = connection(false);
-				if (success)
+				foreach (var (connection, next) in _globalConnections)
 				{
-					TransitionTo(next);
-					return;
+					bool success = connection(false);
+					if (success)
+					{
+						TransitionTo(next);
+						return;
+					}
 				}
 			}
 
@@ -98,6 +105,8 @@ namespace Quinn.AI
 			transform.DOKill();
 		}
 
+		protected virtual void OnRegisterStates() { }
+
 		protected virtual void OnHealed(float health) { }
 
 		protected virtual void OnDamaged(DamageInfo info, DamageEfficiencyType type) { }
@@ -107,21 +116,33 @@ namespace Quinn.AI
 			Destroy(gameObject);
 		}
 
+		protected void Register(State state)
+		{
+			_states.Add(state, new());
+		}
+		protected void Register(params State[] states)
+		{
+			foreach (var state in states)
+			{
+				Register(state);
+			}
+		}
+
 		protected void Connect(State to, Condition condition)
 		{
 			_globalConnections.Add((condition, to));
 		}
 		protected void Connect(State from, State to, Condition condition)
 		{
-			var toAdd = (condition, to);
-
 			if (_states.TryGetValue(from, out var connections))
 			{
-				connections.Add(toAdd);
-				return;
+				connections.Add((condition, to));
 			}
+		}
 
-			_states.Add(from, new HashSet<(Condition condition, State next)>() { toAdd });
+		protected void SetStartState(State start)
+		{
+			CurrentState = start;
 		}
 
 		protected Tween JumpTo(Vector2 position, float height, float duration)

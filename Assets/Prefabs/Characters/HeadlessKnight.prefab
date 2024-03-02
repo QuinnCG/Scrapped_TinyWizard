@@ -268,7 +268,11 @@ PrefabInstance:
       objectReference: {fileID: -8894758807827337738, guid: ebe73a40822438c469520837f88afb51, type: 3}
     - target: {fileID: 1293692549281491158, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Color.a
-      value: 0.9490196
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363259819423699447, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: <Max>k__BackingField
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3125235798960738604, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Controller
@@ -352,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 6488384895336173936, guid: 337af79c4b5eabb4898a19dd282ce1f1, type: 3}
     - target: {fileID: 8818845372677451699, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Color.a
-      value: 0.9490196
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -391,6 +395,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803df18810ddab144946b922c1e24938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Title: Headless Ghost Knight
+  OpeningDialogue:
+    Speaker: Headless Ghost Knight
+    Messages:
+    - Hello!
+    - Goodbye...
   Head: {fileID: 5830455271105085538}
 --- !u!4 &5830455271105085538 stripped
 Transform:

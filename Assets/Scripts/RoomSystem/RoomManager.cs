@@ -28,6 +28,8 @@ namespace Quinn.RoomSystem
 
 		public event Action<RegionType> OnRegionChange;
 
+		private float _playerTransitionProgress;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -73,6 +75,7 @@ namespace Quinn.RoomSystem
 			CameraManager.Instance.FadeToBlack();
 
 			// Animate player moving into next room.
+			_playerTransitionProgress = 0f;
 			StartCoroutine(AnimatePlayer(dir, from.transform.position));
 
 			float fadeToBlack = CameraManager.Instance.FadeToBlackDuration;
@@ -80,6 +83,8 @@ namespace Quinn.RoomSystem
 
 			// Unload previous room.
 			Destroy(CurrentRoom.gameObject);
+
+			yield return new WaitUntil(() => _playerTransitionProgress > 0.5f);
 
 			// Fade from black.
 			CameraManager.Instance.FadeFromBlack();
@@ -96,22 +101,26 @@ namespace Quinn.RoomSystem
 			move.StopDash();
 			player.GetComponent<SpellCaster>().CancelCharge();
 
-			input.enabled = false;
-
+			var inputDisabler = input.DisableInput();
 			var dst = float.PositiveInfinity;
 
 			Vector2 start = exitOrigin;
 			Vector2 target = start + (dir * TransitionMoveDistance);
 
-			while (dst > 1.5f)
+			float maxDst = Vector2.Distance(start, target);
+
+			const float StoppingDst = 1.5f;
+			while (dst > StoppingDst)
 			{
 				dst = Vector2.Distance(player.transform.position, target);
 				move.Move(dir);
 
+				_playerTransitionProgress = dst / maxDst;
+
 				yield return null;
 			}
 
-			input.enabled = true;
+			input.EnableInput(inputDisabler);
 		}
 
 		private Room SpawnRoom(Room next, Exit from, out Vector2 dir)

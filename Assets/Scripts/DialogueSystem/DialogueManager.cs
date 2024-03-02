@@ -1,3 +1,4 @@
+using Quinn.Player;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -24,6 +25,7 @@ namespace Quinn.DialogueSystem
 
 		public bool InDialogue { get; private set; }
 
+		private InputReader.InputDisablerHandle _inputDisabler;
 		private int _index;
 		private Dialogue _dialogue;
 		private bool _isWriting;
@@ -56,6 +58,8 @@ namespace Quinn.DialogueSystem
 
 		public void Display(Dialogue dialogue)
 		{
+			_inputDisabler = InputReader.Instance.DisableInput();
+
 			Container.SetActive(true);
 			_index = -1;
 			_dialogue = dialogue;
@@ -87,6 +91,8 @@ namespace Quinn.DialogueSystem
 
 		private void Hide()
 		{
+			InputReader.Instance.EnableInput(_inputDisabler);
+
 			Container.SetActive(false);
 			StopAllCoroutines();
 

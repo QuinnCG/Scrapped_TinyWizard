@@ -35,6 +35,12 @@ namespace Quinn.AI
 		protected float PlayerDist => Vector2.Distance(transform.position, PlayerPos);
 		protected Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
+		protected State CurrentState { get; private set; }
+
+		private readonly List<(Condition condition, State next)> _globalConnections = new();
+		private readonly Dictionary<State, HashSet<(Condition condition, State next)>> _states = new();
+		private State _previousState;
+
 		private Health _health;
 
 		protected virtual void Awake()
@@ -52,7 +58,40 @@ namespace Quinn.AI
 
 		protected virtual void Start() { }
 
-		protected virtual void Update() { }
+		protected virtual void Update()
+		{
+			bool isStart = false;
+			if (CurrentState != _previousState)
+			{
+				isStart = true;
+				_previousState = CurrentState;
+			}
+
+			foreach (var (connection, next) in _globalConnections)
+			{
+				bool success = connection(false);
+				if (success)
+				{
+					TransitionTo(next);
+					return;
+				}
+			}
+
+			if (CurrentState != null)
+			{
+				bool isExiting = CurrentState(isStart);
+
+				foreach (var (condition, next) in _states[CurrentState])
+				{
+					bool success = condition(isExiting);
+					if (success)
+					{
+						TransitionTo(next);
+						return;
+					}
+				}
+			}
+		}
 
 		protected virtual void OnDestroy()
 		{
@@ -66,6 +105,23 @@ namespace Quinn.AI
 		protected virtual void OnDeath()
 		{
 			Destroy(gameObject);
+		}
+
+		protected void Connect(State to, Condition condition)
+		{
+			_globalConnections.Add((condition, to));
+		}
+		protected void Connect(State from, State to, Condition condition)
+		{
+			var toAdd = (condition, to);
+
+			if (_states.TryGetValue(from, out var connections))
+			{
+				connections.Add(toAdd);
+				return;
+			}
+
+			_states.Add(from, new HashSet<(Condition condition, State next)>() { toAdd });
 		}
 
 		protected Tween JumpTo(Vector2 position, float height, float duration)
@@ -90,6 +146,12 @@ namespace Quinn.AI
 		{
 			var hit = Physics2D.Linecast(Collider.bounds.center, target, LayerMask.GetMask("Obstacle"));
 			return !hit;
+		}
+
+		private void TransitionTo(State state)
+		{
+			_previousState = CurrentState;
+			CurrentState = state;
 		}
 	}
 }

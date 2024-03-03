@@ -20,6 +20,10 @@ namespace Quinn
 		private EventInstance _ambience;
 		private EventInstance _music;
 
+		private EventInstance _boss;
+		private bool _isPlayingBoss;
+		private Func<bool> _onBossFinish;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -35,6 +39,18 @@ namespace Quinn
 		{
 			bool isInner = RoomManager.Instance.CurrentRoom.IsInnerSection;
 			RuntimeManager.StudioSystem.setParameterByName("in-inner-region", isInner ? 1f : 0f);
+
+			if (_isPlayingBoss)
+			{
+				if (_onBossFinish())
+				{
+					_isPlayingBoss = false;
+					_boss.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+					_boss.start();
+					_music.start();
+				}
+			}
 		}
 
 		public static void Play(EventReference sound)
@@ -56,6 +72,20 @@ namespace Quinn
 			if (!sound.IsNull)
 			{
 				RuntimeManager.PlayOneShotAttached(sound, parent.gameObject);
+			}
+		}
+
+		public void PlayBossMusic(EventReference sound, Func<bool> onFinish)
+		{
+			if (!_isPlayingBoss)
+			{
+				_isPlayingBoss = true;
+				_onBossFinish = onFinish;
+
+				_music.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+				_boss = RuntimeManager.CreateInstance(sound);
+				_boss.start();
 			}
 		}
 

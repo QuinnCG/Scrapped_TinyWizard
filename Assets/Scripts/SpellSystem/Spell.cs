@@ -19,7 +19,7 @@ namespace Quinn.SpellSystem
 		[field: SerializeField, ShowIf(nameof(CanOvercharge))]
 		public float MaxOvercharge { get; private set; } = 200f;
 
-		[field: SerializeField, Tooltip("Low means more accurate.")]
+		[field: SerializeField]
 		public float TargetRadius { get; private set; } = 0.2f;
 
 		[field: SerializeField]
@@ -57,9 +57,7 @@ namespace Quinn.SpellSystem
 			_casterDamage = caster.GetComponent<Damage>();
 			BaseDamage = baseDamage;
 
-			target += TargetRadius * Random.insideUnitCircle / 2f;
 			OnCast(charge, target);
-
 			AudioManager.Play(CastSound, caster.transform.position);
 		}
 

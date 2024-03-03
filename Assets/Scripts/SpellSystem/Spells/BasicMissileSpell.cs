@@ -19,6 +19,9 @@ namespace Quinn.SpellSystem.Spells
 		private float DamageFactor = 1f;
 
 		[SerializeField]
+		private float AccuracyRadius = 0.2f;
+
+		[SerializeField]
 		private float HitRadius = 0.5f;
 
 		[SerializeField]
@@ -45,12 +48,14 @@ namespace Quinn.SpellSystem.Spells
 		protected override void OnCast(float charge, Vector2 target)
 		{
 			Vector2 pos = Caster.SpellOrigin.position;
-			Vector2 dir = (target - (Vector2)transform.position).normalized;
+			Vector2 dir = (target - (Vector2)Caster.SpellOrigin.position).normalized;
 			var info = new MissileInfo()
 			{
 				Speed = Speed,
 				HitRadius = HitRadius
 			};
+
+			target += Random.insideUnitCircle / 2f * AccuracyRadius;
 
 			var missile = SpawnMissile(pos, dir, info, MissileFX);
 			missile.OnHit += hit => OnHit(missile, hit);

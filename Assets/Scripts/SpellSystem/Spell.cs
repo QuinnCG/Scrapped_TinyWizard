@@ -1,6 +1,7 @@
 using FMODUnity;
 using Quinn.DamageSystem;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
@@ -33,6 +34,8 @@ namespace Quinn.SpellSystem
 
 		protected SpellCaster Caster { get; private set; }
 		protected float BaseDamage { get; private set; }
+
+		public event Action OnDestroyed;
 
 		private Damage _casterDamage;
 
@@ -93,5 +96,10 @@ namespace Quinn.SpellSystem
 
 		protected virtual void OnCast(float charge, Vector2 target) { }
 		protected virtual void OnUpdate() { }
+
+		protected virtual void OnDestroy()
+		{
+			OnDestroyed?.Invoke();
+		}
 	}
 }

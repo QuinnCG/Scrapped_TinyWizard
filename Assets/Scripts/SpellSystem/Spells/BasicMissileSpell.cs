@@ -111,9 +111,11 @@ namespace Quinn.SpellSystem.Spells
 				}
 			}
 
-			Destroy(missile.gameObject);
-
 			AudioManager.Play(HitSound, transform.position);
+			Destroy(missile.gameObject);
+			Destroy(gameObject);
+
+			// TODO: Support firing multiple missiles.
 		}
 	}
 }

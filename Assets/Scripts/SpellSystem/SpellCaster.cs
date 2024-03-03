@@ -125,6 +125,11 @@ namespace Quinn.SpellSystem
 			{
 				_knockback.ApplyKnockback((Vector2)SpellOrigin.position - target, spell.CasterKnockbackSpeed * CasterKnockbackScale);
 			}
+
+			spell.OnDestroyed += () =>
+			{
+				_spells.Remove(spell);
+			};
 		}
 
 		private void SpawnCastVFX(ElementType element)

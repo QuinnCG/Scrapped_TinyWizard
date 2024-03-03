@@ -60,6 +60,12 @@ namespace Quinn
 			OnTriggerEvent?.Invoke();
 
 			_canTrigger = CanRetrigger;
+
+			if (TryGetComponent(out SaveHandle handle))
+			{
+				SaveManager.Save(handle.GUID);
+				Debug.Log("Saving!");
+			}
 		}
 	}
 }

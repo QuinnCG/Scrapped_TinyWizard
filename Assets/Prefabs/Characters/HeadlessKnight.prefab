@@ -272,7 +272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363259819423699447, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: <Max>k__BackingField
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3125235798960738604, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Controller

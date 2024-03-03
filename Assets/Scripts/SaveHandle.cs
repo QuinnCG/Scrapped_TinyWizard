@@ -7,8 +7,8 @@ namespace Quinn
 	[ExecuteAlways]
 	public class SaveHandle : MonoBehaviour
 	{
-		[SerializeField,]
-		private Guid GUID = Guid.Empty;
+		[field: SerializeField]
+		public Guid GUID { get; private set; } = Guid.Empty;
 
 		[SerializeField, ReadOnly]
 		private string ID;
@@ -32,6 +32,11 @@ namespace Quinn
 
 		private void Awake()
 		{
+			if (DestroyIfKeyFound)
+			{
+				Debug.Log($"Found key: {SaveManager.Contains(GUID, ID)}!");
+			}
+			
 			if (DestroyIfKeyFound && SaveManager.Contains(GUID, ID))
 			{
 				Destroy(gameObject);
@@ -51,14 +56,6 @@ namespace Quinn
 				{
 					ResetGUID();
 				}
-			}
-		}
-
-		private void Update()
-		{
-			if (Application.isPlaying)
-			{
-				SaveManager.Save(GUID, "my_key", 3);
 			}
 		}
 	}

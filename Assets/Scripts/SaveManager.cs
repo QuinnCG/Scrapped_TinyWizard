@@ -25,7 +25,7 @@ namespace Quinn
 			{
 				Guid = key;
 				Key = subkey;
-				Value = value.ToString();
+				Value = value?.ToString();
 			}
 		}
 
@@ -73,6 +73,14 @@ namespace Quinn
 			_instance.SaveData.Add(new SaveEntry(key, subkey, data));
 #endif
 		}
+		public static void Save<T>(Guid key, T data)
+		{
+			Save(key, string.Empty, data);
+		}
+		public static void Save(Guid key)
+		{
+			Save<object>(key, null);
+		}
 
 		public static void Delete(Guid key, string subkey)
 		{
@@ -96,6 +104,10 @@ namespace Quinn
 			Debug.Assert(_entries[GenerateKey(key, subkey)] is T, $"SaveManager cannot convert key '{GenerateKey(key, subkey)}' into type '{typeof(T)}'!");
 
 			return (T)_entries[GenerateKey(key, subkey)];
+		}
+		public static T Load<T>(Guid key)
+		{
+			return Load<T>(key, string.Empty);
 		}
 
 		private static string GenerateKey(Guid key, string subkey)

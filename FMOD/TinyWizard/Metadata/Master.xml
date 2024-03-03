@@ -4,9 +4,6 @@
 		<property name="color">
 			<value>Blue</value>
 		</property>
-		<property name="volume">
-			<value>-10</value>
-		</property>
 		<property name="name">
 			<value>Master Bus</value>
 		</property>
@@ -23,6 +20,8 @@
 	<object class="MixerBusEffectChain" id="{f4439498-f2fa-4841-88e8-bcae1429aa4d}">
 		<relationship name="effects">
 			<destination>{6b5c624b-1d9d-4bd0-9aca-96a1c42752fb}</destination>
+			<destination>{7d2cd751-4d2c-4d1e-ba4a-3a6a6cabe9d4}</destination>
+			<destination>{fee3ea51-1f3c-4c7e-b367-039aad7f0297}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1f62b9fd-65e7-403c-bc23-e275cd58068d}">
@@ -31,4 +30,20 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{6b5c624b-1d9d-4bd0-9aca-96a1c42752fb}" />
+	<object class="MultibandEqEffect" id="{7d2cd751-4d2c-4d1e-ba4a-3a6a6cabe9d4}">
+		<property name="frequencyA">
+			<value>21999.9902</value>
+		</property>
+		<property name="qualityA">
+			<value>0.686068952</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{fee3ea51-1f3c-4c7e-b367-039aad7f0297}">
+		<property name="decayTime">
+			<value>800</value>
+		</property>
+		<property name="wetLevel">
+			<value>-80</value>
+		</property>
+	</object>
 </objects>

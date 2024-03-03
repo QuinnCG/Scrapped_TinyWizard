@@ -45,9 +45,8 @@ namespace Quinn
 				if (_onBossFinish())
 				{
 					_isPlayingBoss = false;
-					_boss.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-					_boss.start();
+					_boss.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 					_music.start();
 				}
 			}

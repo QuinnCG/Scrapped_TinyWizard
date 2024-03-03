@@ -404,6 +404,13 @@ MonoBehaviour:
     - More will join me...
     - ... IN DEATH!
   Head: {fileID: 5830455271105085538}
+  BossMusic:
+    Guid:
+      Data1: -1520195664
+      Data2: 1086228751
+      Data3: 817878956
+      Data4: -1625142667
+    Path: event:/Music/HeadlessKnight
   StartTrigger: {fileID: 0}
   Doors: []
 --- !u!4 &5830455271105085538 stripped

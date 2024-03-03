@@ -8,9 +8,12 @@ namespace Quinn
 	public class Door : MonoBehaviour
 	{
 		[SerializeField, BoxGroup("Default")]
+		private Trigger CloseTrigger;
+
+		[SerializeField, BoxGroup("Default"), ShowIf(nameof(CloseTrigger), null)]
 		private bool StartOpen = true;
 
-		[SerializeField, BoxGroup("Default")]
+		[SerializeField, BoxGroup("Default"), HideIf(nameof(StartOpen)), ShowIf(nameof(CloseTrigger), null)]
 		private bool StartLocked = false;
 
 		[SerializeField, BoxGroup("Sprites"), Required]
@@ -33,16 +36,24 @@ namespace Quinn
 			_renderer = GetComponent<SpriteRenderer>();
 			_collider = GetComponent<Collider2D>();
 
-			if (StartOpen)
+			if (CloseTrigger)
 			{
 				Open(true);
+				CloseTrigger.OnTrigger += () => Close();
 			}
 			else
 			{
-				Close(true);
-			}
+				if (StartOpen)
+				{
+					Open(true);
+				}
+				else
+				{
+					Close(true);
+				}
 
-			IsLocked = StartLocked;
+				IsLocked = StartLocked;
+			}
 		}
 
 		public void Unlock()
@@ -53,10 +64,12 @@ namespace Quinn
 			}
 		}
 
-		public void Open(bool supressFX)
+		public void Open(bool supressFX = false)
 		{
-			if (!IsOpen)
+			if (!IsOpen && !IsLocked)
 			{
+				IsOpen = true;
+
 				_collider.enabled = false;
 				_renderer.sprite = OpenSprite;
 
@@ -67,10 +80,12 @@ namespace Quinn
 			}
 		}
 
-		public void Close(bool supressFX)
+		public void Close(bool supressFX = false)
 		{
 			if (IsOpen)
 			{
+				IsOpen = false;
+
 				_collider.enabled = true;
 				_renderer.sprite = CloseSprite;
 

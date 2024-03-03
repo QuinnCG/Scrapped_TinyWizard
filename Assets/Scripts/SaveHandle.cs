@@ -13,6 +13,9 @@ namespace Quinn
 		[SerializeField, ReadOnly]
 		private string ID;
 
+		[SerializeField]
+		private bool DestroyIfKeyFound;
+
 		[Button]
 		public void Regenerate()
 		{
@@ -25,6 +28,14 @@ namespace Quinn
 		{
 			GUID = Guid.Empty;
 			ID = "No ID";
+		}
+
+		private void Awake()
+		{
+			if (DestroyIfKeyFound && SaveManager.Contains(GUID, ID))
+			{
+				Destroy(gameObject);
+			}
 		}
 
 		private void Start()

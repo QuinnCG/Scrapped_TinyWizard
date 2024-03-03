@@ -395,13 +395,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803df18810ddab144946b922c1e24938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Title: Headless Ghost Knight
+  Title: The Headless Knight
   OpeningDialogue:
-    Speaker: Headless Ghost Knight
+    Speaker: Stranger
     Messages:
-    - Hello!
-    - Goodbye...
+    - ...
+    - More souls come seeking treasure?
+    - More will join me...
+    - ... IN DEATH!
   Head: {fileID: 5830455271105085538}
+  StartTrigger: {fileID: 0}
+  Doors: []
 --- !u!4 &5830455271105085538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6224831587206704893, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

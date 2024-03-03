@@ -15,27 +15,54 @@ namespace Quinn.AI
 		[SerializeField]
 		private Dialogue OpeningDialogue;
 
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("References")]
 		private Transform Head;
+
+		[SerializeField, Required, BoxGroup("References")]
+		private Trigger StartTrigger;
+
+		[SerializeField, Required, BoxGroup("References")]
+		private Door[] Doors;
+
+		protected override void Awake()
+		{
+			base.Awake();
+
+			StartTrigger.OnTrigger += () => SetStartState(OnStart);
+			BlockGlobalConnections = true;
+			DisableDamage = true;
+		}
 
 		protected override void OnRegisterStates()
 		{
-			BlockGlobalConnections = true;
-
 			Register(OnStart, OnEngage);
-			SetStartState(OnStart);
-
 			Connect(OnEngage, _ => CurrentState == OnStart);
+		}
+
+		protected override void OnDeath()
+		{
+			base.OnDeath();
+
+			foreach (var door in Doors)
+			{
+				door.Open();
+			}
 		}
 
 		private IEnumerator StartSequence()
 		{
+			foreach (var door in Doors)
+			{
+				door.Close();
+			}
+
 			var manager = DialogueManager.Instance;
 			manager.Display(OpeningDialogue);
 
 			yield return new WaitUntil(() => !manager.InDialogue);
-			BlockGlobalConnections = false;
 
+			BlockGlobalConnections = false;
+			DisableDamage = false;
 			HUDUI.Instance.ShowBossBar(Title, GetComponent<Health>());
 		}
 
@@ -51,9 +78,12 @@ namespace Quinn.AI
 
 		private bool OnEngage(bool isStart)
 		{
-			Animator.SetBool("IsMoving", true);
-			Movement.MoveTowards(PlayerPos);
+			if (PlayerDst > 0.2f)
+			{
+				Movement.MoveTowards(PlayerPos);
+			}
 
+			Animator.SetBool("IsMoving", Movement.IsMoving);
 			return true;
 		}
 	}

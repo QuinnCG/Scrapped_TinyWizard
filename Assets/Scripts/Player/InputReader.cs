@@ -10,10 +10,17 @@ namespace Quinn.Player
 
 		public class InputDisablerHandle
 		{
-			public bool AllowMovement;
+			public bool AllowMovement = false;
+
+			public InputDisablerHandle() { }
+			public InputDisablerHandle(bool allowMovement)
+			{
+				AllowMovement = allowMovement;
+			}
 		}
 
 		public Vector2 MoveInput { get; private set; }
+		public bool IsInputEnabled => _disablerHandles.Count == 0;
 
 		public event Action OnDash;
 		public event Action OnCastPress, OnCastRelease;
@@ -27,6 +34,8 @@ namespace Quinn.Player
 
 		private void Update()
 		{
+			MoveInput = Vector2.zero;
+
 			bool inputEnabled = _disablerHandles.Count == 0;
 			bool allowMovement = true;
 

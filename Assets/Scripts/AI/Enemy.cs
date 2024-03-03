@@ -19,6 +19,11 @@ namespace Quinn.AI
 		protected Collider2D Collider { get; private set; }
 		protected Movement Movement { get; private set; }
 		protected SpellCaster Caster { get; private set; }
+		protected bool DisableDamage
+		{
+			get => _damage.DisableDamage;
+			set => _damage.DisableDamage = value;
+		}
 
 		protected float HealthPercent => _health.Percent;
 		protected float Health => _health.Current;
@@ -40,6 +45,7 @@ namespace Quinn.AI
 		private State _previousState;
 
 		private Health _health;
+		private Damage _damage;
 
 		protected virtual void Awake()
 		{
@@ -48,6 +54,7 @@ namespace Quinn.AI
 			_health = GetComponent<Health>();
 			Movement = GetComponent<Movement>();
 			Caster = GetComponent<SpellCaster>();
+			_damage = GetComponent<Damage>();
 
 			GetComponent<Damage>().OnDamaged += OnDamaged;
 			_health.OnHeal += OnHealed;

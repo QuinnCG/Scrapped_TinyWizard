@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2496123976806023172}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.86, z: 0}
+  m_LocalPosition: {x: 0, y: 1.134, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -199,7 +199,7 @@ Transform:
   m_GameObject: {fileID: 8410829326431796029}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.695, z: 0}
+  m_LocalPosition: {x: 0.062, y: 0.92200017, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,7 +223,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 4
+      - m_Value: 16
         m_Name: Rate
         m_Overridden: 1
       - m_Value: 1
@@ -232,10 +232,19 @@ VisualEffect:
       - m_Value: 0.5
         m_Name: MinLifespan
         m_Overridden: 1
+      - m_Value: 0
+        m_Name: Intensity
+        m_Overridden: 1
+      - m_Value: 0.7
+        m_Name: Size
+        m_Overridden: 1
     m_Vector2f:
       m_Array:
-      - m_Value: {x: 0.3, y: 0.6}
+      - m_Value: {x: 0.5, y: 1}
         m_Name: MaxVelocity
+        m_Overridden: 1
+      - m_Value: {x: -0.5, y: 0.5}
+        m_Name: MinVelocity
         m_Overridden: 1
     m_Vector3f:
       m_Array: []

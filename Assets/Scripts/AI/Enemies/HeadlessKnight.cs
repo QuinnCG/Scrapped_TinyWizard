@@ -1,10 +1,6 @@
 ﻿using FMODUnity;
-using Quinn.DamageSystem;
 using Quinn.DialogueSystem;
-using Quinn.UI;
 using Sirenix.OdinInspector;
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Quinn.AI.Enemies
@@ -16,9 +12,6 @@ namespace Quinn.AI.Enemies
 
 		[SerializeField]
 		private Dialogue OpeningDialogue;
-
-		[SerializeField]
-		private Vector2 TossHeadCooldown = new(5f, 8f);
 
 		[SerializeField, Required, BoxGroup("References")]
 		private Transform Head;
@@ -32,13 +25,15 @@ namespace Quinn.AI.Enemies
 		[SerializeField, Required, BoxGroup("References")]
 		private Door[] Doors;
 
-		private readonly Timer _tossHeadCooldown = new();
-		private readonly Timer _tossHeadDuration = new();
-
 		protected override void Awake()
 		{
 			base.Awake();
 			DisableDamage = true;
+		}
+
+		protected override void Update()
+		{
+			base.Update();
 		}
 
 		protected override void OnRegisterStates()

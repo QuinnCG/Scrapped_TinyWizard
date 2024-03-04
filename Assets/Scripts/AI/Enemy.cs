@@ -37,11 +37,6 @@ namespace Quinn.AI
 		protected float PlayerDst => Vector2.Distance(transform.position, PlayerPos);
 		protected Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
-		protected State CurrentState { get; private set; }
-		protected bool BlockGlobalConnections { get; set; }
-
-		private readonly Dictionary<State, HashSet<(Condition condition, State next)>> _states = new();
-
 		private Health _health;
 		private Damage _damage;
 
@@ -64,15 +59,7 @@ namespace Quinn.AI
 			OnRegisterStates();
 		}
 
-		protected virtual void Update()
-		{
-			/*
-			 * IEnumerator-based states that can suspend their execution.
-			 * Custom yield instructions.
-			 * States are transitioned to via connections.
-			 * States are their own classes that have the IEnumerator OnUpdate(), void OnStart(), and void OnFinish(bool isInterruption).
-			 */
-		}
+		protected virtual void Update() { }
 
 		protected virtual void OnDestroy()
 		{
@@ -88,31 +75,6 @@ namespace Quinn.AI
 		protected virtual void OnDeath()
 		{
 			Destroy(gameObject);
-		}
-
-		protected void Register(State state)
-		{
-			_states.Add(state, new());
-		}
-		protected void Register(params State[] states)
-		{
-			foreach (var state in states)
-			{
-				Register(state);
-			}
-		}
-
-		protected void Connect(State from, State to, Condition condition)
-		{
-			if (_states.TryGetValue(from, out var connections))
-			{
-				connections.Add((condition, to));
-			}
-		}
-
-		protected void SetStartState(State start)
-		{
-			CurrentState = start;
 		}
 
 		protected Tween JumpTo(Vector2 position, float height, float duration)
@@ -137,11 +99,6 @@ namespace Quinn.AI
 		{
 			var hit = Physics2D.Linecast(Collider.bounds.center, target, GameManager.Instance.ObstacleLayer);
 			return !hit;
-		}
-
-		private void TransitionTo(State state)
-		{
-			CurrentState = state;
 		}
 	}
 }

@@ -40,9 +40,7 @@ namespace Quinn.AI
 		protected State CurrentState { get; private set; }
 		protected bool BlockGlobalConnections { get; set; }
 
-		private readonly List<(Condition condition, State next)> _globalConnections = new();
 		private readonly Dictionary<State, HashSet<(Condition condition, State next)>> _states = new();
-		private State _previousState;
 
 		private Health _health;
 		private Damage _damage;
@@ -68,40 +66,12 @@ namespace Quinn.AI
 
 		protected virtual void Update()
 		{
-			bool isStart = false;
-			if (CurrentState != _previousState)
-			{
-				isStart = true;
-				_previousState = CurrentState;
-			}
-
-			if (!BlockGlobalConnections)
-			{
-				foreach (var (connection, next) in _globalConnections)
-				{
-					bool success = connection(false);
-					if (success)
-					{
-						TransitionTo(next);
-						return;
-					}
-				}
-			}
-
-			if (CurrentState != null)
-			{
-				bool isExiting = CurrentState(isStart);
-
-				foreach (var (condition, next) in _states[CurrentState])
-				{
-					bool success = condition(isExiting);
-					if (success)
-					{
-						TransitionTo(next);
-						return;
-					}
-				}
-			}
+			/*
+			 * IEnumerator-based states that can suspend their execution.
+			 * Custom yield instructions.
+			 * States are transitioned to via connections.
+			 * States are their own classes that have the IEnumerator OnUpdate(), void OnStart(), and void OnFinish(bool isInterruption).
+			 */
 		}
 
 		protected virtual void OnDestroy()
@@ -132,10 +102,6 @@ namespace Quinn.AI
 			}
 		}
 
-		protected void Connect(State to, Condition condition)
-		{
-			_globalConnections.Add((condition, to));
-		}
 		protected void Connect(State from, State to, Condition condition)
 		{
 			if (_states.TryGetValue(from, out var connections))
@@ -169,13 +135,12 @@ namespace Quinn.AI
 
 		protected bool HasLineOfSight(Vector2 target)
 		{
-			var hit = Physics2D.Linecast(Collider.bounds.center, target, LayerMask.GetMask("Obstacle"));
+			var hit = Physics2D.Linecast(Collider.bounds.center, target, GameManager.Instance.ObstacleLayer);
 			return !hit;
 		}
 
 		private void TransitionTo(State state)
 		{
-			_previousState = CurrentState;
 			CurrentState = state;
 		}
 	}

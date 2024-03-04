@@ -1,4 +1,6 @@
+using System.Collections.Generic;
+
 namespace Quinn.AI
 {
-	public delegate bool State(bool isStart);
+	public delegate IEnumerator<AIYield> State(bool isStart);
 }

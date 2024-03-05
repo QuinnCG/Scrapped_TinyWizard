@@ -2,7 +2,9 @@ using DG.Tweening;
 using Quinn.DamageSystem;
 using Quinn.Player;
 using Quinn.SpellSystem;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Quinn.AI
@@ -40,10 +42,17 @@ namespace Quinn.AI
 		public float PlayerDst => Vector2.Distance(transform.position, PlayerPos);
 		public Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
+		public event Action OnHalfHealth;
+		public event Action<State> OnFSMUpdate;
+
 		private Health _health;
 		private Damage _damage;
+		private bool _isHalfHealth;
 
 		private FSM _fsm;
+
+		private readonly HashSet<Meter> _meters = new();
+		private readonly Dictionary<State, UtilityAction> _actions = new();
 
 		protected virtual void Awake()
 		{
@@ -54,7 +63,17 @@ namespace Quinn.AI
 			Caster = GetComponent<SpellCaster>();
 			_damage = GetComponent<Damage>();
 
-			GetComponent<Damage>().OnDamaged += OnDamaged;
+			GetComponent<Damage>().OnDamaged += (DamageInfo info, DamageEfficiencyType type) =>
+			{
+				OnDamaged(info, type);
+
+				if (HealthPercent <= 0.5f && !_isHalfHealth)
+				{
+					_isHalfHealth = true;
+					OnHalfHealth?.Invoke();
+				}
+			};
+
 			_health.OnHeal += OnHealed;
 			_health.OnDeath += OnDeath;
 		}
@@ -66,13 +85,45 @@ namespace Quinn.AI
 				DebugMode = DebugMode
 			};
 
-			OnRegisterStates();
+			OnRegister();
 			_fsm.Start();
+
+			_fsm.OnTransition += state =>
+			{
+				foreach (var delta in _actions[state].Deltas)
+				{
+					if (_meters.TryGetValue(delta.meter, out var meter))
+					{
+						meter += delta.delta;
+					}
+				}
+			};
+
+			_fsm.OnUpdate += OnFSMUpdate;
 		}
 
 		protected virtual void Update()
 		{
 			_fsm.Update();
+
+			float bestValue = float.PositiveInfinity;
+			State bestState = null;
+
+			foreach (var action in _actions.Values)
+			{
+				float value = action.CalculateValue();
+
+				if (value < bestValue)
+				{
+					bestValue = value;
+					bestState = action.State;
+				}
+			}
+
+			if (bestState != null)
+			{
+				_fsm.TransitionTo(bestState);
+			}
 		}
 
 		protected virtual void OnDestroy()
@@ -80,7 +131,7 @@ namespace Quinn.AI
 			transform.DOKill();
 		}
 
-		protected virtual void OnRegisterStates() { }
+		protected virtual void OnRegister() { }
 
 		protected virtual void OnHealed(float health) { }
 
@@ -109,7 +160,7 @@ namespace Quinn.AI
 			return null;
 		}
 
-		protected bool HasLineOfSight(Vector2 target)
+		protected bool HasLoS(Vector2 target)
 		{
 			var hit = Physics2D.Linecast(Collider.bounds.center, target, GameManager.Instance.ObstacleLayer);
 			return !hit;
@@ -123,6 +174,34 @@ namespace Quinn.AI
 		protected void Connect(State from, State to, Condition condition)
 		{
 			_fsm.Connect(from, to, condition);
+		}
+
+		protected void RegisterState(params State[] states)
+		{
+			foreach (var state in states)
+			{
+				_fsm.Register(state);
+			}
+		}
+
+		protected void RegisterMeter(Meter meter)
+		{
+			_meters.Add(meter);
+		}
+
+		protected void RegisterAction(State state, params (Meter meter, float delta)[] deltas)
+		{
+			if (!_actions.TryGetValue(state, out UtilityAction action))
+			{
+				action = new UtilityAction()
+				{
+					State = state
+				};
+
+				_actions.Add(state, action);
+			}
+
+			action.Deltas.AddRange(deltas);
 		}
 	}
 }

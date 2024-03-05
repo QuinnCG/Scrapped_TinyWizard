@@ -1,5 +1,6 @@
 ﻿using FMODUnity;
 using Quinn.AI.States;
+using Quinn.DamageSystem;
 using Quinn.DialogueSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -26,28 +27,52 @@ namespace Quinn.AI.Enemies
 		[SerializeField, Required, BoxGroup("References")]
 		private Door[] Doors;
 
+		[SerializeField, BoxGroup("AI")]
+		private Meter AggroMeter = new();
+
+		[SerializeField, BoxGroup("AI")]
+		private Meter FearMeter = new();
+
 		protected override void Awake()
 		{
 			base.Awake();
-			DisableDamage = true;
 		}
 
 		protected override void Update()
 		{
 			base.Update();
+
+			AggroMeter += Time.deltaTime * 3.5f;
+			Animator.SetBool("IsMoving", Movement.IsMoving);
+
+			Debug.Log($"Aggro {AggroMeter} Fear {FearMeter}");
 		}
 
-		protected override void OnRegisterStates()
+		protected override void OnRegister()
 		{
-			var moveTo = new MoveTo(Player.transform);
-			var wait = new Wait(2f, 5f);
+			var moveTo = new MoveTo(Player.transform, 5f);
 			var dashAway = new DashAway(Player.transform);
 
-			SetStart(moveTo);
+			OnFSMUpdate += current =>
+			{
+				if (current == moveTo)
+				{
+					AggroMeter -= Time.deltaTime * 5f;
+				}
+			};
 
-			Connect(moveTo, dashAway, _ => PlayerDst < 2f);
-			Connect(dashAway, wait, exit => exit);
-			Connect(wait, moveTo, exit => exit);
+			RegisterState(moveTo, dashAway);
+
+			RegisterMeter(AggroMeter);
+			RegisterMeter(FearMeter);
+
+			RegisterAction(moveTo, (AggroMeter, -25f));
+			RegisterAction(dashAway, (FearMeter, -10f));
+		}
+
+		protected override void OnDamaged(DamageInfo info, DamageEfficiencyType type)
+		{
+			FearMeter += 15f;
 		}
 
 		protected override void OnDeath()

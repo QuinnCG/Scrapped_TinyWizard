@@ -96,7 +96,7 @@ namespace Quinn.AI.Enemies
 		{
 			if (!IsPlayerSpotted && PlayerDst < SpotPlayerRadius)
 			{
-				if (HasLineOfSight(PlayerPos))
+				if (HasLoS(PlayerPos))
 				{
 					return true;
 				}

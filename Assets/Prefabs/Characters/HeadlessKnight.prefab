@@ -260,7 +260,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 699284691175225679, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Mass
-      value: 0.62532115
+      value: 0.98277134
       objectReference: {fileID: 0}
     - target: {fileID: 1293692549281491158, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Sprite
@@ -270,9 +270,13 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2168033720986976895, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: Element
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2363259819423699447, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: <Max>k__BackingField
-      value: 50
+      value: 750
       objectReference: {fileID: 0}
     - target: {fileID: 3125235798960738604, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Controller
@@ -332,19 +336,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.x
-      value: 0.8891772
+      value: 1.0344363
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Size.y
-      value: 0.8891772
+      value: 1.1720468
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Offset.x
-      value: 0.06926914
+      value: 0.06926912
       objectReference: {fileID: 0}
     - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Offset.y
-      value: 0.62064606
+      value: 0.74678797
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980777210637150525, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: m_Direction
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8813909552582562740, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_SortingOrder
@@ -395,6 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803df18810ddab144946b922c1e24938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   Title: The Headless Knight
   OpeningDialogue:
     Speaker: Stranger
@@ -413,6 +422,56 @@ MonoBehaviour:
     Path: event:/Music/HeadlessKnight
   StartTrigger: {fileID: 0}
   Doors: []
+  AggroMeter:
+    SampleCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  FearMeter:
+    SampleCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
 --- !u!4 &5830455271105085538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6224831587206704893, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

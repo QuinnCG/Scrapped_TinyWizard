@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,9 +10,15 @@ namespace Quinn.AI
 		public State Current { get; private set; }
 		public bool DebugMode { get; set; }
 
+		public event Action<State> OnWantToExit;
+		public event Action<State> OnTransition;
+		public event Action<State> OnUpdate;
+
 		protected Enemy Agent { get; }
 
 		private readonly HashSet<State> _states = new();
+
+		private bool _wantedToExit;
 
 		public FSM(Enemy agent)
 		{
@@ -28,7 +35,16 @@ namespace Quinn.AI
 
 		public void Update()
 		{
+			if (Current == null) return;
+
 			bool wantsToExit = Current.Update();
+			OnUpdate?.Invoke(Current);
+
+			if (wantsToExit && !_wantedToExit)
+			{
+				_wantedToExit = true;
+				OnWantToExit?.Invoke(Current);
+			}
 
 			foreach (var (to, condition) in Current.Connections)
 			{
@@ -53,13 +69,19 @@ namespace Quinn.AI
 			to.SetAgent(Agent);
 		}
 
+		public void Register(State state)
+		{
+			_states.Add(state);
+			state.SetAgent(Agent);
+		}
+
 		public void SetStart(State start)
 		{
 			Current ??= start;
 			Current?.SetAgent(Agent);
 		}
 
-		private void TransitionTo(State state)
+		public void TransitionTo(State state)
 		{
 			if (state != Current)
 			{
@@ -76,6 +98,10 @@ namespace Quinn.AI
 				{
 					Print($"{Current?.GetType().Name}: Entered!");
 				}
+
+				_wantedToExit = false;
+
+				OnTransition?.Invoke(state);
 			}
 		}
 

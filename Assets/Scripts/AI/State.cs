@@ -7,11 +7,18 @@ namespace Quinn.AI
 	{
 		public IEnumerable<(State to, Condition condition)> Connections => _connections.AsEnumerable();
 
+		protected Enemy Agent { get; private set; }
+
 		private readonly List<(State to, Condition condition)> _connections = new();
 
 		public void Connect(State to, Condition condition)
 		{
 			_connections.Add((to, condition));
+		}
+
+		public void SetAgent(Enemy agent)
+		{
+			Agent = agent;
 		}
 
 		public void Enter()

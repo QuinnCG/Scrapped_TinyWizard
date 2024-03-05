@@ -1,4 +1,5 @@
 ﻿using FMODUnity;
+using Quinn.AI.States;
 using Quinn.DialogueSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -38,7 +39,15 @@ namespace Quinn.AI.Enemies
 
 		protected override void OnRegisterStates()
 		{
+			var moveTo = new MoveTo(Player.transform);
+			var wait = new Wait(2f, 5f);
+			var dashAway = new DashAway(Player.transform);
 
+			SetStart(moveTo);
+
+			Connect(moveTo, dashAway, _ => PlayerDst < 2f);
+			Connect(dashAway, wait, exit => exit);
+			Connect(wait, moveTo, exit => exit);
 		}
 
 		protected override void OnDeath()

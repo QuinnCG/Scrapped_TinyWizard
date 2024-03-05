@@ -42,12 +42,13 @@ namespace Quinn.AI
 		public float PlayerDst => Vector2.Distance(transform.position, PlayerPos);
 		public Vector2 PlayerDir => (PlayerPos - Position).normalized;
 
+		public bool IsHalfHealth { get; private set; }
+
 		public event Action OnHalfHealth;
 		public event Action<State> OnFSMUpdate;
 
 		private Health _health;
 		private Damage _damage;
-		private bool _isHalfHealth;
 
 		private FSM _fsm;
 
@@ -67,9 +68,9 @@ namespace Quinn.AI
 			{
 				OnDamaged(info, type);
 
-				if (HealthPercent <= 0.5f && !_isHalfHealth)
+				if (HealthPercent <= 0.5f && !IsHalfHealth)
 				{
-					_isHalfHealth = true;
+					IsHalfHealth = true;
 					OnHalfHealth?.Invoke();
 				}
 			};
@@ -90,11 +91,14 @@ namespace Quinn.AI
 
 			_fsm.OnTransition += state =>
 			{
-				foreach (var delta in _actions[state].Deltas)
+				if (_actions.ContainsKey(state))
 				{
-					if (_meters.TryGetValue(delta.meter, out var meter))
+					foreach (var delta in _actions[state].Deltas)
 					{
-						meter += delta.delta;
+						if (_meters.TryGetValue(delta.meter, out var meter))
+						{
+							meter += delta.delta;
+						}
 					}
 				}
 			};

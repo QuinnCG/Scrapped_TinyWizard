@@ -18,6 +18,7 @@ namespace Quinn.AI
 
 		private readonly HashSet<State> _states = new();
 
+		private State _startState;
 		private bool _wantedToExit;
 
 		public FSM(Enemy agent)
@@ -33,9 +34,12 @@ namespace Quinn.AI
 			}
 		}
 
-		public void Update()
+		public bool Update()
 		{
-			if (Current == null) return;
+			if (Current == null)
+			{
+				TransitionTo(_startState);
+			}
 
 			bool wantsToExit = Current.Update();
 			OnUpdate?.Invoke(Current);
@@ -54,6 +58,8 @@ namespace Quinn.AI
 					break;
 				}
 			}
+
+			return wantsToExit;
 		}
 
 		public void Connect(State from, State to, Condition condition)
@@ -77,8 +83,8 @@ namespace Quinn.AI
 
 		public void SetStart(State start)
 		{
-			Current ??= start;
-			Current?.SetAgent(Agent);
+			_startState = start;
+			start?.SetAgent(Agent);
 		}
 
 		public void TransitionTo(State state)

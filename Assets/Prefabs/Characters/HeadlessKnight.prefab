@@ -174,17 +174,17 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 31.999996, b: 2.540817, a: 0.84705883}
-          key1: {r: 0, g: 2, b: 0.3225808, a: 0.69803923}
-          key2: {r: 0, g: 1.0592738, b: 0.4969003, a: 0}
+          key0: {r: 0, g: 5.992157, b: 3.1562605, a: 0.84705883}
+          key1: {r: 0.007843154, g: 1.4980394, b: 0.6780805, a: 0.69803923}
+          key2: {r: 0.0078431545, g: 1.4980396, b: 0.0646168, a: 0}
           key3: {r: 0, g: 1.0592738, b: 0.4969003, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 0
-          ctime1: 11025
-          ctime2: 39861
+          ctime1: 36777
+          ctime2: 53276
           ctime3: 39861
           ctime4: 0
           ctime5: 0
@@ -404,7 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  Title: The Headless Knight
+  Title: Headless Knight
   OpeningDialogue:
     Speaker: Stranger
     Messages:
@@ -413,65 +413,7 @@ MonoBehaviour:
     - More will join me...
     - ... IN DEATH!
   Head: {fileID: 5830455271105085538}
-  BossMusic:
-    Guid:
-      Data1: -1520195664
-      Data2: 1086228751
-      Data3: 817878956
-      Data4: -1625142667
-    Path: event:/Music/HeadlessKnight
-  StartTrigger: {fileID: 0}
-  Doors: []
-  AggroMeter:
-    SampleCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  FearMeter:
-    SampleCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
+  HeadlessKnightHead: {fileID: 2018771816949537135, guid: fca7422798850ed4dbbeb19534994002, type: 3}
 --- !u!4 &5830455271105085538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6224831587206704893, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

@@ -1,4 +1,3 @@
-using Quinn.DamageSystem;
 using UnityEngine;
 
 namespace Quinn.DamageSystem

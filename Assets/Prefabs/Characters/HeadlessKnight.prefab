@@ -380,6 +380,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4660941304955803874}
+    - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4400583278165950757}
   m_SourcePrefab: {fileID: 100100000, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
 --- !u!4 &1094188514244223435 stripped
 Transform:
@@ -414,6 +417,33 @@ MonoBehaviour:
     - ... IN DEATH!
   Head: {fileID: 5830455271105085538}
   HeadlessKnightHead: {fileID: 2018771816949537135, guid: fca7422798850ed4dbbeb19534994002, type: 3}
+  HeadTossSound:
+    Guid:
+      Data1: -1718560458
+      Data2: 1288445197
+      Data3: 146764175
+      Data4: -2010665537
+    Path: event:/Enemy/HeadlessKnightHeadToss
+--- !u!114 &4400583278165950757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617569757562867647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5f6c079eedec24593b8ef84475d4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound:
+    Guid:
+      Data1: -1446717844
+      Data2: 1163735889
+      Data3: -262849912
+      Data4: 585543986
+    Path: event:/Enemy/HeadlessKnightFootstep
+  IsAttached: 0
 --- !u!4 &5830455271105085538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6224831587206704893, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

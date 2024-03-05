@@ -1,3 +1,4 @@
+using FMODUnity;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -32,6 +33,9 @@ namespace Quinn.DamageSystem
 
 		[SerializeField, BoxGroup("VFX")]
 		private bool BlinkInAndOut;
+
+		[SerializeField, BoxGroup("SFX")]
+		private EventReference DamageSound;
 
 		public bool DisableDamage { get; set; }
 
@@ -91,6 +95,7 @@ namespace Quinn.DamageSystem
 				StartCoroutine(BlinkInAndOutSequence());
 			}
 
+			AudioManager.Play(DamageSound, transform.position);
 			return true;
 		}
 

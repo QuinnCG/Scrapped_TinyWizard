@@ -1,4 +1,6 @@
+using DG.Tweening;
 using FMOD;
+using FMOD.Studio;
 using FMODUnity;
 using Quinn.DamageSystem;
 using Quinn.SpellSystem;
@@ -50,8 +52,11 @@ namespace Quinn.Player
 		[SerializeField, Required, BoxGroup("Camera")]
 		private float CameraCrosshairBias = 0.2f;
 
-		[SerializeField, BoxGroup("Audio")]
+		[SerializeField, BoxGroup("SFX")]
 		private EventReference DashSound;
+
+		[SerializeField, BoxGroup("SFX")]
+		private EventReference HurtSnapshot;
 
 		public Vector2 Velocity => _movement.Velocity;
 		public Vector2 Center => _collider.bounds.center;
@@ -67,6 +72,8 @@ namespace Quinn.Player
 
 		private float _nextDashTime;
 		private GameObject _dashTrail;
+
+		private EventInstance _hurtSnapshot;
 
 		private void Awake()
 		{
@@ -92,12 +99,20 @@ namespace Quinn.Player
 			_input.OnCastRelease += OnCastRelease;
 
 			_movement.OnDashEnd += OnDashEnd;
+
+			_damage.OnDamaged += (_, _) =>
+			{
+				_hurtSnapshot.start();
+				DOVirtual.DelayedCall(2f, () => _hurtSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT), false);
+			};
 		}
 
 		private void Start()
 		{
 			Inventory.Instance.OnSpellSelected += UpdateStaffColor;
 			UpdateStaffColor(Inventory.Instance.ActiveSpell);
+
+			_hurtSnapshot = RuntimeManager.CreateInstance(HurtSnapshot);
 		}
 
 		private void Update()
@@ -108,6 +123,12 @@ namespace Quinn.Player
 			CrosshairChargeUpdate();
 			StaffTransformUpdate();
 			CameraTargetUpdate();
+		}
+
+		private void OnDestroy()
+		{
+			_hurtSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+			_hurtSnapshot.release();
 		}
 
 		public Transform GetCameraTarget() => CameraTarget;

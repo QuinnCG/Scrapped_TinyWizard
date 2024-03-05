@@ -167,12 +167,32 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Path
+      value: event:/Player/Hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: ImmunityDuration
       value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <Team>k__BackingField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data1
+      value: -222474529
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data2
+      value: 1256703369
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data3
+      value: 1226121896
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data4
+      value: 716070380
       objectReference: {fileID: 0}
     - target: {fileID: 367928952895826765, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Controller
@@ -415,6 +435,13 @@ MonoBehaviour:
       Data3: -1029213785
       Data4: -1941991361
     Path: event:/Player/Dash
+  HurtSnapshot:
+    Guid:
+      Data1: 516885249
+      Data2: 1145670943
+      Data3: -1766276701
+      Data4: -838409312
+    Path: snapshot:/PlayerHurt
 --- !u!114 &3339170963623325113
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Quinn.AI
@@ -10,6 +11,8 @@ namespace Quinn.AI
 		protected Enemy Agent { get; private set; }
 
 		private readonly List<(State to, Condition condition)> _connections = new();
+
+		private Action _enterCallback, _updateCallback, _exitCallback;
 
 		public void Connect(State to, Condition condition)
 		{
@@ -23,17 +26,38 @@ namespace Quinn.AI
 
 		public void Enter()
 		{
+			_enterCallback?.Invoke();
 			OnEnter();
 		}
 
 		public bool Update()
 		{
+			_updateCallback?.Invoke();
 			return OnUpdate();
 		}
 
 		public void Exit()
 		{
+			_exitCallback?.Invoke();
 			OnExit();
+		}
+
+		public State AddEnter(Action callback)
+		{
+			_enterCallback += callback;
+			return this;
+		}
+
+		public State AddUpdate(Action callback)
+		{
+			_updateCallback += callback;
+			return this;
+		}
+
+		public State AddExit(Action callback)
+		{
+			_exitCallback += callback;
+			return this;
 		}
 
 		protected virtual void OnEnter() { }

@@ -2,6 +2,7 @@
 using Quinn.AI.States;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using FMODUnity;
 
 namespace Quinn.AI.Enemies
 {
@@ -19,6 +20,9 @@ namespace Quinn.AI.Enemies
 		[SerializeField, Required, BoxGroup("References")]
 		private GameObject HeadlessKnightHead;
 
+		[SerializeField, BoxGroup("Audio")]
+		private EventReference HeadTossSound;
+
 		protected override void Update()
 		{
 			base.Update();
@@ -29,6 +33,8 @@ namespace Quinn.AI.Enemies
 		{
 			var instance = Instantiate(HeadlessKnightHead, Head.position, Head.rotation, transform);
 			instance.GetComponent<HeadlessKnightHead>().Origin = Head;
+
+			AudioManager.Play(HeadTossSound, instance.transform);
 		}
 
 		protected override void OnRegister()

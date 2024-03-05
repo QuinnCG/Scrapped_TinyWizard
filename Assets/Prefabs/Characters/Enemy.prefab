@@ -21,8 +21,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Path
+      value: event:/Enemy/Hurt
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <Team>k__BackingField
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data1
+      value: 1440443629
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data2
+      value: 1331586392
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data3
+      value: -1475884123
+      objectReference: {fileID: 0}
+    - target: {fileID: 247439732763071397, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DamageSound.Guid.Data4
+      value: -325979753
       objectReference: {fileID: 0}
     - target: {fileID: 1663543865695874092, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_LocalPosition.x

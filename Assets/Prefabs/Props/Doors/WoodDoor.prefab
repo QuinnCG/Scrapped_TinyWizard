@@ -146,24 +146,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca68bac163cb6643ba902b2e139ca06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseTrigger: {fileID: 0}
   StartOpen: 1
   StartLocked: 0
   OpenSprite: {fileID: -1968101220966404331, guid: d2dd1c425f192134793d3d9791ccea59, type: 3}
   CloseSprite: {fileID: 7142966192557751455, guid: d2dd1c425f192134793d3d9791ccea59, type: 3}
   OpenSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1667605061
+      Data2: 1114997331
+      Data3: -272728677
+      Data4: 1910155344
+    Path: event:/Environment/Door Open
   CloseSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1139281238
+      Data2: 1303630281
+      Data3: 2068986011
+      Data4: 2057178946
+    Path: event:/Environment/Door Close
   UnlockSound:
     Guid:
       Data1: 0

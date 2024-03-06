@@ -2,6 +2,8 @@
 {
 	public abstract class Service
 	{
+		protected Enemy Agent { get; private set; }
+
 		public void Enter()
 		{
 			OnEnter();
@@ -25,6 +27,11 @@
 		public void ParentExit()
 		{
 			OnParentExit();
+		}
+
+		public void SetAgent(Enemy enemy)
+		{
+			Agent = enemy;
 		}
 
 		protected virtual void OnEnter() { }

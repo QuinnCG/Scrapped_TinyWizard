@@ -6,8 +6,6 @@ namespace Quinn.AI.BehaviorTree
 {
 	public abstract class Task : Node
 	{
-		public Enemy Agent => Tree.Agent;
-
 		public override void Enter()
 		{
 			base.Enter();

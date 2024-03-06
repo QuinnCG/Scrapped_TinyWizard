@@ -29,6 +29,7 @@ namespace Quinn.AI.BehaviorTree
 
 		public Composite Parent => _parent;
 		public Tree Tree => _tree != null ? _tree : _parent.Tree;
+		public Enemy Agent => Tree.Agent;
 
 		private Composite _parent;
 		private Tree _tree;
@@ -115,6 +116,16 @@ namespace Quinn.AI.BehaviorTree
 		public void SetParent(Composite parent)
 		{
 			_parent = parent;
+
+			foreach (var service in Services)
+			{
+				service.SetAgent(Agent);
+			}
+
+			foreach (var conditional in Conditionals)
+			{
+				conditional.SetAgent(Agent);
+			}
 		}
 		public void SetTree(Tree tree)
 		{

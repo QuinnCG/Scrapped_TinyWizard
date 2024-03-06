@@ -21,6 +21,7 @@ namespace Quinn
 
 		public float FacingDirection { get; private set; } = 1f;
 		public Vector2 Velocity => _rb.velocity;
+		public Vector2 MoveDirection { get; private set; }
 
 		public event Action OnDashStart, OnDashEnd;
 
@@ -60,21 +61,23 @@ namespace Quinn
 			_wasMovingLastFrame = false;
 		}
 
-		public void Move(Vector2 dir)
+		public void Move(Vector2? dir = null)
 		{
 			if (!IsDashing)
 			{
-				dir.Normalize();
+				if (dir.HasValue) SetMoveDirection(dir.Value);
 
-				_velocitySum += dir * MoveSpeed;
-				_wasMovingLastFrame = dir.sqrMagnitude > 0f;
+				_velocitySum += MoveDirection * MoveSpeed;
+				_wasMovingLastFrame = MoveDirection.sqrMagnitude > 0f;
 
-				if (dir.sqrMagnitude > 0f)
+				if (MoveDirection.sqrMagnitude > 0f)
 				{
-					SetDashDirection(dir);
-					SetFacingDirection(Mathf.Sign(dir.x));
+					SetDashDirection(MoveDirection);
+					SetFacingDirection(Mathf.Sign(MoveDirection.x));
 				}
 			}
+
+			// TODO: Need to be able to seperartely set direction but without messing up facing direction.
 		}
 
 		public void MoveTowards(Vector2 target)
@@ -129,6 +132,11 @@ namespace Quinn
 		public void ResetMoveSpeed()
 		{
 			MoveSpeed = _defaultMoveSpeed;
+		}
+
+		public void SetMoveDirection(Vector2 dir)
+		{
+			MoveDirection = dir.normalized;
 		}
 	}
 }

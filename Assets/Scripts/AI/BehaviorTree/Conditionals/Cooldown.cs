@@ -9,10 +9,15 @@ namespace Quinn.AI.Conditionals
 
 		private float _endTime;
 
-		public Cooldown(float duration, float deviation = 0f)
+		public Cooldown(float duration, float deviation = 0f, bool startOnCooldown = false)
 		{
 			Duration = duration;
 			Deviation = deviation;
+
+			if (startOnCooldown)
+			{
+				OnEnter();
+			}
 		}
 		public Cooldown(AIRand rand)
 		{

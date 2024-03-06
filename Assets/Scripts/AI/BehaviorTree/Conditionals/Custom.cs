@@ -13,12 +13,7 @@ namespace Quinn.AI.Conditionals
 
 		protected override bool OnEvaluate()
 		{
-			if (Condition != null)
-			{
-				return Condition();
-			}
-
-			return false;
+			return Condition();
 		}
 	}
 }

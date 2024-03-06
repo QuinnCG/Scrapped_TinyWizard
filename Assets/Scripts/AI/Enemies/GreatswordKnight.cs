@@ -1,5 +1,7 @@
 using DG.Tweening;
 using FMODUnity;
+using Quinn.DamageSystem;
+using Quinn.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -23,6 +25,12 @@ namespace Quinn.AI.Enemies
 		private EventReference SwingSound;
 
 		private float _headDir = 1f;
+
+		protected override void Start()
+		{
+			base.Start();
+			HUDUI.Instance.ShowBossBar("Greatsword Knight", GetComponent<Health>());
+		}
 
 		protected override void Update()
 		{

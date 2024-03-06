@@ -37,7 +37,7 @@ namespace Quinn.AI.Enemies
 			base.Update();
 
 			// Make head face player even if body is not.
-			if (PlayerDir.x != 0f) _headDir = Mathf.Sign(PlayerDir.x);
+			if (TargetDir.x != 0f) _headDir = Mathf.Sign(TargetDir.x);
 			Head.transform.localScale = new Vector3(_headDir * transform.localScale.x, 1f, 1f);
 		}
 
@@ -57,7 +57,7 @@ namespace Quinn.AI.Enemies
 		public void OnSwingCharge()
 		{
 			SwordPivot.DOKill();
-			SwordPivot.DORotate(PlayerDir, 0.2f);
+			SwordPivot.DORotate(TargetDir, 0.2f);
 
 			Movement.MoveSpeed = 1f;
 		}

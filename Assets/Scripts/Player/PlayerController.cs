@@ -60,11 +60,11 @@ namespace Quinn.Player
 
 		public Vector2 Velocity => _movement.Velocity;
 		public Vector2 Center => _collider.bounds.center;
+		public SpellCaster Caster { get; private set; }
 
 		private Animator _animator;
 		private InputReader _input;
 		private Movement _movement;
-		private SpellCaster _caster;
 		private Collider2D _collider;
 		private Damage _damage;
 
@@ -84,12 +84,12 @@ namespace Quinn.Player
 			_animator = GetComponent<Animator>();
 			_input = GetComponent<InputReader>();
 			_movement = GetComponent<Movement>();
-			_caster = GetComponent<SpellCaster>();
+			Caster = GetComponent<SpellCaster>();
 			_collider = GetComponent<Collider2D>();
 			_damage = GetComponent<Damage>();
 
-			_caster.OnReleaseCharge += OnStopCharge;
-			_caster.OnCancelCharge += OnStopCharge;
+			Caster.OnReleaseCharge += OnStopCharge;
+			Caster.OnCancelCharge += OnStopCharge;
 
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
@@ -143,7 +143,7 @@ namespace Quinn.Player
 
 		private void OnDash()
 		{
-			if (Time.time > _nextDashTime && !_caster.IsCharging)
+			if (Time.time > _nextDashTime && !Caster.IsCharging)
 			{
 				_damage.DisableDamage = true;
 
@@ -175,13 +175,13 @@ namespace Quinn.Player
 
 		private void OnCastPress()
 		{
-			_caster.BeginCharge();
+			Caster.BeginCharge();
 		}
 
 		private void OnCastRelease()
 		{
 			Vector2 target = Crosshair.Instance.Position;
-			_caster.ReleaseCharge(Inventory.Instance.ActiveSpell.Prefab, target);
+			Caster.ReleaseCharge(Inventory.Instance.ActiveSpell.Prefab, target);
 		}
 
 		private void OnStopCharge(float charge)
@@ -198,9 +198,9 @@ namespace Quinn.Player
 				Crosshair.Instance.SetAccuracy(spell.TargetRadius);
 			}
 
-			if (_caster.IsCharging)
+			if (Caster.IsCharging)
 			{
-				Crosshair.Instance.SetCharge(_caster.Charge / spell.MaxCharge);
+				Crosshair.Instance.SetCharge(Caster.Charge / spell.MaxCharge);
 			}
 		}
 

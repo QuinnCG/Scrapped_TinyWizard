@@ -43,7 +43,7 @@ namespace Quinn.AI.Enemies
 			SetStart(chase);
 
 			Connect(chase, tossHead, exit => exit);
-			Connect(tossHead, chase, exit => exit && PlayerDst > 3f);
+			Connect(tossHead, chase, exit => exit && TargetDst > 3f);
 			Connect(tossHead, flee, exit => exit);
 			Connect(flee, chase, exit => exit);
 		}

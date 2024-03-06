@@ -38,11 +38,13 @@ namespace Quinn.AI
 		public Vector2 Center => Collider.bounds.center;
 
 		public PlayerController Player => PlayerController.Instance;
-		public Vector2 PlayerPos => Player.transform.position;
-		public Vector2 PlayerCenter => Player.Center;
-		public Vector2 PlayerVel => Player.Velocity;
-		public float PlayerDst => Vector2.Distance(transform.position, PlayerPos);
-		public Vector2 PlayerDir => (PlayerPos - Position).normalized;
+
+		public Vector2 TargetPos => Player.transform.position;
+		public Vector2 TargetCenter => Player.Center;
+		public Vector2 TargetVel => Player.Velocity;
+		public float TargetDst => Vector2.Distance(transform.position, TargetPos);
+		public Vector2 TargetDir => (TargetPos - Position).normalized;
+		public bool DidTargetJustCast => Player.Caster.DidJustCastSpell;
 
 		public bool IsHalfHealth { get; private set; }
 

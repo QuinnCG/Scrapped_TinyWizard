@@ -45,12 +45,16 @@ namespace Quinn.SpellSystem
 		public Damage Damage { get; private set; }
 		public bool IsCharging { get; private set; }
 		public float Charge { get; private set; }
+		public bool DidJustCastSpell { get; private set; }
 
 		public event Action OnBeginCharge;
 		public event Action<float> OnReleaseCharge, OnCancelCharge;
 
+		public event Action<Spell> OnSpellSpawned;
+
 		private Knockback _knockback;
 		private readonly List<Spell> _spells = new();
+		private bool _waitedOneFrame;
 
 		private void Awake()
 		{
@@ -63,6 +67,16 @@ namespace Quinn.SpellSystem
 			if (IsCharging)
 			{
 				Charge += ChargeRate * Time.deltaTime;
+			}
+
+			if (_waitedOneFrame)
+			{
+				DidJustCastSpell = false;
+				_waitedOneFrame = false;
+			}
+			else
+			{
+				_waitedOneFrame = true;
 			}
 		}
 
@@ -130,6 +144,9 @@ namespace Quinn.SpellSystem
 			{
 				_spells.Remove(spell);
 			};
+
+			DidJustCastSpell = true;
+			OnSpellSpawned?.Invoke(spell);
 		}
 
 		private void SpawnCastVFX(ElementType element)

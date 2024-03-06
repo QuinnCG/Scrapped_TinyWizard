@@ -1,4 +1,4 @@
-namespace Quinn.AI.BehaviorTree.Composites
+namespace Quinn.AI.Composites
 {
 	public class Sequence : Composite
 	{

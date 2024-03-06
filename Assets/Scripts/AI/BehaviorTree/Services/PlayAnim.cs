@@ -1,4 +1,4 @@
-namespace Quinn.AI.BehaviorTree.Services
+namespace Quinn.AI.BT.Services
 {
 	public class PlayAnim : Service
 	{

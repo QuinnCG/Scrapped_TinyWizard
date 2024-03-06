@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Quinn.AI.BehaviorTree
+namespace Quinn.AI
 {
 	public abstract class Composite : Node, IEnumerable<Node>
 	{

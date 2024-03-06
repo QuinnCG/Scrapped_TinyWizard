@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.U2D;
 
-namespace Quinn.AI.BehaviorTree
+namespace Quinn.AI
 {
 	public abstract class Node
 	{

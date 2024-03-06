@@ -1,11 +1,11 @@
 using DG.Tweening;
+using Quinn.AI.BT;
 using Quinn.DamageSystem;
 using Quinn.Player;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Quinn.AI
@@ -53,6 +53,7 @@ namespace Quinn.AI
 		private Damage _damage;
 
 		private FSM _fsm;
+		private Tree _tree;
 
 		private readonly HashSet<Meter> _meters = new();
 		private readonly Dictionary<State, UtilityAction> _actions = new();
@@ -85,7 +86,7 @@ namespace Quinn.AI
 		{
 			_fsm = new FSM(this)
 			{
-				DebugMode = DebugMode
+				//DebugMode = DebugMode
 			};
 
 			OnRegister();
@@ -106,6 +107,10 @@ namespace Quinn.AI
 			};
 
 			_fsm.OnUpdate += OnFSMUpdate;
+
+			_tree = ConstructTree();
+			_tree.SetAgent(this);
+			_tree.DebugMode = DebugMode;
 		}
 
 		protected virtual void Update()
@@ -130,6 +135,8 @@ namespace Quinn.AI
 			{
 				_fsm.TransitionTo(bestState);
 			}
+
+			_tree.Update();
 		}
 
 		protected virtual void OnDestroy()
@@ -138,6 +145,8 @@ namespace Quinn.AI
 		}
 
 		protected virtual void OnRegister() { }
+
+		protected virtual Tree ConstructTree() => new();
 
 		protected virtual void OnHealed(float health) { }
 

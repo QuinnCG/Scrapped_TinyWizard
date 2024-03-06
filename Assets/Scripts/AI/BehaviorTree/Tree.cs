@@ -1,21 +1,19 @@
-using Quinn.AI.BehaviorTree.Composites;
+using Quinn.AI.Composites;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Quinn.AI.BehaviorTree
+namespace Quinn.AI
 {
 	public class Tree : IEnumerable<Node>, IEnumerable
 	{
-		public Enemy Agent { get; }
+		public Enemy Agent { get; private set; }
 		public Selector Root { get; }
 		public bool DebugMode { get; set; }
 
 		private bool _exited;
 
-		public Tree(Enemy agent)
+		public Tree()
 		{
-			Agent = agent;
-
 			Root = new Selector();
 			Root.SetTree(this);
 		}
@@ -41,6 +39,12 @@ namespace Quinn.AI.BehaviorTree
 		{
 			Root.Add(node);
 		}
+
+		public void SetAgent(Enemy agent)
+		{
+			Agent = agent;
+		}
+
 
 		public IEnumerator<Node> GetEnumerator()
 		{

@@ -1,6 +1,6 @@
 using System;
 
-namespace Quinn.AI.BehaviorTree.Conditionals
+namespace Quinn.AI.Conditionals
 {
 	public class Custom : Conditional
 	{

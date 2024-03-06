@@ -1,4 +1,4 @@
-﻿namespace Quinn.AI.BehaviorTree
+﻿namespace Quinn.AI
 {
 	public enum Status
 	{

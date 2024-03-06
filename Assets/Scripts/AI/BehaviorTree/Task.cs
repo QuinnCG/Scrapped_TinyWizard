@@ -2,7 +2,7 @@
 using System.Text;
 using UnityEngine;
 
-namespace Quinn.AI.BehaviorTree
+namespace Quinn.AI
 {
 	public abstract class Task : Node
 	{

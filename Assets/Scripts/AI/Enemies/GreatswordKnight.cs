@@ -1,6 +1,5 @@
 using DG.Tweening;
 using FMODUnity;
-using Quinn.AI.States;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -28,20 +27,10 @@ namespace Quinn.AI.Enemies
 			Head.transform.localScale = new Vector3(_headDir * transform.localScale.x, 1f, 1f);
 		}
 
-		protected override void OnRegister()
+		protected override Tree ConstructTree() => new()
 		{
-			var dashAttack = new StateSequence(this, new DashAttack()
-			{
-				Target = Player.transform,
-				DashSpeed = 25f,
-				StoppingDistance = 4f,
-
-				DashAnimKey = "IsDashing",
-				AttackAnimKey = "Swing",
-			}, new Wait(3f));
-
-			SetStart(dashAttack);
-		}
+			new Tasks.Log("!")
+		};
 
 		public void OnSwingCharge()
 		{

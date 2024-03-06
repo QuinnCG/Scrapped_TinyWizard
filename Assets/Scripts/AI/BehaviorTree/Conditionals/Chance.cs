@@ -1,6 +1,6 @@
 ﻿using Unity.Mathematics;
 
-namespace Quinn.AI.BehaviorTree.Conditionals
+namespace Quinn.AI.Conditionals
 {
 	public class Chance : Conditional
 	{

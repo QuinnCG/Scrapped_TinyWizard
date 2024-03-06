@@ -1,4 +1,4 @@
-﻿namespace Quinn.AI.BehaviorTree.Tasks
+﻿namespace Quinn.AI.Tasks
 {
 	public class TriggerAnim : Task
 	{

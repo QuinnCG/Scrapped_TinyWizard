@@ -65,7 +65,10 @@ namespace Quinn
 		{
 			if (!IsDashing)
 			{
-				if (dir.HasValue) SetMoveDirection(dir.Value);
+				if (dir.HasValue)
+				{
+					SetMoveDirection(dir.Value);
+				}
 
 				_velocitySum += MoveDirection * MoveSpeed;
 				_wasMovingLastFrame = MoveDirection.sqrMagnitude > 0f;
@@ -76,8 +79,6 @@ namespace Quinn
 					SetFacingDirection(Mathf.Sign(MoveDirection.x));
 				}
 			}
-
-			// TODO: Need to be able to seperartely set direction but without messing up facing direction.
 		}
 
 		public void MoveTowards(Vector2 target)

@@ -10,6 +10,8 @@ namespace Quinn.AI.BehaviorTree
 		public Selector Root { get; }
 		public bool DebugMode { get; set; }
 
+		private bool _exited;
+
 		public Tree(Enemy agent)
 		{
 			Agent = agent;
@@ -18,19 +20,20 @@ namespace Quinn.AI.BehaviorTree
 			Root.SetTree(this);
 		}
 
-		public void Start()
-		{
-			Root.Enter();
-		}
-
 		public void Update()
 		{
+			if (_exited)
+			{
+				Root.Enter();
+				_exited = false;
+			}
+
 			var status = Root.Update();
 
 			if (status != Status.Running)
 			{
 				Root.Exit();
-				Root.Enter();
+				_exited = true;
 			}
 		}
 

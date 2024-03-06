@@ -17,8 +17,21 @@
 			OnExit();
 		}
 
+		public void ParentEnter()
+		{
+			OnParentEnter();
+		}
+
+		public void ParentExit()
+		{
+			OnParentExit();
+		}
+
 		protected virtual void OnEnter() { }
 		protected abstract bool OnEvaluate();
 		protected virtual void OnExit() { }
+
+		protected virtual void OnParentEnter() { }
+		protected virtual void OnParentExit() { }
 	}
 }

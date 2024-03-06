@@ -82,6 +82,36 @@ namespace Quinn.AI.BehaviorTree
 			return true;
 		}
 
+		public void ParentEnter()
+		{
+			OnParentEnter();
+
+			foreach (var service in Services)
+			{
+				service.ParentEnter();
+			}
+
+			foreach (var condition in Conditionals)
+			{
+				condition.ParentEnter();
+			}
+		}
+
+		public void ParentExit()
+		{
+			OnParentExit();
+
+			foreach (var service in Services)
+			{
+				service.ParentExit();
+			}
+
+			foreach (var condition in Conditionals)
+			{
+				condition.ParentExit();
+			}
+		}
+
 		public void SetParent(Composite parent)
 		{
 			_parent = parent;
@@ -94,5 +124,8 @@ namespace Quinn.AI.BehaviorTree
 		protected virtual void OnEnter() { }
 		protected virtual Status OnUpdate() => Status.Success;
 		protected virtual void OnExit() { }
+
+		protected virtual void OnParentEnter() { }
+		protected virtual void OnParentExit() { }
 	}
 }

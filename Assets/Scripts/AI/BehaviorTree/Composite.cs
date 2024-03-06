@@ -14,6 +14,26 @@ namespace Quinn.AI.BehaviorTree
 			Children.Add(node);
 		}
 
+		public override void Enter()
+		{
+			foreach (var child in Children)
+			{
+				child.ParentEnter();
+			}
+
+			base.Enter();
+		}
+
+		public override void Exit()
+		{
+			foreach (var child in Children)
+			{
+				child.ParentExit();
+			}
+
+			base.Exit();
+		}
+
 		public IEnumerator<Node> GetEnumerator()
 		{
 			return Children.GetEnumerator();

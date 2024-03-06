@@ -34,6 +34,7 @@ namespace Quinn.AI.BehaviorTree.Composites
 		{
 			// Evaluate current node.
 			_wasSuccess = Children[_index].Evaluate();
+
 			if (!_wasSuccess)
 			{
 				return Status.Failure;
@@ -71,7 +72,6 @@ namespace Quinn.AI.BehaviorTree.Composites
 		private bool Next()
 		{
 			Children[_index].Exit();
-
 			_index++;
 
 			if (_index >= Children.Count)
@@ -81,7 +81,6 @@ namespace Quinn.AI.BehaviorTree.Composites
 			}
 
 			Children[_index].Enter();
-
 			return true;
 		}
 	}

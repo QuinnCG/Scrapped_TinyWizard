@@ -8,8 +8,10 @@ namespace Quinn.AI.BehaviorTree
 	{
 		public Enemy Agent => Tree.Agent;
 
-		public override Status Update()
+		public override void Enter()
 		{
+			base.Enter();
+
 #if UNITY_EDITOR
 			if (Tree.DebugMode)
 			{
@@ -38,8 +40,6 @@ namespace Quinn.AI.BehaviorTree
 				Debug.Log(builder, Agent);
 			}
 #endif
-
-			return OnUpdate();
 		}
 	}
 }

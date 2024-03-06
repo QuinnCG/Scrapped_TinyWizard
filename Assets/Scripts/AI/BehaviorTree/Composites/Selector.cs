@@ -48,6 +48,7 @@
 
 			// Evaluate current node.
 			_wasSuccess = Children[_index].Evaluate();
+
 			if (!_wasSuccess)
 			{
 				if (!Next())

@@ -4,16 +4,16 @@ namespace Quinn.AI.Tasks
 {
 	public class Log : Task
 	{
-		private readonly string _message;
+		public string Message { get; set; }
 
 		public Log(string message)
 		{
-			_message = message;
+			Message = message;
 		}
 
 		protected override void OnEnter()
 		{
-			Debug.Log(_message);
+			Debug.Log(Message);
 		}
 	}
 }

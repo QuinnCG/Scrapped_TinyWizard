@@ -34,6 +34,20 @@ namespace Quinn.AI
 			base.Exit();
 		}
 
+		public T GetChild<T>(string name = "") where T : Node
+		{
+			foreach (var child in Children)
+			{
+				if (child is Composite composite)
+				{
+					var result = composite.GetChild<T>(name);
+					if (result != null) return result;
+				}
+			}
+
+			return (T)Children.Find(x => x.RawName == name && x.GetType() == typeof(T));
+		}
+
 		public IEnumerator<Node> GetEnumerator()
 		{
 			return Children.GetEnumerator();

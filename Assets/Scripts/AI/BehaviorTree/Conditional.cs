@@ -2,7 +2,8 @@
 {
 	public abstract class Conditional
 	{
-		protected Enemy Agent { get; private set; }
+		protected Composite Parent { get; private set; }
+		protected Enemy Agent => Parent.Agent;
 
 		public void Enter()
 		{
@@ -29,9 +30,9 @@
 			OnParentExit();
 		}
 
-		public void SetAgent(Enemy enemy)
+		public void SetParent(Composite parent)
 		{
-			Agent = enemy;
+			Parent = parent;
 		}
 
 		protected virtual void OnEnter() { }

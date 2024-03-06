@@ -25,6 +25,8 @@ namespace Quinn.AI
 			set => _name = value;
 		}
 
+		public string RawName => _name;
+
 		public Composite Parent => _parent;
 		public Tree Tree => _tree != null ? _tree : _parent.Tree;
 		public Enemy Agent => Tree.Agent;
@@ -117,12 +119,12 @@ namespace Quinn.AI
 
 			foreach (var service in Services)
 			{
-				service.SetAgent(Agent);
+				service.SetParent(parent);
 			}
 
 			foreach (var conditional in Conditionals)
 			{
-				conditional.SetAgent(Agent);
+				conditional.SetParent(parent);
 			}
 		}
 		public void SetTree(Tree tree)

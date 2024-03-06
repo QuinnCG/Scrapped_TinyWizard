@@ -4,16 +4,21 @@ namespace Quinn.AI.Conditionals
 {
 	public class Custom : Conditional
 	{
-		private readonly Func<bool> _condition;
+		public Func<bool> Condition { get; set; }
 
 		public Custom(Func<bool> condition)
 		{
-			_condition = condition;
+			Condition = condition;
 		}
 
 		protected override bool OnEvaluate()
 		{
-			return _condition();
+			if (Condition != null)
+			{
+				return Condition();
+			}
+
+			return false;
 		}
 	}
 }

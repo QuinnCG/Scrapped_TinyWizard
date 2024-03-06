@@ -6,7 +6,7 @@ namespace Quinn.AI
 {
 	public abstract class Task : Node
 	{
-		public override void Enter()
+		public sealed override void Enter()
 		{
 			base.Enter();
 
@@ -38,6 +38,16 @@ namespace Quinn.AI
 				Debug.Log(builder, Agent);
 			}
 #endif
+		}
+
+		public sealed override Status Update()
+		{
+			return base.Update();
+		}
+
+		public sealed override void Exit()
+		{
+			base.Exit();
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace Quinn.AI
 		public Selector Root { get; }
 		public bool DebugMode { get; set; }
 
-		private bool _exited;
+		private bool _exited = true;
 
 		public Tree()
 		{
@@ -45,6 +45,10 @@ namespace Quinn.AI
 			Agent = agent;
 		}
 
+		public T GetChild<T>(string name = "") where T : Node
+		{
+			return Root.GetChild<T>(name);
+		}
 
 		public IEnumerator<Node> GetEnumerator()
 		{

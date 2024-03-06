@@ -1,17 +1,29 @@
-﻿namespace Quinn.AI.Tasks
+﻿using UnityEngine;
+
+namespace Quinn.AI.Tasks
 {
 	public class TriggerAnim : Task
 	{
-		private readonly string _key;
+		public string Key { get; set; }
+
+		private float _endTime;
 
 		public TriggerAnim(string key)
 		{
-			_key = key;
+			Key = key;
 		}
 
 		protected override void OnEnter()
 		{
-			Agent.Animator.SetTrigger(_key);
+			Agent.Animator.SetTrigger(Key);
+			float duration = Agent.Animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+
+			_endTime = Time.time + duration;
+		}
+
+		protected override Status OnUpdate()
+		{
+			return Time.time > _endTime ? Status.Success : Status.Running;
 		}
 	}
 }

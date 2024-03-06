@@ -1,7 +1,7 @@
 using DG.Tweening;
-using Quinn.AI.BT;
 using Quinn.DamageSystem;
 using Quinn.Player;
+using Quinn.RoomSystem;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
@@ -217,6 +217,11 @@ namespace Quinn.AI
 			}
 
 			action.Deltas.AddRange(deltas);
+		}
+
+		protected T GetChild<T>(string name = "") where T : Node
+		{
+			return _tree.GetChild<T>(name);
 		}
 	}
 }

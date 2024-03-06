@@ -4,20 +4,25 @@ namespace Quinn.AI.Conditionals
 {
 	public class Cooldown : Conditional
 	{
-		private readonly float _duration;
-		private readonly float _deviation;
+		public float Duration { get; set; }
+		public float Deviation { get; set; }
 
 		private float _endTime;
 
 		public Cooldown(float duration, float deviation = 0f)
 		{
-			_duration = duration;
-			_deviation = deviation;
+			Duration = duration;
+			Deviation = deviation;
+		}
+		public Cooldown(AIRand rand)
+		{
+			Duration = rand.Mean;
+			Deviation = rand.Mean;
 		}
 
 		protected override void OnEnter()
 		{
-			_endTime = Time.time + _duration + Random.Range(-_deviation, _deviation);
+			_endTime = Time.time + Duration + Random.Range(-Deviation, Deviation);
 		}
 
 		protected override bool OnEvaluate()

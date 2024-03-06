@@ -7,6 +7,12 @@ namespace Quinn.AI.Enemies
 {
 	public class GreatswordKnight : Enemy
 	{
+		[SerializeField, BoxGroup("AI")]
+		private float DashSpeed = 15f, DashStoppingDistance = 2f;
+
+		[SerializeField, BoxGroup("AI")]
+		private AIRand SwingCooldown = (3f, 1f);
+
 		[SerializeField, BoxGroup("References"), Required]
 		private Transform Head;
 
@@ -29,7 +35,15 @@ namespace Quinn.AI.Enemies
 
 		protected override Tree ConstructTree() => new()
 		{
-			new Tasks.Log("!")
+			new Composites.Sequence() 
+			{
+				new Tasks.MoveTo(Player.transform, DashSpeed, DashStoppingDistance)
+				{
+					Services = new() { new Services.PlayAnim("IsDashing") }
+				},
+				new Tasks.TriggerAnim("Swing"),
+				new Tasks.Wait(SwingCooldown)
+			}
 		};
 
 		public void OnSwingCharge()

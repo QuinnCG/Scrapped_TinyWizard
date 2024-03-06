@@ -6,17 +6,18 @@ namespace Quinn.AI.Conditionals
 	{
 		private static Random _rand = new((uint)System.DateTime.Now.Ticks);
 
-		private readonly float _chance;
+		public float Percent { get; set; }
+
 		private bool _success;
 
-		public Chance(float chance)
+		public Chance(float percent)
 		{
-			_chance = chance;
+			Percent = percent;
 		}
 
 		protected override void OnParentEnter()
 		{
-			_success = _rand.NextFloat() <= _chance;
+			_success = _rand.NextFloat() <= Percent;
 		}
 
 		protected override bool OnEvaluate()

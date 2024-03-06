@@ -36,9 +36,13 @@ namespace Quinn.AI
 
 		public bool Update()
 		{
-			if (Current == null)
+			if (Current == null && _startState != null)
 			{
 				TransitionTo(_startState);
+			}
+			else if (_startState == null && Current == null)
+			{
+				return true;
 			}
 
 			bool wantsToExit = Current.Update();
@@ -84,7 +88,7 @@ namespace Quinn.AI
 		public void SetStart(State start)
 		{
 			_startState = start;
-			start?.SetAgent(Agent);
+			start.SetAgent(Agent);
 		}
 
 		public void TransitionTo(State state)

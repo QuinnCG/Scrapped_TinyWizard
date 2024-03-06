@@ -2,6 +2,7 @@ using DG.Tweening;
 using Quinn.DamageSystem;
 using Quinn.Player;
 using Quinn.SpellSystem;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Quinn.AI
 	[RequireComponent(typeof(Health))]
 	public abstract class Enemy : MonoBehaviour
 	{
-		[SerializeField]
+		[SerializeField, BoxGroup("Debug")]
 		private bool DebugMode;
 
 		public bool IsJumping { get; private set; }
@@ -34,6 +35,7 @@ namespace Quinn.AI
 		public float Health => _health.Current;
 		public float MaxHealth => _health.Max;
 		public Vector2 Position => transform.position;
+		public Vector2 Center => Collider.bounds.center;
 
 		public PlayerController Player => PlayerController.Instance;
 		public Vector2 PlayerPos => Player.transform.position;

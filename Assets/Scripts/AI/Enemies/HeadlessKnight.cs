@@ -9,9 +9,6 @@ namespace Quinn.AI.Enemies
 	public class HeadlessKnight : Enemy
 	{
 		[SerializeField]
-		private string Title = "Headless Ghost Knight";
-
-		[SerializeField]
 		private Dialogue OpeningDialogue;
 
 		[SerializeField, Required, BoxGroup("References")]
@@ -41,7 +38,7 @@ namespace Quinn.AI.Enemies
 		{
 			var chase = new MoveTo(Player.transform, timeout: 5f, stoppingDistance: 2f);
 			var tossHead = new PlayAnimation("TossHead");
-			var flee = new Sequence(this, new DashAway(Player.transform), tossHead);
+			var flee = new StateSequence(this, new DashAway(Player.transform), tossHead);
 
 			SetStart(chase);
 

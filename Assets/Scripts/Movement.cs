@@ -25,6 +25,7 @@ namespace Quinn
 		public event Action OnDashStart, OnDashEnd;
 
 		private Rigidbody2D _rb;
+		private float _defaultMoveSpeed;
 
 		private Vector2 _velocitySum;
 		private Vector2 _dashDir = Vector2.right;
@@ -34,6 +35,7 @@ namespace Quinn
 		private void Awake()
 		{
 			_rb = GetComponent<Rigidbody2D>();
+			_defaultMoveSpeed = MoveSpeed;
 		}
 
 		private void Update()
@@ -122,6 +124,11 @@ namespace Quinn
 				IsDashing = false;
 				OnDashEnd?.Invoke();
 			}
+		}
+
+		public void ResetMoveSpeed()
+		{
+			MoveSpeed = _defaultMoveSpeed;
 		}
 	}
 }

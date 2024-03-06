@@ -407,7 +407,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 0
-  Title: Headless Knight
   OpeningDialogue:
     Speaker: Stranger
     Messages:
@@ -442,7 +441,7 @@ MonoBehaviour:
       Data2: 1163735889
       Data3: -262849912
       Data4: 585543986
-    Path: event:/Enemy/HeadlessKnightFootstep
+    Path: event:/Enemy/KnightFootstep
   IsAttached: 0
 --- !u!4 &5830455271105085538 stripped
 Transform:

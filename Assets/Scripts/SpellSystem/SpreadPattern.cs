@@ -1,4 +1,4 @@
-﻿namespace Quinn.SpellSystem.Spells
+﻿namespace Quinn.SpellSystem
 {
 	public enum SpreadPattern
 	{

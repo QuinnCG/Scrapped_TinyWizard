@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4002628484351460420
+--- !u!1 &6730889441481330554
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8697617199768986811}
-  - component: {fileID: 3954159158286438262}
+  - component: {fileID: 7341994827320147440}
+  - component: {fileID: -8211135501722696746}
   m_Layer: 0
-  m_Name: FireballSpell
+  m_Name: GhostFireSpewSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8697617199768986811
+--- !u!4 &7341994827320147440
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4002628484351460420}
+  m_GameObject: {fileID: 6730889441481330554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,24 +32,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3954159158286438262
+--- !u!114 &-8211135501722696746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4002628484351460420}
+  m_GameObject: {fileID: 6730889441481330554}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b060bd840b1c6684497963378d3741f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxCharge>k__BackingField: 75
+  <MaxCharge>k__BackingField: 100
   <CanOvercharge>k__BackingField: 0
-  <MaxOvercharge>k__BackingField: 120
-  <TargetRadius>k__BackingField: 1.25
+  <MaxOvercharge>k__BackingField: 200
+  <TargetRadius>k__BackingField: 1.5
   <Element>k__BackingField: 1
-  <CasterKnockbackSpeed>k__BackingField: 5
+  <CasterKnockbackSpeed>k__BackingField: 10
   CastSound:
     Guid:
       Data1: 300320454
@@ -57,7 +57,7 @@ MonoBehaviour:
       Data3: 1767171471
       Data4: 13150786
     Path: event:/Spell/FireballCast
-  MissileFX: {fileID: 4683029367638373840, guid: 254de5ba5a147124e83b9231df52e85c, type: 3}
+  MissileFX: {fileID: 4844914666080491770, guid: 7f19746951eef4042bba033a5926bce9, type: 3}
   HitSound:
     Guid:
       Data1: -1076836336
@@ -68,12 +68,12 @@ MonoBehaviour:
   Speed: 10
   DamageFactor: 1
   AccuracyRadius: 0.2
-  HitRadius: 0.25
-  Count: 1
-  SpreadAngle: 0
+  HitRadius: 0.5
+  Count: 8
+  SpreadAngle: 45
   SpreadPattern: 0
-  SpawnOnHit: {fileID: 2164128285846265074, guid: 2b61c720bff6d5f46bdd38abf1491bfd, type: 3}
-  SpawnOnHitLifespan: 2
+  SpawnOnHit: {fileID: 4844914666080491770, guid: 3a2a32c9706e32d41beeda2b5b2cf5b0, type: 3}
+  SpawnOnHitLifespan: 3
   DetachParticlesOnHit: 1
   DetachedParticlesLifespan: 2
   DisableSpritesOnHit: 1

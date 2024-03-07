@@ -15,5 +15,5 @@ MonoBehaviour:
   Name: Ignis Parvus
   Description: Hurls a small ball of fire.
   Icon: {fileID: -731151063703684480, guid: 21af32736b34ff34c95260e6c875433a, type: 3}
-  Prefab: {fileID: 4002628484351460420, guid: 3d0ba6c90dafa5c448386b58dc918bc5, type: 3}
+  Prefab: {fileID: 6730889441481330554, guid: 419bd49fdb568f343a8eca1fd261aaac, type: 3}
   Element: 1

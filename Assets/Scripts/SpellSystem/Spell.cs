@@ -1,5 +1,6 @@
 using FMODUnity;
 using Quinn.DamageSystem;
+using Quinn.SpellSystem.Spells;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
@@ -64,22 +65,49 @@ namespace Quinn.SpellSystem
 			AudioManager.Play(CastSound, caster.transform.position);
 		}
 
-		protected virtual Missile SpawnMissile(Vector2 position, Vector2 dir, MissileInfo info, GameObject attached = null)
+		protected virtual Missile[] SpawnMissile(Vector2 position, Vector2 dir, 
+			MissileInfo info, GameObject attached = null,
+			int count = 1, float spreadAngle = 0f, SpreadPattern pattern = SpreadPattern.Random)
 		{
-			const string key = "Missile.prefab";
-			var instance = Addressables.InstantiateAsync(key, position, Quaternion.identity)
-				.WaitForCompletion();
+			var missiles = new Missile[count];
+			float angleDelta = spreadAngle / count;
 
-			var missile = instance.GetComponent<Missile>();
-
-			if (attached != null)
+			for (int i = 0; i < count; i++)
 			{
-				var a = Instantiate(attached, instance.transform);
-				missile.Attached = a;
+				float angle;
+				if (pattern == SpreadPattern.Sequential)
+				{
+					angle = angleDelta * i;
+					angle += angleDelta / 2f;
+					if ((count % 2) == 0) angle -= angleDelta / 2f;
+				}
+				else
+				{
+					angle = UnityEngine.Random.Range(0f, spreadAngle);
+				}
+				angle -= spreadAngle / 2f;
+
+				const string key = "Missile.prefab";
+				var instance = Addressables.InstantiateAsync(key, position, Quaternion.identity)
+					.WaitForCompletion();
+
+				var missile = instance.GetComponent<Missile>();
+				missiles[i] = missile;
+
+				if (attached != null)
+				{
+					var attachment = Instantiate(attached, instance.transform);
+					missile.Attached = attachment;
+				}
+
+				float rootAngle = Mathf.Atan2(dir.y, dir.x);
+				rootAngle += angle * Mathf.Deg2Rad;
+				var finalDir = new Vector2(Mathf.Cos(rootAngle), Mathf.Sin(rootAngle));
+
+				missile.Launch(finalDir, info);
 			}
 
-			missile.Launch(dir, info);
-			return missile;
+			return missiles;
 		}
 
 		protected virtual bool CanDamage(GameObject gameObject, out Damage damage)

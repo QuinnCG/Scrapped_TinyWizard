@@ -1,5 +1,4 @@
 ﻿using Quinn.DialogueSystem;
-using Quinn.AI.States;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using FMODUnity;
@@ -17,35 +16,65 @@ namespace Quinn.AI.Enemies
 		[SerializeField, Required, BoxGroup("References")]
 		private GameObject HeadlessKnightHead;
 
+		[SerializeField, Required, BoxGroup("References")]
+		private GameObject FireSpewSpell;
+
 		[SerializeField, BoxGroup("Audio")]
 		private EventReference HeadTossSound;
 
-		protected override void Update()
+		private Vector2 _targetPos;
+
+		public void CaptureTargetPos()
 		{
-			base.Update();
-			Animator.SetBool("IsMoving", Movement.IsMoving);
+			_targetPos = TargetPos;
 		}
 
 		public void SpawnHeadMissile()
 		{
 			var instance = Instantiate(HeadlessKnightHead, Head.position, Head.rotation, transform);
-			instance.GetComponent<HeadlessKnightHead>().Origin = Head;
+
+			var head = instance.GetComponent<HeadlessKnightHead>();
+			head.Origin = Head;
+			head.Target = _targetPos;
 
 			AudioManager.Play(HeadTossSound, instance.transform);
 		}
 
-		protected override void OnRegister()
+		public void SpewFire()
 		{
-			var chase = new MoveTo(Player.transform, timeout: 5f, stoppingDistance: 2f);
-			var tossHead = new PlayAnimation("TossHead");
-			var flee = new StateSequence(this, new DashAway(Player.transform), tossHead);
+			Caster.CastSpell(FireSpewSpell, TargetPos);
+		}
 
-			SetStart(chase);
+		protected override Tree ConstructTree()
+		{
+			//return new Tree()
+			//{
+			//	new Composites.Sequence(new Conditionals.FarFrom(Player.transform, 3f))
+			//	{
+			//		new Tasks.MoveTo(Player.transform, 2.25f, timeout: 6f)
+			//		{
+			//			Services = new() { new Services.PlayAnim("IsMoving") }
+			//		},
+			//		new Tasks.TriggerAnim("TossHead")
+			//	},
+			//	new Composites.Sequence()
+			//	{
+			//		new Tasks.FleeFrom(Player.transform, 15f, 1f, true)
+			//		{
+			//			Services = new() { new Services.PlayAnim("IsDashing") }
+			//		},
+			//		new Tasks.Wait(1.5f, 0.5f)
+			//	}
+			//};
 
-			Connect(chase, tossHead, exit => exit);
-			Connect(tossHead, chase, exit => exit && TargetDst > 3f);
-			Connect(tossHead, flee, exit => exit);
-			Connect(flee, chase, exit => exit);
+			return new Tree()
+			{
+				new Composites.Sequence()
+				{
+					new Tasks.TriggerAnim("TossHead"),
+					new Tasks.Wait(3f)
+				}
+			};
 		}
 	}
 }

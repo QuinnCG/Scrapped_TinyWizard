@@ -22,6 +22,8 @@
 
 		protected override void OnEnter()
 		{
+			if (Count == 0) return;
+
 			_index = 0;
 
 			if (Children[_index].Evaluate())
@@ -32,6 +34,8 @@
 
 		protected override Status OnUpdate()
 		{
+			if (Count == 0) return Status.Failure;
+
 			// Evaluate higher priority nodes.
 			for (int i = 0; i < _index - 1; i++)
 			{

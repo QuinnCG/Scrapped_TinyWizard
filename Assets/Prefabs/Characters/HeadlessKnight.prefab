@@ -282,6 +282,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 77145b95e83ea044789303a8d4dc0e87, type: 2}
+    - target: {fileID: 3254731613286001092, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: Weaknesses
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254731613286001092, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: Resistances
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

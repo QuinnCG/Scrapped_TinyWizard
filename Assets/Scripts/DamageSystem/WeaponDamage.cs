@@ -37,6 +37,8 @@ namespace Quinn.DamageSystem
 
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
+			if (!enabled) return;
+
 			if (collision.TryGetComponent(out Damage damage))
 			{
 				if (damage.Team != _damage.Team)

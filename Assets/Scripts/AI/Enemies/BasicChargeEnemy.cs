@@ -36,7 +36,8 @@ namespace Quinn.AI.Enemies
 
 		[SerializeField, BoxGroup("Patrolling"), MinMaxSlider(0f, 10f, ShowFields = true)]
 		private Vector2 PatrolWaitDuration = new();
-		protected Vector2 TargetPos { get; set; }
+
+		protected Vector2 TargetPosition { get; set; }
 
 		protected bool IsPlayerSpotted { get; private set; }
 
@@ -48,7 +49,7 @@ namespace Quinn.AI.Enemies
 			base.Awake();
 
 			_origin = transform.position;
-			TargetPos = _origin;
+			TargetPosition = _origin;
 
 			if (StartWithPlayerSpotted)
 			{
@@ -65,7 +66,7 @@ namespace Quinn.AI.Enemies
 
 			if (IsPlayerSpotted)
 			{
-				TargetPos = base.TargetPos;
+				TargetPosition = base.TargetPos;
 
 				if (TargetDst > StoppingDistance)
 				{
@@ -74,11 +75,11 @@ namespace Quinn.AI.Enemies
 			}
 			else
 			{
-				float dst = Vector2.Distance(transform.position, TargetPos);
+				float dst = Vector2.Distance(transform.position, TargetPosition);
 				if (dst < StoppingDistance)
 				{
 					Vector2 origin = PatrolOrigin ? _origin : transform.position;
-					TargetPos = origin + (PatrolRadius * Random.insideUnitCircle / 2f);
+					TargetPosition = origin + (PatrolRadius * Random.insideUnitCircle / 2f);
 
 					_nextPatrolTime = Time.time + Random.Range(PatrolWaitDuration.x, PatrolWaitDuration.y);
 				}
@@ -113,7 +114,7 @@ namespace Quinn.AI.Enemies
 				value = (value - 0.5f) * 2f;
 				value *= PerlinAmplitude;
 
-				Vector2 targetDir = (TargetPos - Position).normalized;
+				Vector2 targetDir = (TargetPosition - Position).normalized;
 				var perpen = new Vector2(targetDir.y, -targetDir.x);
 
 				Vector2 finalDir = Vector2.Lerp(targetDir, perpen.normalized * value, PerlinBias);
@@ -123,7 +124,7 @@ namespace Quinn.AI.Enemies
 			}
 			else
 			{
-				Movement.MoveTowards(TargetPos);
+				Movement.MoveTowards(TargetPosition);
 			}
 		}
 

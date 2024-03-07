@@ -9,6 +9,9 @@ namespace Quinn.AI.Enemies
 {
 	public class GreatswordKnight : Enemy
 	{
+		[SerializeField]
+		private string Title = "Fallen Greatsword Knight";
+
 		[SerializeField, BoxGroup("AI")]
 		private float DashSpeed = 15f, DashStoppingDistance = 2f;
 
@@ -21,6 +24,9 @@ namespace Quinn.AI.Enemies
 		[SerializeField, BoxGroup("References"), Required]
 		private Transform SwordPivot;
 
+		[SerializeField, BoxGroup("References"), Required]
+		private WeaponDamage WeaponHitbox;
+
 		[SerializeField, BoxGroup("SFX")]
 		private EventReference SwingSound;
 
@@ -29,7 +35,9 @@ namespace Quinn.AI.Enemies
 		protected override void Start()
 		{
 			base.Start();
-			HUDUI.Instance.ShowBossBar("Greatsword Knight", GetComponent<Health>());
+
+			HUDUI.Instance.ShowBossBar(Title, GetComponent<Health>());
+			WeaponHitbox.enabled = false;
 		}
 
 		protected override void Update()
@@ -43,14 +51,43 @@ namespace Quinn.AI.Enemies
 
 		protected override Tree ConstructTree() => new()
 		{
-			new Composites.Sequence() 
+			// Spin attack
+			new Tasks.MoveTo(Player.transform, 5f, timeout: 8f)
 			{
-				new Tasks.MoveTo(Player.transform, DashSpeed, DashStoppingDistance)
+				Services = new() { new Services.PlayAnim("IsSpinning") },
+				Conditionals = new()
 				{
-					Services = new() { new Services.PlayAnim("IsDashing") }
+					new Conditionals.SecondPhase(),
+					new Conditionals.Cooldown(25f)
+				}
+			},
+			// Projectile attack
+			new Composites.Sequence(new Conditionals.Chance(0.3f), new Conditionals.Cooldown(7f))
+			{
+				new Tasks.TriggerAnim("ArcSlash"),
+				new Tasks.Wait(2f, 0.5f)
+			},
+			// Close melee attack
+			new Composites.Sequence()
+			{
+				new Tasks.MoveTo(Player.transform, 4f, 1.5f, 5f)
+				{
+					Services = new() { new Services.PlayAnim("IsMoving") }
 				},
-				new Tasks.TriggerAnim("Swing"),
-				new Tasks.Wait(SwingCooldown)
+				new Tasks.TriggerAnim("Swing")
+			},
+			// Dash attack
+			new Composites.Sequence()
+			{
+				new Tasks.MoveTo(Player.transform, 25f, 2f)
+				{
+					Services = new()
+					{
+						new Services.PlayAnim("IsDashing"),
+					}
+				},
+				new Tasks.TriggerAnim("QuickSwing"),
+				new Tasks.Wait(1f, 0.3f)
 			}
 		};
 
@@ -65,12 +102,15 @@ namespace Quinn.AI.Enemies
 		public void OnSwing()
 		{
 			Movement.MoveSpeed = 14f;
+			WeaponHitbox.enabled = true;
 		}
 
 		public void OnSwingEnd()
 		{
 			Movement.ResetMoveSpeed();
 			SwordPivot.DORotate(Vector2.right, 1f);
+
+			WeaponHitbox.enabled = false;
 		}
 
 		public void PlaySwingSound()

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4844914666080491770}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.02, y: 0.65, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,7 +104,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.25
+      - m_Value: 0.15
         m_Name: Radius
         m_Overridden: 1
       - m_Value: 0.2
@@ -122,7 +122,10 @@ VisualEffect:
     m_Uint:
       m_Array: []
     m_Int:
-      m_Array: []
+      m_Array:
+      - m_Value: 24
+        m_Name: SpawnRate
+        m_Overridden: 1
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
@@ -131,8 +134,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 5.992157, b: 3.1562605, a: 0.84705883}
-          key1: {r: 0.007843154, g: 1.4980394, b: 0.6780805, a: 0.69803923}
+          key0: {r: 0, g: 2.9960785, b: 1.5781302, a: 0.6}
+          key1: {r: 0.007843154, g: 1.4980394, b: 0.6780805, a: 0.3529412}
           key2: {r: 0.0078431545, g: 1.4980396, b: 0.0646168, a: 0}
           key3: {r: 0.023, g: 0.023, b: 0.023, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -156,7 +159,7 @@ VisualEffect:
           atime6: 0
           atime7: 0
           m_Mode: 2
-          m_ColorSpace: -1
+          m_ColorSpace: 1
           m_NumColorKeys: 3
           m_NumAlphaKeys: 3
         m_Name: Color

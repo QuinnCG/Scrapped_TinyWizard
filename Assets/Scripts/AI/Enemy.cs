@@ -30,6 +30,7 @@ namespace Quinn.AI
 			get => _damage.DisableDamage;
 			set => _damage.DisableDamage = value;
 		}
+		public bool UpdateTree { get; set; } = true;
 
 		public float HealthPercent => _health.Percent;
 		public float Health => _health.Current;
@@ -47,6 +48,7 @@ namespace Quinn.AI
 		public bool DidTargetJustCast => Player.Caster.DidJustCastSpell;
 
 		public bool IsHalfHealth { get; private set; }
+		public bool IsDead => Health == 0f;
 
 		public event Action OnHalfHealth;
 		public event Action<State> OnFSMUpdate;
@@ -138,7 +140,10 @@ namespace Quinn.AI
 				_fsm.TransitionTo(bestState);
 			}
 
-			_tree.Update();
+			if (UpdateTree)
+			{
+				_tree.Update();
+			}
 		}
 
 		protected virtual void OnDestroy()

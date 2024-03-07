@@ -56,7 +56,7 @@ namespace Quinn.DialogueSystem
 			}
 		}
 
-		public void Display(Dialogue dialogue)
+		public WaitUntil Display(Dialogue dialogue)
 		{
 			_inputDisabler = InputReader.Instance.DisableInput();
 
@@ -68,6 +68,8 @@ namespace Quinn.DialogueSystem
 
 			Speaker.text = dialogue.Speaker;
 			Next();
+
+			return new WaitUntil(() => !InDialogue);
 		}
 
 		private void Next()

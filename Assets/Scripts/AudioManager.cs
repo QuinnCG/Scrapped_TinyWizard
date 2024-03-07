@@ -87,6 +87,10 @@ namespace Quinn
 				_boss.start();
 			}
 		}
+		public void SetBossMusicParameter(string name, float value)
+		{
+			_boss.setParameterByName(name, value);
+		}
 
 		private void OnRegionChange(RegionType type)
 		{

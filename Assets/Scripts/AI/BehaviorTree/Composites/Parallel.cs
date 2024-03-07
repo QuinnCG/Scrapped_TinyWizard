@@ -37,8 +37,15 @@
 				if (status == Status.Failure) didFail = true;
 			}
 
-			if (didFail) return Status.Failure;
+			if (didFail)
+			{
+				Children[0].Exit();
+				return Status.Failure;
+			}
+
 			if (wasRunning) return Status.Running;
+
+			Children[0].Exit();
 			return Status.Success;
 		}
 

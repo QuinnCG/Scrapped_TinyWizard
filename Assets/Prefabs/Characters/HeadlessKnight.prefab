@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4115326015061292624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6843923779483932334}
+  m_Layer: 6
+  m_Name: SpellOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6843923779483932334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115326015061292624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4600663587089463506}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6014297794679797728
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +409,9 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 538541051302596896, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6843923779483932334}
     - targetCorrespondingSourceObject: {fileID: 695152880247967572, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8519921888463366875}
@@ -391,10 +425,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4400583278165950757}
+    - targetCorrespondingSourceObject: {fileID: 5440179690449985824, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2920289658515715019}
   m_SourcePrefab: {fileID: 100100000, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
 --- !u!4 &1094188514244223435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 695152880247967572, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+  m_PrefabInstance: {fileID: 471465588914646687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4600663587089463506 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
   m_PrefabInstance: {fileID: 471465588914646687}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5617569757562867647 stripped
@@ -422,8 +464,17 @@ MonoBehaviour:
     - More souls come seeking treasure?
     - More will join me...
     - ... IN DEATH!
+  Title: Headless Knight
   Head: {fileID: 5830455271105085538}
   HeadlessKnightHead: {fileID: 2018771816949537135, guid: fca7422798850ed4dbbeb19534994002, type: 3}
+  FireSpewSpell: {fileID: 6730889441481330554, guid: 419bd49fdb568f343a8eca1fd261aaac, type: 3}
+  BossMusic:
+    Guid:
+      Data1: -1520195664
+      Data2: 1086228751
+      Data3: 817878956
+      Data4: -1625142667
+    Path: event:/Music/HeadlessKnight
   HeadTossSound:
     Guid:
       Data1: -1718560458
@@ -451,6 +502,29 @@ MonoBehaviour:
       Data4: 585543986
     Path: event:/Enemy/KnightFootstep
   IsAttached: 0
+--- !u!114 &2920289658515715019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617569757562867647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf0868867b31f14aa585b7dadc0a756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChargeRate: 50
+  <SpellOrigin>k__BackingField: {fileID: 6843923779483932334}
+  <BaseDamage>k__BackingField: 19
+  CasterKnockbackScale: 1
+  FireCastVFX: {fileID: 0}
+  WaterCastVFX: {fileID: 0}
+  EarthCastVFX: {fileID: 0}
+  LightningCastVFX: {fileID: 0}
+  HolyCastVFX: {fileID: 0}
+  NatureCastVFX: {fileID: 0}
+  DarkCastVFX: {fileID: 0}
 --- !u!4 &5830455271105085538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6224831587206704893, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}

@@ -30,6 +30,7 @@ namespace Quinn.AI.Composites
 			
 			if (status != Status.Running)
 			{
+				Children[0].Exit();
 				if (status == Status.Success) return Status.Failure;
 				if (status == Status.Failure) return Status.Success;
 			}

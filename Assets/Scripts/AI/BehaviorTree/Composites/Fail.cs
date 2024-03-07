@@ -28,6 +28,7 @@
 
 			if (status != Status.Running)
 			{
+				Children[0].Exit();
 				return Status.Failure;
 			}
 

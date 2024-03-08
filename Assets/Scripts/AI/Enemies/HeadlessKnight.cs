@@ -5,6 +5,7 @@ using FMODUnity;
 using System.Collections;
 using Quinn.UI;
 using Quinn.DamageSystem;
+using UnityEngine.VFX;
 
 namespace Quinn.AI.Enemies
 {
@@ -25,17 +26,24 @@ namespace Quinn.AI.Enemies
 		[SerializeField, Required, BoxGroup("References")]
 		private GameObject FireSpewSpell;
 
+		[SerializeField, Required, BoxGroup("References")]
+		private VisualEffect DashTrail;
+
 		[SerializeField, BoxGroup("Audio")]
 		private EventReference BossMusic;
 
 		[SerializeField, BoxGroup("Audio")]
 		private EventReference HeadTossSound;
 
+		[SerializeField, BoxGroup("Audio")]
+		private EventReference DashSound;
+
 		private Vector2 _targetPos;
 
 		protected override void Start()
 		{
 			base.Start();
+			DashTrail.enabled = false;
 			StartCoroutine(IntroSequence());
 		}
 
@@ -60,10 +68,30 @@ namespace Quinn.AI.Enemies
 			Caster.CastSpell(FireSpewSpell, TargetPos);
 		}
 
+		public void PlayDashSound()
+		{
+			AudioManager.Play(DashSound, transform.position);
+		}
+
 		protected override Tree ConstructTree()
 		{
 			return new Tree()
 			{
+				new Composites.Sequence(
+					new Conditionals.Chance(0.5f), 
+					new Conditionals.Cooldown(5f, 1f, true),
+					new Conditionals.Timer(2f, 0.5f))
+				{
+					new Tasks.PlaySound(DashSound, transform),
+					new Tasks.MoveTowards(Player.transform, 15f, true)
+					{
+						Services = new() 
+						{
+							new Services.PlayAnim("IsDashing"),
+							new Services.Custom(() => DashTrail.enabled = true, () => DashTrail.enabled = false)
+						}
+					}
+				},
 				new Composites.Sequence()
 				{
 					new Composites.Succeed()

@@ -6,32 +6,30 @@ namespace Quinn.AI.Tasks
 	{
 		public Transform Target { get; set; }
 		public float Speed { get; set; }
+		public bool FixedTarget { get; set; }
 
-		private bool _fixedTarget;
-		private Vector2 _target;
+		private Vector2 _dir;
 
-		public MoveTowards(Transform target, float speed, bool fixTarget = false)
+		public MoveTowards(Transform target, float speed, bool fixedTarget = false)
 		{
 			Target = target;
 			Speed = speed;
-			_fixedTarget = fixTarget;
+			FixedTarget = fixedTarget;
 		}
 
 		protected override void OnEnter()
 		{
 			Agent.Movement.MoveSpeed = Speed;
 
-			if (_fixedTarget)
+			if (FixedTarget)
 			{
-				_target = Target.position;
+				_dir = ((Vector2)Target.position - Agent.Position).normalized;
 			}
 		}
 
 		protected override Status OnUpdate()
 		{
-			Vector2 target = _fixedTarget ? _target : Target.position;
-
-			Vector2 dir = target - Agent.Position;
+			Vector2 dir = FixedTarget ? _dir : (Vector2)Target.position - Agent.Position;
 			dir.Normalize();
 			Agent.Movement.Move(dir);
 

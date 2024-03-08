@@ -17,6 +17,8 @@ namespace Quinn
 		[field: SerializeField]
 		public LayerMask CharacterLayer { get; private set; }
 
+		public bool IsEasyMode { get; private set; }
+
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		private static void Bootstrap()
 		{
@@ -30,6 +32,11 @@ namespace Quinn
 		{
 			Instance = this;
 			await UnityServices.InitializeAsync();
+		}
+
+		public void SetEasyMode(bool enabled)
+		{
+			IsEasyMode = enabled;
 		}
 	}
 }

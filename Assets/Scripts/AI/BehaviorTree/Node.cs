@@ -14,12 +14,12 @@ namespace Quinn.AI
 				var split = GetType().Name.Split('.');
 				string type = split[^1];
 
-				if (string.IsNullOrWhiteSpace(_name))
+				if (string.IsNullOrWhiteSpace(ToString()))
 				{
 					return type;
 				}
 
-				return $"{_name} ({type})";
+				return $"{ToString()} ({type})";
 			}
 
 			set => _name = value;
@@ -131,6 +131,8 @@ namespace Quinn.AI
 		{
 			_tree = tree;
 		}
+
+		public override string ToString() => _name;
 
 		protected virtual void OnEnter() { }
 		protected virtual Status OnUpdate() => Status.Success;

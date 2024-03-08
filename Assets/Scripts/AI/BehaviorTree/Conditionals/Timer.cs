@@ -24,7 +24,7 @@ namespace Quinn.AI.Conditionals
 
 		protected override bool OnEvaluate()
 		{
-			return Time.time > _endTime;
+			return Time.time < _endTime;
 		}
 	}
 }

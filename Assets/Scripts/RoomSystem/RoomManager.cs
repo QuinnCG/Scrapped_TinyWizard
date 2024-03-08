@@ -28,6 +28,7 @@ namespace Quinn.RoomSystem
 
 		public event Action<RegionType> OnRegionChange;
 
+		private Room _currentRoomPrefab;
 		private float _playerTransitionProgress;
 
 		private void Awake()
@@ -52,6 +53,8 @@ namespace Quinn.RoomSystem
 				prefab = room;
 			}
 
+			_currentRoomPrefab = prefab.GetComponent<Room>();
+
 			var instance = Instantiate(prefab, transform);
 			CurrentRoom = instance.GetComponent<Room>();
 
@@ -61,15 +64,39 @@ namespace Quinn.RoomSystem
 			CameraManager.Instance.SetVirtualCamera(DefaultVirtualCamera);
 		}
 
-		public void LoadRoom(Room next, Exit from)
+		public void LoadRoom(Room next, Exit from = null)
 		{
-			StartCoroutine(LoadRoomSequence(next, from));
 			ChangeRegion(next);
+
+			if (from == null)
+			{
+				if (CurrentRoom)
+				{
+					Destroy(CurrentRoom.gameObject);
+
+					var instance = Instantiate(next.gameObject, transform);
+					CurrentRoom = instance.GetComponent<Room>();
+
+					_currentRoomPrefab = next;
+
+					PlayerController.Respawn(instance.transform.position);
+				}
+			}
+			else
+			{
+				StartCoroutine(LoadRoomSequence(next, from));
+			}
+		}
+
+		public void ReloadRoom()
+		{
+			LoadRoom(_currentRoomPrefab);
 		}
 
 		private IEnumerator LoadRoomSequence(Room next, Exit from)
 		{
 			Room nextRoom = SpawnRoom(next, from, out Vector2 dir);
+			_currentRoomPrefab = next;
 
 			// Fade to black.
 			CameraManager.Instance.FadeToBlack();
@@ -166,7 +193,7 @@ namespace Quinn.RoomSystem
 			{
 				CurrentRegion = room.Region;
 
-				//RuntimeManager.StudioSystem.setParameterByName("region", (float)region);
+				RuntimeManager.StudioSystem.setParameterByName("region", (float)room.Region);
 				OnRegionChange?.Invoke(CurrentRegion);
 			}
 		}

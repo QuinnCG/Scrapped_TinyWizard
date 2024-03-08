@@ -5,5 +5,6 @@
 	{
 		public float Speed = 10f;
 		public float HitRadius = 0.5f;
+		public float KnockbackFactor = 1f;
 	}
 }

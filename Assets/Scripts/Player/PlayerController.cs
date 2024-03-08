@@ -3,10 +3,12 @@ using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using Quinn.DamageSystem;
+using Quinn.RoomSystem;
 using Quinn.SpellSystem;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
 
@@ -105,6 +107,7 @@ namespace Quinn.Player
 				_hurtSnapshot.start();
 				DOVirtual.DelayedCall(2f, () => _hurtSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT), false);
 			};
+			GetComponent<Health>().OnDeath += OnDeath;
 		}
 
 		private void Start()
@@ -129,6 +132,24 @@ namespace Quinn.Player
 		{
 			_hurtSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 			_hurtSnapshot.release();
+
+			transform.DOKill();
+		}
+
+		public static void Respawn(Vector2 position)
+		{
+			if (Instance != null)
+			{
+				Destroy(Instance.gameObject);
+			}
+
+			Addressables.InstantiateAsync("Player.prefab").Completed += opHandle =>
+			{
+				GameObject player = opHandle.Result;
+				player.transform.position = position;
+			};
+
+			Application.Quit(); // TODO: Fix respawning.
 		}
 
 		public Transform GetCameraTarget() => CameraTarget;
@@ -251,6 +272,11 @@ namespace Quinn.Player
 			Destroy(_dashTrail, 2f);
 
 			_damage.DisableDamage = false;
+		}
+
+		private void OnDeath()
+		{
+			RoomManager.Instance.ReloadRoom();
 		}
 	}
 }

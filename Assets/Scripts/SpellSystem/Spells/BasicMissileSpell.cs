@@ -23,6 +23,9 @@ namespace Quinn.SpellSystem.Spells
 		private float DamageFactor = 1f;
 
 		[SerializeField, BoxGroup("Stats")]
+		private float KnockbackFactor = 1f;
+
+		[SerializeField, BoxGroup("Stats")]
 		private float AccuracyRadius = 0.2f;
 
 		[SerializeField, BoxGroup("Stats")]
@@ -64,7 +67,8 @@ namespace Quinn.SpellSystem.Spells
 			var info = new MissileInfo()
 			{
 				Speed = Speed,
-				HitRadius = HitRadius
+				HitRadius = HitRadius,
+				KnockbackFactor = KnockbackFactor
 			};
 
 			target += Random.insideUnitCircle / 2f * AccuracyRadius;
@@ -83,7 +87,7 @@ namespace Quinn.SpellSystem.Spells
 			if (CanDamage(hit, out var damage))
 			{
 				Vector2 dir = missile.Velocity.normalized;
-				damage.TakeDamage(new DamageInfo(DamageFactor * BaseDamage, dir, Caster.Damage, Element));
+				damage.TakeDamage(new DamageInfo(DamageFactor * BaseDamage, dir, Caster.Damage, Element, missile.Info.KnockbackFactor));
 			}
 			else if (!hit.IsLayer(GameManager.ObstacleLayerName))
 			{

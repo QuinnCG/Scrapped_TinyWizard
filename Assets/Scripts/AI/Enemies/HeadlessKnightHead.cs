@@ -11,20 +11,18 @@ namespace Quinn.AI.Enemies
 		private float Duration = 0.9f;
 
 		[SerializeField]
-		private float MinDistance = 2f;
-
-		[SerializeField]
-		private float DistanceFactor = 1.5f;
+		private float DistanceOffset = 3f;
 
 		public Vector2 Target { get; set; }
 		public Transform Origin { get; set; }
 
 		private void Start()
 		{
-			float halfDur = Duration / 2f;
+			float dur = GameManager.Instance.IsEasyMode ? Duration * 2f : Duration;
+			float halfDur = dur / 2f;
 
 			Vector2 diff = Target - (Vector2)transform.position;
-			Target = (Vector2)transform.position + (diff.normalized * Mathf.Max(MinDistance, diff.magnitude * DistanceFactor));
+			Target = (Vector2)transform.position + (diff.normalized * (diff.magnitude + DistanceOffset));
 
 			transform.DOMove(Target, halfDur).onComplete += () =>
 			{

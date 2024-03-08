@@ -13,6 +13,8 @@ namespace Quinn.AI.Tasks
 			Key = key;
 		}
 
+		public override string ToString() => Key;
+
 		protected override void OnEnter()
 		{
 			Agent.Animator.SetTrigger(Key);

@@ -50,7 +50,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 10
+        m_Name: MaxLifespan
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -69,7 +72,7 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 5.992157, b: 3.1562605, a: 0.84705883}
+          key0: {r: 0, g: 2.1185474, b: 1.1159066, a: 0.84705883}
           key1: {r: 0.007843154, g: 1.4980394, b: 0.6780805, a: 0.69803923}
           key2: {r: 0.0078431545, g: 1.4980396, b: 0.0646168, a: 0}
           key3: {r: 0.023, g: 0.023, b: 0.023, a: 0}
@@ -94,7 +97,7 @@ VisualEffect:
           atime6: 0
           atime7: 0
           m_Mode: 2
-          m_ColorSpace: -1
+          m_ColorSpace: 1
           m_NumColorKeys: 3
           m_NumAlphaKeys: 3
         m_Name: Color
@@ -102,7 +105,10 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: Enable
+        m_Overridden: 1
 --- !u!73398921 &7783267370671527396
 VFXRenderer:
   serializedVersion: 1
@@ -169,12 +175,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4115326015061292624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4600663587089463506}
+  m_Father: {fileID: 1094188514244223435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6014297794679797728
 GameObject:
@@ -447,12 +453,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2168033720986976895, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      propertyPath: Damage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2168033720986976895, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: Element
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2363259819423699447, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: <Max>k__BackingField
-      value: 750
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 3125235798960738604, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       propertyPath: m_Controller
@@ -554,8 +564,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 538541051302596896, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
-      insertIndex: -1
+    - targetCorrespondingSourceObject: {fileID: 695152880247967572, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
+      insertIndex: 0
       addedObject: {fileID: 6843923779483932334}
     - targetCorrespondingSourceObject: {fileID: 695152880247967572, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
       insertIndex: -1
@@ -580,11 +590,6 @@ PrefabInstance:
 --- !u!4 &1094188514244223435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 695152880247967572, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
-  m_PrefabInstance: {fileID: 471465588914646687}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4600663587089463506 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4130412584863618637, guid: 787b06984898fcd47b4e305e9dd23096, type: 3}
   m_PrefabInstance: {fileID: 471465588914646687}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5617569757562867647 stripped

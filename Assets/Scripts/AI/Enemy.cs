@@ -74,6 +74,7 @@ namespace Quinn.AI
 				{
 					IsHalfHealth = true;
 					OnHalfHealth?.Invoke();
+					OnEnterSecondPhase();
 				}
 			};
 
@@ -115,6 +116,8 @@ namespace Quinn.AI
 		{
 			Destroy(gameObject);
 		}
+
+		protected virtual void OnEnterSecondPhase() { }
 
 		protected Tween JumpTo(Vector2 position, float height, float duration)
 		{

@@ -9,6 +9,7 @@ namespace Quinn.SpellSystem
 	{
 		public GameObject Attached { get; set; }
 		public float Lifespan { get; set; } = 10f;
+		public MissileInfo Info { get; private set; }
 
 		public event Action<GameObject> OnHit;
 		public event Action OnDestroyed;
@@ -17,7 +18,6 @@ namespace Quinn.SpellSystem
 		public Vector2 Velocity => Rigidbody.velocity;
 
 		private Vector2 _dir;
-		private MissileInfo _info;
 
 		private void Awake()
 		{
@@ -26,7 +26,7 @@ namespace Quinn.SpellSystem
 
 		private void Update()
 		{
-			Rigidbody.velocity = _dir * _info.Speed;
+			Rigidbody.velocity = _dir * Info.Speed;
 		}
 
 		protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -42,7 +42,7 @@ namespace Quinn.SpellSystem
 		public void Launch(Vector2 dir, MissileInfo info)
 		{
 			_dir = dir.normalized;
-			_info = info;
+			Info = info;
 
 			GetComponent<CircleCollider2D>().radius = info.HitRadius;
 

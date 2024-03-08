@@ -493,8 +493,6 @@ MonoBehaviour:
   DefaultSpells:
   - {fileID: 11400000, guid: 17aaed03f4fb8b942b7667e7a7c63164, type: 2}
   - {fileID: 11400000, guid: af8d8e895bee76e4d8dbadb7cd49cd4b, type: 2}
-  - {fileID: 11400000, guid: e29115bf42aa32844b108e6606162020, type: 2}
-  - {fileID: 11400000, guid: 62c8e6199c0d4d44da530a2bc2da5904, type: 2}
 --- !u!114 &8985563959999630003
 MonoBehaviour:
   m_ObjectHideFlags: 0

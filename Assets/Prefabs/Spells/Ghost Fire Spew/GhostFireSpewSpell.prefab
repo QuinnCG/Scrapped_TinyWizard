@@ -49,7 +49,7 @@ MonoBehaviour:
   <MaxOvercharge>k__BackingField: 200
   <TargetRadius>k__BackingField: 1.5
   <Element>k__BackingField: 1
-  <CasterKnockbackSpeed>k__BackingField: 10
+  <CasterKnockbackSpeed>k__BackingField: 8
   CastSound:
     Guid:
       Data1: 693353504
@@ -65,12 +65,12 @@ MonoBehaviour:
       Data3: -91607908
       Data4: 624283866
     Path: event:/Spell/FireballHit
-  Speed: 10
-  DamageFactor: 1
+  Speed: 12
+  DamageFactor: 1.25
   AccuracyRadius: 0.2
-  HitRadius: 0.5
+  HitRadius: 0
   Count: 8
-  SpreadAngle: 45
+  SpreadAngle: 60
   SpreadPattern: 0
   SpawnOnHit: {fileID: 4844914666080491770, guid: 3a2a32c9706e32d41beeda2b5b2cf5b0, type: 3}
   SpawnOnHitLifespan: 3

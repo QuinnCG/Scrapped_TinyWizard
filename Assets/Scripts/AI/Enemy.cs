@@ -48,19 +48,14 @@ namespace Quinn.AI
 		public bool DidTargetJustCast => Player.Caster.DidJustCastSpell;
 
 		public bool IsHalfHealth { get; private set; }
-		public bool IsDead => Health == 0f;
+		public bool IsDead { get; private set; }
 
 		public event Action OnHalfHealth;
-		public event Action<State> OnFSMUpdate;
 
 		private Health _health;
 		private Damage _damage;
 
-		private FSM _fsm;
 		private Tree _tree;
-
-		private readonly HashSet<Meter> _meters = new();
-		private readonly Dictionary<State, UtilityAction> _actions = new();
 
 		protected virtual void Awake()
 		{
@@ -83,35 +78,15 @@ namespace Quinn.AI
 			};
 
 			_health.OnHeal += OnHealed;
-			_health.OnDeath += OnDeath;
+			_health.OnDeath += () =>
+			{
+				IsDead = true;
+				OnDeath();
+			};
 		}
 
 		protected virtual void Start()
 		{
-			_fsm = new FSM(this)
-			{
-				//DebugMode = DebugMode
-			};
-
-			OnRegister();
-			_fsm.Start();
-
-			_fsm.OnTransition += state =>
-			{
-				if (_actions.ContainsKey(state))
-				{
-					foreach (var delta in _actions[state].Deltas)
-					{
-						if (_meters.TryGetValue(delta.meter, out var meter))
-						{
-							meter += delta.delta;
-						}
-					}
-				}
-			};
-
-			_fsm.OnUpdate += OnFSMUpdate;
-
 			_tree = ConstructTree();
 			_tree.SetAgent(this);
 			_tree.DebugMode = DebugMode;
@@ -119,27 +94,6 @@ namespace Quinn.AI
 
 		protected virtual void Update()
 		{
-			_fsm.Update();
-
-			float bestValue = float.PositiveInfinity;
-			State bestState = null;
-
-			foreach (var action in _actions.Values)
-			{
-				float value = action.CalculateValue();
-
-				if (value < bestValue)
-				{
-					bestValue = value;
-					bestState = action.State;
-				}
-			}
-
-			if (bestState != null)
-			{
-				_fsm.TransitionTo(bestState);
-			}
-
 			if (UpdateTree)
 			{
 				_tree.Update();
@@ -150,8 +104,6 @@ namespace Quinn.AI
 		{
 			transform.DOKill();
 		}
-
-		protected virtual void OnRegister() { }
 
 		protected virtual Tree ConstructTree() => new();
 
@@ -186,44 +138,6 @@ namespace Quinn.AI
 		{
 			var hit = Physics2D.Linecast(Collider.bounds.center, target, GameManager.Instance.ObstacleLayer);
 			return !hit;
-		}
-
-		protected void SetStart(State start)
-		{
-			_fsm.SetStart(start);
-		}
-
-		protected void Connect(State from, State to, Condition condition)
-		{
-			_fsm.Connect(from, to, condition);
-		}
-
-		protected void RegisterState(params State[] states)
-		{
-			foreach (var state in states)
-			{
-				_fsm.Register(state);
-			}
-		}
-
-		protected void RegisterMeter(Meter meter)
-		{
-			_meters.Add(meter);
-		}
-
-		protected void RegisterAction(State state, params (Meter meter, float delta)[] deltas)
-		{
-			if (!_actions.TryGetValue(state, out UtilityAction action))
-			{
-				action = new UtilityAction()
-				{
-					State = state
-				};
-
-				_actions.Add(state, action);
-			}
-
-			action.Deltas.AddRange(deltas);
 		}
 
 		protected T GetChild<T>(string name = "") where T : Node

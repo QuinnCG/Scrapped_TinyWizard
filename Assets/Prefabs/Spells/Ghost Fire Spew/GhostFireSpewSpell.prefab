@@ -52,11 +52,11 @@ MonoBehaviour:
   <CasterKnockbackSpeed>k__BackingField: 10
   CastSound:
     Guid:
-      Data1: 300320454
-      Data2: 1100082510
-      Data3: 1767171471
-      Data4: 13150786
-    Path: event:/Spell/FireballCast
+      Data1: 693353504
+      Data2: 1177915245
+      Data3: 837913757
+      Data4: 1588213061
+    Path: event:/Spell/GhostFireSpewCast
   MissileFX: {fileID: 4844914666080491770, guid: 7f19746951eef4042bba033a5926bce9, type: 3}
   HitSound:
     Guid:

@@ -1,4 +1,6 @@
+using Quinn.DamageSystem;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -15,6 +17,9 @@ namespace Quinn
 
 		[field: SerializeField]
 		public float DashDuration { get; private set; } = 0.2f;
+
+		[SerializeField]
+		private bool DestroyDestructablesOnDash;
 
 		public bool IsMoving { get; private set; }
 		public bool IsDashing { get; private set; }
@@ -33,6 +38,8 @@ namespace Quinn
 		private bool _wasMovingLastFrame;
 		private float _dashEndTime;
 
+		private readonly List<Destructable> _overlappedDestructables = new();
+
 		private void Awake()
 		{
 			_rb = GetComponent<Rigidbody2D>();
@@ -44,6 +51,31 @@ namespace Quinn
 			if (IsDashing)
 			{
 				_velocitySum += DashSpeed * _dashDir;
+
+				if (DestroyDestructablesOnDash)
+				{
+					var results = new List<Collider2D>();
+					_rb.Overlap(results);
+
+					var dmg = GetComponent<Damage>();
+
+					foreach (var collider in results)
+					{
+						if (collider.TryGetComponent(out Destructable destructable))
+						{
+							if (!_overlappedDestructables.Contains(destructable))
+							{
+								Vector2 dir = (destructable.transform.position - transform.position).normalized;
+
+								collider.GetComponent<Damage>()
+									.TakeDamage(
+									new DamageInfo(1f, dir, dmg, 0 ));
+
+								_overlappedDestructables.Add(destructable);
+							}
+						}
+					}
+				}
 
 				if (Time.time > _dashEndTime)
 				{
@@ -127,6 +159,8 @@ namespace Quinn
 			{
 				IsDashing = false;
 				OnDashEnd?.Invoke();
+
+				_overlappedDestructables.Clear();
 			}
 		}
 

@@ -259,6 +259,10 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: DestroyDestructablesOnDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2960003836992930123, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: <DashDuration>k__BackingField
       value: 0.25
       objectReference: {fileID: 0}

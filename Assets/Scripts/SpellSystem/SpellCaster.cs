@@ -1,4 +1,5 @@
-﻿using Quinn.DamageSystem;
+﻿using FMODUnity;
+using Quinn.DamageSystem;
 using Quinn.Player;
 using Sirenix.OdinInspector;
 using System;
@@ -24,6 +25,9 @@ namespace Quinn.SpellSystem
 
 		[SerializeField]
 		private float CasterKnockbackScale = 1f;
+
+		[SerializeField, BoxGroup("Audio")]
+		private EventReference FullChargeSound;
 
 		[SerializeField, FoldoutGroup("Cast VFX")]
 		private GameObject FireCastVFX;
@@ -60,12 +64,14 @@ namespace Quinn.SpellSystem
 		public event Action<float> ManaDelta;
 
 		public event Action<Spell> OnSpellSpawned;
+		public event Action OnFullCharge;
 
 		private Knockback _knockback;
 		private readonly List<Spell> _spells = new();
 		private bool _waitedOneFrame;
 
 		private float _lastMana;
+		private bool _isFullCharge;
 
 		private void Awake()
 		{
@@ -77,17 +83,30 @@ namespace Quinn.SpellSystem
 		{
 			if (IsCharging)
 			{
-				float delta = ChargeRate * Time.deltaTime;
-				Charge += delta;
-				ChargeDelta?.Invoke(delta);
-
-				if (MaxCharge > -1f)
+				if (Charge < MaxCharge || MaxCharge < 0f)
 				{
-					Charge = Mathf.Min(Charge, MaxCharge + 1f);
+					float delta = ChargeRate * Time.deltaTime;
+					Charge += delta;
+					ChargeDelta?.Invoke(delta);
+
+					if (Charge >= MaxCharge && !_isFullCharge)
+					{
+						_isFullCharge = true;
+						OnFullCharge?.Invoke();
+
+						AudioManager.Play(FullChargeSound, transform.position);
+					}
+
+					if (MaxCharge > -1f)
+					{
+						Charge = Mathf.Min(Charge, MaxCharge + 1f);
+					}
 				}
 			}
 			else
 			{
+				_isFullCharge = false;
+
 				float delta = Charge > 0f ? DecayRate * Time.deltaTime : 0f;
 				Charge -= delta;
 				Charge = Mathf.Max(0f, Charge);
@@ -141,7 +160,7 @@ namespace Quinn.SpellSystem
 				IsCharging = false;
 
 				float max = spell.GetComponent<Spell>().MaxCharge;
-				if (Charge > max && !WillSpellFail)
+				if (Charge > max)
 				{
 					CastSpell(spell, target);
 					Charge = 0f;

@@ -100,9 +100,6 @@ namespace Quinn.Player
 			_collider = GetComponent<Collider2D>();
 			_damage = GetComponent<Damage>();
 
-			Caster.OnReleaseCharge += OnStopCharge;
-			Caster.OnCancelCharge += OnStopCharge;
-
 			Cursor.lockState = CursorLockMode.Confined;
 			Cursor.visible = false;
 
@@ -231,11 +228,6 @@ namespace Quinn.Player
 		{
 			Vector2 target = Crosshair.Instance.Position;
 			Caster.ReleaseCharge(Inventory.Instance.ActiveSpell.Prefab, target);
-		}
-
-		private void OnStopCharge(float charge)
-		{
-			Crosshair.Instance.SetCharge(0f);
 		}
 
 		private void OnInteract()

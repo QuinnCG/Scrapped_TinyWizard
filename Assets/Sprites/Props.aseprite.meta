@@ -129,7 +129,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 37
+      y: 39
       width: 3
       height: 9
     spriteID: d85fcdd9164be9941b70012619aa0aa3
@@ -140,7 +140,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 37}
+    uvTransform: {x: 4, y: 39}
   - name: Crate
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -149,7 +149,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 20
+      y: 22
       width: 6
       height: 9
     spriteID: d6228653840b65d4e954c590dba37325
@@ -160,19 +160,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 20}
-  - name: Crate_Parts
+    uvTransform: {x: 4, y: 22}
+  - name: Gravestone_01
     originalName: 
-    pivot: {x: 0.5, y: 0.25}
+    pivot: {x: 0.5, y: 0.1}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 8
-      height: 8
-    spriteID: 2e82099a733d0934598c7ed24aa4a440
+      width: 10
+      height: 10
+    spriteID: 76b5eac8457b35f4b9868ab7f671903f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -181,6 +181,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: CrateRemains
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 56
+      width: 6
+      height: 4
+    spriteID: d5eeeb1651f7ff14a8c94d6e0aa2538b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 56}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -218,20 +238,37 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   - layerIndex: 2
-    guid: -1549843742
-    name: Crate_Parts
+    guid: -1243694228
+    name: CrateRemains
     layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: Crate_Parts
+    - name: CrateRemains
       frameIndex: 0
       cellRect:
-        x: 12
+        x: 13
         y: 14
-        width: 8
-        height: 8
-      spriteId: 2e82099a733d0934598c7ed24aa4a440
+        width: 6
+        height: 4
+      spriteId: d5eeeb1651f7ff14a8c94d6e0aa2538b
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 3
+    guid: -2069814095
+    name: Gravestone_01
+    layerFlags: 2
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Gravestone_01
+      frameIndex: 0
+      cellRect:
+        x: 11
+        y: 15
+        width: 10
+        height: 10
+      spriteId: 76b5eac8457b35f4b9868ab7f671903f
     linkedCells: []
     parentIndex: -1
   platformSettings:

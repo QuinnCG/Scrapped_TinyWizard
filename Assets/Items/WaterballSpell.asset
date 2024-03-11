@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: Hurls a small ball of water.
   Icon: {fileID: 3020652772305744760, guid: 21af32736b34ff34c95260e6c875433a, type: 3}
   Prefab: {fileID: 4002628484351460420, guid: 655c955d43efe72418c5702c9a1e3e5e, type: 3}
+  ManaCost: 12
   Element: 2

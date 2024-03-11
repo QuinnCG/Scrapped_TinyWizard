@@ -1,4 +1,5 @@
 ﻿using Quinn.DamageSystem;
+using Quinn.Player;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace Quinn.SpellSystem
 	{
 		[SerializeField]
 		private float ChargeRate = 50f;
+
+		[SerializeField]
+		private float DecayRate = 150f;
 
 		[field: SerializeField, Required]
 		public Transform SpellOrigin { get; private set; }
@@ -47,14 +51,21 @@ namespace Quinn.SpellSystem
 		public float Charge { get; private set; }
 		public bool DidJustCastSpell { get; private set; }
 
+		public bool WillSpellFail { get; set; }
+		public float MaxCharge { get; set; } = -1f;
+
 		public event Action OnBeginCharge;
 		public event Action<float> OnReleaseCharge, OnCancelCharge;
+		public event Action<float> ChargeDelta;
+		public event Action<float> ManaDelta;
 
 		public event Action<Spell> OnSpellSpawned;
 
 		private Knockback _knockback;
 		private readonly List<Spell> _spells = new();
 		private bool _waitedOneFrame;
+
+		private float _lastMana;
 
 		private void Awake()
 		{
@@ -66,7 +77,31 @@ namespace Quinn.SpellSystem
 		{
 			if (IsCharging)
 			{
-				Charge += ChargeRate * Time.deltaTime;
+				float delta = ChargeRate * Time.deltaTime;
+				Charge += delta;
+				ChargeDelta?.Invoke(delta);
+
+				if (MaxCharge > -1f)
+				{
+					Charge = Mathf.Min(Charge, MaxCharge + 1f);
+				}
+			}
+			else
+			{
+				float delta = Charge > 0f ? DecayRate * Time.deltaTime : 0f;
+				Charge -= delta;
+				Charge = Mathf.Max(0f, Charge);
+
+				ChargeDelta?.Invoke(-delta);
+			}
+
+			if (MaxCharge > -1f && Charge > 0f && Charge < MaxCharge)
+			{
+				float spellCost = Inventory.Instance.ActiveSpell.ManaCost;
+				float mana = Mathf.Lerp(0f, spellCost, Charge / MaxCharge);
+
+				ManaDelta?.Invoke(-(mana - _lastMana));
+				_lastMana = mana;
 			}
 
 			if (_waitedOneFrame)
@@ -94,6 +129,7 @@ namespace Quinn.SpellSystem
 			{
 				IsCharging = true;
 				Charge = 0f;
+				_lastMana = 0f;
 				OnBeginCharge?.Invoke();
 			}
 		}
@@ -105,12 +141,12 @@ namespace Quinn.SpellSystem
 				IsCharging = false;
 
 				float max = spell.GetComponent<Spell>().MaxCharge;
-				if (Charge > max)
+				if (Charge > max && !WillSpellFail)
 				{
 					CastSpell(spell, target);
+					Charge = 0f;
 				}
 
-				Charge = 0f;
 				OnReleaseCharge?.Invoke(Charge);
 			}
 		}
@@ -121,6 +157,7 @@ namespace Quinn.SpellSystem
 			{
 				IsCharging = false;
 				Charge = 0f;
+				_lastMana = 0f;
 
 				OnCancelCharge?.Invoke(Charge);
 			}

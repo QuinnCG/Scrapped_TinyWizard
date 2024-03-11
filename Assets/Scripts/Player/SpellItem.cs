@@ -10,6 +10,8 @@ namespace Quinn.Player
 		[Required, AssetList(CustomFilterMethod = nameof(CustomFilterMethod), Path = "Prefabs/Spells")]
 		public GameObject Prefab;
 
+		public float ManaCost = 10f;
+
 		[HideInInspector]
 		public ElementType Element;
 

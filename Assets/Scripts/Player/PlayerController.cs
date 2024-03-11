@@ -30,6 +30,12 @@ namespace Quinn.Player
 		[SerializeField]
 		private float InteractRadius = 2f;
 
+		[field: SerializeField]
+		public float MaxMana { get; private set; } = 50f;
+
+		[SerializeField]
+		private float ManaRegenRate = 5f;
+
 		[SerializeField, Required, BoxGroup("Spell")]
 		private Transform Staff;
 
@@ -63,6 +69,7 @@ namespace Quinn.Player
 		[SerializeField, BoxGroup("SFX")]
 		private EventReference HurtSnapshot;
 
+		public float Mana { get; private set; }
 		public Vector2 Velocity => _movement.Velocity;
 		public Vector2 Center => _collider.bounds.center;
 		public SpellCaster Caster { get; private set; }
@@ -112,6 +119,9 @@ namespace Quinn.Player
 				DOVirtual.DelayedCall(2f, () => _hurtSnapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT), false);
 			};
 			GetComponent<Health>().OnDeath += OnDeath;
+
+			Mana = MaxMana;
+			Caster.ManaDelta += OnManaUpdate;
 		}
 
 		private void Start()
@@ -130,6 +140,14 @@ namespace Quinn.Player
 			CrosshairChargeUpdate();
 			StaffTransformUpdate();
 			CameraTargetUpdate();
+
+			float cost = Inventory.Instance.ActiveSpell.ManaCost;
+			Caster.WillSpellFail = Mana < cost;
+
+			if (!Caster.IsCharging)
+			{
+				Mana = Mathf.Min(Mana + (ManaRegenRate * Time.deltaTime), MaxMana);
+			}
 		}
 
 		private void OnDestroy()
@@ -157,6 +175,11 @@ namespace Quinn.Player
 		}
 
 		public Transform GetCameraTarget() => CameraTarget;
+
+		private void OnManaUpdate(float delta)
+		{
+			Mana = Mathf.Clamp(Mana + delta, 0f, MaxMana);
+		}
 
 		private void MoveUpdate()
 		{
@@ -200,6 +223,7 @@ namespace Quinn.Player
 
 		private void OnCastPress()
 		{
+			Caster.MaxCharge = Inventory.Instance.ActiveSpell.Prefab.GetComponent<Spell>().MaxCharge;
 			Caster.BeginCharge();
 		}
 
@@ -237,10 +261,7 @@ namespace Quinn.Player
 				Crosshair.Instance.SetAccuracy(spell.TargetRadius);
 			}
 
-			if (Caster.IsCharging)
-			{
-				Crosshair.Instance.SetCharge(Caster.Charge / spell.MaxCharge);
-			}
+			Crosshair.Instance.SetCharge(Caster.Charge / spell.MaxCharge);
 		}
 
 		private void StaffTransformUpdate()

@@ -18,14 +18,17 @@ namespace Quinn.UI
 		[SerializeField, Required]
 		private GameObject PauseMenu;
 
-		[SerializeField, Required, BoxGroup("Health")]
+		[SerializeField, Required, BoxGroup("Status")]
 		private Slider HealthBar;
 
-		[SerializeField, Required, BoxGroup("Health")]
+		[SerializeField, Required, BoxGroup("Status")]
 		private Health PlayerHealth;
 
-		[SerializeField, BoxGroup("Health")]
+		[SerializeField, BoxGroup("Status")]
 		private float PlayerHealthToWidthRatio = 1f;
+
+		[SerializeField, Required, BoxGroup("Status")]
+		private Slider ManaBar;
 
 		[SerializeField, Required, BoxGroup("Boss")]
 		private GameObject BossContainer;
@@ -69,6 +72,7 @@ namespace Quinn.UI
 		private void Update()
 		{
 			HealthBar.value = PlayerHealth.Percent;
+			ManaBar.value = PlayerController.Instance.Mana / PlayerController.Instance.MaxMana;
 
 			if (_bossHealth)
 			{

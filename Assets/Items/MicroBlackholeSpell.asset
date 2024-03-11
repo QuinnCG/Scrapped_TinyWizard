@@ -16,4 +16,5 @@ MonoBehaviour:
   Description: A small blackhole. Still packs a punch.
   Icon: {fileID: -8821514110489327780, guid: 21af32736b34ff34c95260e6c875433a, type: 3}
   Prefab: {fileID: 4002628484351460420, guid: c89f0fbe24cc1f742af0f7f6f3e460b2, type: 3}
+  ManaCost: 9
   Element: 64

@@ -126,7 +126,7 @@ namespace Quinn.AI.Enemies
 					new Tasks.FaceTarget(Player.transform),
 					new Composites.Selector()
 					{
-						new Tasks.TriggerAnim("SpewFire")
+						new Tasks.PlayAnim("SpewFire")
 						{
 							Conditionals = new()
 							{
@@ -134,7 +134,7 @@ namespace Quinn.AI.Enemies
 								new Conditionals.FirstPhase()
 							}
 						},
-						new Tasks.TriggerAnim("SpewFire")
+						new Tasks.PlayAnim("SpewFire")
 						{
 							Conditionals = new()
 							{
@@ -144,11 +144,11 @@ namespace Quinn.AI.Enemies
 						},
 						new Composites.Repeat(1, 2, new Conditionals.FirstPhase())
 						{
-							new Tasks.TriggerAnim("TossHead")
+							new Tasks.PlayAnim("TossHead")
 						},
 						new Composites.Repeat(2, 3, new Conditionals.SecondPhase())
 						{
-							new Tasks.TriggerAnim("TossHead")
+							new Tasks.PlayAnim("TossHead")
 						}
 					},
 					new Tasks.Wait(0.5f, 0.2f)

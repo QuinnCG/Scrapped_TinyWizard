@@ -37,6 +37,9 @@ namespace Quinn.AI.Enemies
 		[SerializeField, BoxGroup("Patrolling"), MinMaxSlider(0f, 10f, ShowFields = true)]
 		private Vector2 PatrolWaitDuration = new();
 
+		[SerializeField, BoxGroup("Animator")]
+		private string WalkKey = "IsMoving", ChaseKey = "IsMoving";
+
 		protected Vector2 TargetPosition { get; set; }
 
 		protected bool IsPlayerSpotted { get; private set; }
@@ -66,7 +69,7 @@ namespace Quinn.AI.Enemies
 
 			if (IsPlayerSpotted)
 			{
-				TargetPosition = base.TargetPos;
+				TargetPosition = TargetPos;
 
 				if (TargetDst > StoppingDistance)
 				{
@@ -90,7 +93,8 @@ namespace Quinn.AI.Enemies
 				}
 			}
 
-			Animator.SetBool("IsMoving", Movement.IsMoving);
+			string key = IsPlayerSpotted ? ChaseKey : WalkKey;
+			Animator.SetBool(key, Movement.IsMoving);
 		}
 
 		protected virtual bool ShouldSpotPlayer()

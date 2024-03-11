@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: <MoveSpeed>k__BackingField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4649226225175434076, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7294514811228691265, guid: a0d8ec60535e8d541a9f0fabc09db195, type: 3}
       propertyPath: m_Name
       value: Enemy

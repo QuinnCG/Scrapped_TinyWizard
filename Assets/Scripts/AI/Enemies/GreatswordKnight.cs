@@ -64,7 +64,7 @@ namespace Quinn.AI.Enemies
 			// Projectile attack
 			new Composites.Sequence(new Conditionals.Chance(0.3f), new Conditionals.Cooldown(7f))
 			{
-				new Tasks.TriggerAnim("ArcSlash"),
+				new Tasks.PlayAnim("ArcSlash"),
 				new Tasks.Wait(2f, 0.5f)
 			},
 			// Close melee attack
@@ -74,7 +74,7 @@ namespace Quinn.AI.Enemies
 				{
 					Services = new() { new Services.PlayAnim("IsMoving") }
 				},
-				new Tasks.TriggerAnim("Swing")
+				new Tasks.PlayAnim("Swing")
 			},
 			// Dash attack
 			new Composites.Sequence()
@@ -86,7 +86,7 @@ namespace Quinn.AI.Enemies
 						new Services.PlayAnim("IsDashing"),
 					}
 				},
-				new Tasks.TriggerAnim("QuickSwing"),
+				new Tasks.PlayAnim("QuickSwing"),
 				new Tasks.Wait(1f, 0.3f)
 			}
 		};

@@ -2,13 +2,13 @@
 
 namespace Quinn.AI.Tasks
 {
-	public class TriggerAnim : Task
+	public class PlayAnim : Task
 	{
 		public string Key { get; set; }
 
 		private float _endTime;
 
-		public TriggerAnim(string key)
+		public PlayAnim(string key)
 		{
 			Key = key;
 		}

@@ -6,6 +6,7 @@ using UnityEngine;
 namespace Quinn
 {
 	[RequireComponent(typeof(Collider2D))]
+	[RequireComponent(typeof(SaveHandle))]
 	public class ItemPickup : MonoBehaviour, IInteractable
 	{
 		[SerializeField, Required]
@@ -14,10 +15,24 @@ namespace Quinn
 		[SerializeField]
 		private int Count = 1;
 
+		private string _id;
+
+		private void Awake()
+		{
+			_id = GetComponent<SaveHandle>().ID;
+
+			if (SaveManager.Has(_id))
+			{
+				Destroy(gameObject);
+			}
+		}
+
 		public void OnInteract(PlayerController player)
 		{
 			HUDUI.Instance.DisplayItemPickedup(Item, Count);
 			Destroy(gameObject);
+
+			SaveManager.Save(_id);
 		}
 	}
 }

@@ -497,7 +497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultSpells:
   - {fileID: 11400000, guid: 17aaed03f4fb8b942b7667e7a7c63164, type: 2}
-  - {fileID: 11400000, guid: af8d8e895bee76e4d8dbadb7cd49cd4b, type: 2}
 --- !u!114 &8985563959999630003
 MonoBehaviour:
   m_ObjectHideFlags: 0

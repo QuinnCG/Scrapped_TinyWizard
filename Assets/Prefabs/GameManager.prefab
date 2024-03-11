@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3275869747604385055}
   - component: {fileID: 9050450153502404908}
   - component: {fileID: -7525991042175583378}
-  - component: {fileID: -3510697115525843998}
   - component: {fileID: -5300266685096042846}
+  - component: {fileID: 2112808292133461168}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -82,19 +82,6 @@ MonoBehaviour:
       Data3: 1666181051
       Data4: -405187604
     Path: event:/Music/FerrariaMines
---- !u!114 &-3510697115525843998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4585753393847781664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3708d0f5214a43a439448c732030d164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SaveData: []
 --- !u!114 &-5300266685096042846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +97,15 @@ MonoBehaviour:
   RoomGap: 1
   DefaultRoom: {fileID: 7571652563315209235, guid: 543683015598e674194bbd3b22694399, type: 3}
   TransitionMoveDistance: 4
+--- !u!114 &2112808292133461168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585753393847781664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3708d0f5214a43a439448c732030d164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

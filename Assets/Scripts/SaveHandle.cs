@@ -1,5 +1,5 @@
 ﻿using Sirenix.OdinInspector;
-using System;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Quinn
@@ -7,56 +7,22 @@ namespace Quinn
 	[ExecuteAlways]
 	public class SaveHandle : MonoBehaviour
 	{
-		[field: SerializeField]
-		public Guid GUID { get; private set; } = Guid.Empty;
-
 		[SerializeField, ReadOnly]
-		private string ID;
+		private string GUID;
 
-		[SerializeField]
-		private bool DestroyIfKeyFound;
+		public string ID => GUID;
 
-		[Button]
-		public void Regenerate()
+		private void Update()
 		{
-			GUID = Guid.NewGuid();
-			ID = GUID.ToString();
-		}
-
-		[Button("Reset")]
-		public void ResetGUID()
-		{
-			GUID = Guid.Empty;
-			ID = "No ID";
-		}
-
-		private void Awake()
-		{
-			if (DestroyIfKeyFound)
+#if UNITY_EDITOR
+			if (!PrefabStageUtility.GetCurrentPrefabStage())
 			{
-				Debug.Log($"Found key: {SaveManager.Contains(GUID, ID)}!");
-			}
-			
-			if (DestroyIfKeyFound && SaveManager.Contains(GUID, ID))
-			{
-				Destroy(gameObject);
-			}
-		}
-
-		private void Start()
-		{
-			if (GUID == Guid.Empty)
-			{
-				Regenerate();
-			}
-			else
-			{
-				ID = GUID.ToString();
-				if (GUID == Guid.Empty)
+				if (string.IsNullOrEmpty(GUID))
 				{
-					ResetGUID();
+					GUID = System.Guid.NewGuid().ToString();
 				}
 			}
+#endif
 		}
 	}
 }

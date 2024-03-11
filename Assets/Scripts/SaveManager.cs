@@ -1,118 +1,55 @@
-using Sirenix.OdinInspector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Quinn
 {
 	public class SaveManager : MonoBehaviour
 	{
-		[Serializable]
-		public class SaveEntry
-		{
-			[ReadOnly]
-			public Guid Guid;
+		public static SaveManager Instance { get; private set; }
 
-			[HorizontalGroup, ReadOnly]
-			public string Key;
-
-			[HorizontalGroup, ReadOnly]
-			public string Value;
-
-			public SaveEntry() { }
-			public SaveEntry(Guid key, string subkey, object value)
-			{
-				Guid = key;
-				Key = subkey;
-				Value = value?.ToString();
-			}
-		}
-
-		private static SaveManager _instance;
-
-		[SerializeField, ReadOnly]
-		private List<SaveEntry> SaveData;
-
-		private static readonly Dictionary<string, object> _entries = new();
+		private static readonly Dictionary<string, object> _data = new();
 
 		private void Awake()
 		{
-			_entries.Clear();
-			SaveData.Clear();
-			_instance = this;
-		}
-
-		public static bool Contains(Guid key, string subkey)
-		{
-			return _entries.ContainsKey(GenerateKey(key, subkey));
-		}
-
-		public static void Save<T>(Guid key, string subkey, T data)
-		{
-			string realKey = GenerateKey(key, subkey);
-
-			if (_entries.TryGetValue(realKey, out var _))
-			{
-				_entries[realKey] = data;
+			Instance = this;
 
 #if UNITY_EDITOR
-				var entry = _instance.SaveData.Where(x => x.Guid == key && x.Key == subkey).FirstOrDefault();
-				if (entry != null)
-				{
-					entry.Value = data.ToString();
-				}
+			_data.Clear();
 #endif
+		}
 
-				return;
+		public static void Save<T>(string id, T data)
+		{
+			if (Has(id))
+			{
+				_data[id] = data;
 			}
-
-			_entries.Add(realKey, data);
-
-#if UNITY_EDITOR
-			_instance.SaveData.Add(new SaveEntry(key, subkey, data));
-#endif
-		}
-		public static void Save<T>(Guid key, T data)
-		{
-			Save(key, string.Empty, data);
-		}
-		public static void Save(Guid key)
-		{
-			Save<object>(key, null);
-		}
-
-		public static void Delete(Guid key, string subkey)
-		{
-			if (Contains(key, subkey))
+			else
 			{
-				_entries.Remove(GenerateKey(key, subkey));
-
-#if UNITY_EDITOR
-				var entry = _instance.SaveData.Where(x => x.Guid == key && x.Key == subkey).FirstOrDefault();
-				if (entry != null)
-				{
-					_instance.SaveData.Remove(entry);
-				}
-#endif
+				_data.Add(id, data);
+			}
+		}
+		public static void Save(string id)
+		{
+			if (!Has(id))
+			{
+				_data.Add(id, null);
 			}
 		}
 
-		public static T Load<T>(Guid key, string subkey)
+		public static T Get<T>(string id)
 		{
-			Debug.Assert(Contains(key, subkey), $"SaveManager cannot find key '{GenerateKey(key, subkey)}'!");
-			Debug.Assert(_entries[GenerateKey(key, subkey)] is T, $"SaveManager cannot convert key '{GenerateKey(key, subkey)}' into type '{typeof(T)}'!");
-
-			return (T)_entries[GenerateKey(key, subkey)];
-		}
-		public static T Load<T>(Guid key)
-		{
-			return Load<T>(key, string.Empty);
+			return (T)_data[id];
 		}
 
-		private static string GenerateKey(Guid key, string subkey)
+		public static void Delete(string id)
 		{
-			return $"{key}.{subkey}";
+			_data.Remove(id);
+		}
+
+		public static bool Has(string id)
+		{
+			return _data.ContainsKey(id);
 		}
 	}
 }

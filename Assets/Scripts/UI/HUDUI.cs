@@ -107,7 +107,9 @@ namespace Quinn.UI
 
 			if (_isItemPickupOpen
 				&& (Input.GetKeyDown(KeyCode.Space)
-				|| Input.GetMouseButtonDown(0)))
+				|| Input.GetMouseButtonDown(0)
+				|| Input.GetKeyDown(KeyCode.E)
+				|| Input.GetKeyDown(KeyCode.F)))
 			{
 				CloseItemPickup();
 			}

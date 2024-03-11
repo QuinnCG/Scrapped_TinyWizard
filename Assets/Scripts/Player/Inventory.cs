@@ -66,6 +66,12 @@ namespace Quinn.Player
 			}
 
 			_inventory.Add(item, amount);
+
+			// This is a temporary fix because there is no proper inventory UI.
+			if (item is SpellItem spell)
+			{
+				EquipSpell(spell);
+			}
 		}
 
 		public void Remove(Item item, int amount)

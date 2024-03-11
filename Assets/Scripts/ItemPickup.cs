@@ -29,10 +29,12 @@ namespace Quinn
 
 		public void OnInteract(PlayerController player)
 		{
-			HUDUI.Instance.DisplayItemPickedup(Item, Count);
-			Destroy(gameObject);
+			Inventory.Instance.Add(Item, Count);
 
+			HUDUI.Instance.DisplayItemPickedup(Item, Count);
 			SaveManager.Save(_id);
+
+			Destroy(gameObject);
 		}
 	}
 }

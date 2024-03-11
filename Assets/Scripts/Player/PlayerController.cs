@@ -24,8 +24,11 @@ namespace Quinn.Player
 	{
 		public static PlayerController Instance { get; private set; }
 
-		[SerializeField, BoxGroup("Movement")]
+		[SerializeField]
 		private float DashCooldown = 0.2f;
+
+		[SerializeField]
+		private float InteractRadius = 2f;
 
 		[SerializeField, Required, BoxGroup("Spell")]
 		private Transform Staff;
@@ -99,6 +102,7 @@ namespace Quinn.Player
 			_input.OnDash += OnDash;
 			_input.OnCastPress += OnCastPress;
 			_input.OnCastRelease += OnCastRelease;
+			_input.OnInteract += OnInteract;
 
 			_movement.OnDashEnd += OnDashEnd;
 
@@ -208,6 +212,20 @@ namespace Quinn.Player
 		private void OnStopCharge(float charge)
 		{
 			Crosshair.Instance.SetCharge(0f);
+		}
+
+		private void OnInteract()
+		{
+			var colliders = Physics2D.OverlapCircleAll(transform.position, InteractRadius, GameManager.Instance.InteractableLayer);
+
+			foreach (var collider in colliders)
+			{
+				if (collider.TryGetComponent(typeof(IInteractable), out var component))
+				{
+					var interactable = component as IInteractable;
+					interactable.OnInteract(this);
+				}
+			}
 		}
 
 		private void CrosshairChargeUpdate()

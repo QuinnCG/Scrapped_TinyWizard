@@ -8,6 +8,7 @@ namespace Quinn
 	{
 		public const string ObstacleLayerName = "Obstacle";
 		public const string CharacterLayerName = "Character";
+		public const string InteractableLayerName = "Interactable";
 
 		public static GameManager Instance { get; private set; }
 
@@ -16,6 +17,9 @@ namespace Quinn
 
 		[field: SerializeField]
 		public LayerMask CharacterLayer { get; private set; }
+
+		[field: SerializeField]
+		public LayerMask InteractableLayer { get; private set; }
 
 		public bool IsEasyMode { get; private set; }
 

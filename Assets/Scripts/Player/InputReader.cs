@@ -24,6 +24,7 @@ namespace Quinn.Player
 
 		public event Action OnDash;
 		public event Action OnCastPress, OnCastRelease;
+		public event Action OnInteract;
 
 		private readonly HashSet<InputDisablerHandle> _disablerHandles = new();
 
@@ -74,6 +75,12 @@ namespace Quinn.Player
 				else if (Input.GetMouseButtonUp(0))
 				{
 					OnCastRelease?.Invoke();
+				}
+				
+				if (Input.GetKeyDown(KeyCode.E) 
+					|| Input.GetKeyDown(KeyCode.F))
+				{
+					OnInteract?.Invoke();
 				}
 			}
 		}

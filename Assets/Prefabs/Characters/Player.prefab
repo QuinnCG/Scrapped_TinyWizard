@@ -411,6 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DashCooldown: 0.3
+  InteractRadius: 1
   Staff: {fileID: 7796643680482403220}
   StaffOffset: 0.3
   StaffOrigin: {fileID: 3118102807043325839}

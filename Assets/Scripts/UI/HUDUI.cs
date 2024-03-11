@@ -13,6 +13,9 @@ namespace Quinn.UI
 	{
 		public static HUDUI Instance { get; private set; }
 
+		[SerializeField, Required]
+		private GameObject PauseMenu;
+
 		[SerializeField, Required, BoxGroup("Health")]
 		private Slider HealthBar;
 
@@ -31,11 +34,14 @@ namespace Quinn.UI
 		[SerializeField, Required, BoxGroup("Boss")]
 		private Slider BossBar;
 
-		[SerializeField, Required]
-		private GameObject PauseMenu;
-
-		[SerializeField, Required]
+		[SerializeField, Required, BoxGroup("Inventory")]
 		private GameObject SpellMenu;
+
+		[SerializeField, Required, BoxGroup("Inventory")]
+		private GameObject ItemPickupNotification;
+
+		[SerializeField, Required, BoxGroup("Inventory")]
+		private GameObject ItemConsumedNotification;
 
 		private Health _bossHealth;
 		private RectTransform _playerHealthBarRect;
@@ -118,6 +124,16 @@ namespace Quinn.UI
 			_bossHealth = null;
 			BossTitle.text = "Boss Title";
 			BossContainer.SetActive(false);
+		}
+
+		public void DisplayItemPickedup(Item item, int count = 1)
+		{
+			Debug.Log($"<b>Item has been picked up: {item.Name}!</b>");
+		}
+
+		public void DisplayItemConsumed(Item item)
+		{
+			Debug.Log($"<b>Item has been consumed: {item.Name}!</b>");
 		}
 
 		private void OnMaxChange(float max)

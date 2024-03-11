@@ -1,3 +1,5 @@
+using DG.Tweening;
+using FMODUnity;
 using Quinn.DamageSystem;
 using Quinn.Player;
 using Sirenix.OdinInspector;
@@ -43,11 +45,17 @@ namespace Quinn.UI
 		[SerializeField, Required, BoxGroup("Inventory")]
 		private GameObject ItemConsumedNotification;
 
+		[SerializeField]
+		private EventReference ItemPickupSound;
+
 		private Health _bossHealth;
 		private RectTransform _playerHealthBarRect;
 
 		private bool _isSpellMenuOpen;
 		private InputReader.InputDisablerHandle _spellMenuInputHandle;
+
+		private bool _isItemPickupOpen;
+		private InputReader.InputDisablerHandle _itemPickupInputHandle;
 
 		private void Awake()
 		{
@@ -96,6 +104,13 @@ namespace Quinn.UI
 					Cursor.lockState = CursorLockMode.Confined;
 				}
 			}
+
+			if (_isItemPickupOpen
+				&& (Input.GetKeyDown(KeyCode.Space)
+				|| Input.GetMouseButtonDown(0)))
+			{
+				CloseItemPickup();
+			}
 		}
 
 		public static void ShowCursor()
@@ -128,7 +143,25 @@ namespace Quinn.UI
 
 		public void DisplayItemPickedup(Item item, int count = 1)
 		{
-			Debug.Log($"<b>Item has been picked up: {item.Name}!</b>");
+			if (_isItemPickupOpen)
+			{
+				CloseItemPickup();
+			}
+
+			_isItemPickupOpen = true;
+
+			AudioManager.Play(ItemPickupSound, PlayerController.Instance.transform.position);
+
+			var text = ItemPickupNotification.GetComponentInChildren<TextMeshProUGUI>();
+			string itemColor = item is Item ? "yellow" : "purple";
+			text.text = $"Found\n <color={itemColor}>{item.Name}</color> \n<color=grey>{count}x</color>";
+
+			ItemPickupNotification.SetActive(true);
+			ItemPickupNotification.GetComponent<RectTransform>().DOScale(0f, 0.2f)
+				.From()
+				.SetEase(Ease.OutBack);
+
+			_itemPickupInputHandle = InputReader.Instance.DisableInput(allowMovement: true);
 		}
 
 		public void DisplayItemConsumed(Item item)
@@ -142,6 +175,24 @@ namespace Quinn.UI
 			size.x = max * PlayerHealthToWidthRatio;
 
 			_playerHealthBarRect.sizeDelta = size;
+		}
+
+		private void CloseItemPickup()
+		{
+			if (_isItemPickupOpen)
+			{
+				_isItemPickupOpen = false;
+
+				var rect = ItemPickupNotification.GetComponent<RectTransform>();
+				rect.DOScale(0f, 0.2f)
+					.onComplete += () =>
+					{
+						ItemPickupNotification.SetActive(false);
+						rect.localScale = Vector3.one;
+					};
+
+				InputReader.Instance.EnableInput(_itemPickupInputHandle);
+			}
 		}
 	}
 }

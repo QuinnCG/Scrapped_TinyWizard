@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7e77445ff34ec44a6085f2edb53595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WriteInterval: 0.05
+  WriteInterval: 0.02
   Container: {fileID: 7314234147970044075}
   Speaker: {fileID: 3101782900675092742}
   Dialogue: {fileID: 2924337446080850684}

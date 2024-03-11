@@ -128,8 +128,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 20
-      y: 4
+      x: 4
+      y: 37
       width: 3
       height: 9
     spriteID: d85fcdd9164be9941b70012619aa0aa3
@@ -140,10 +140,10 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 20, y: 4}
+    uvTransform: {x: 4, y: 37}
   - name: Crate
     originalName: 
-    pivot: {x: 0.5, y: 0.16666667}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -151,7 +151,7 @@ ScriptedImporter:
       x: 4
       y: 20
       width: 6
-      height: 6
+      height: 9
     spriteID: d6228653840b65d4e954c590dba37325
     spriteBone: []
     spriteOutline: []
@@ -211,9 +211,9 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 13
-        y: 15
+        y: 16
         width: 6
-        height: 6
+        height: 9
       spriteId: d6228653840b65d4e954c590dba37325
     linkedCells: []
     parentIndex: -1

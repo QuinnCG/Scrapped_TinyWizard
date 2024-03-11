@@ -68,6 +68,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffc3a41df0738c4e999fe68870dc69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GraveyardAmbience:
+    Guid:
+      Data1: -1833555163
+      Data2: 1223446632
+      Data3: 1296770182
+      Data4: -1492972447
+    Path: event:/Ambience/MalusGraveyard
   MineAmbience:
     Guid:
       Data1: 1754582817
@@ -75,6 +82,13 @@ MonoBehaviour:
       Data3: 593233844
       Data4: 892336386
     Path: event:/Ambience/FerrariaMines
+  GraveyardMusic:
+    Guid:
+      Data1: -671351201
+      Data2: 1273600919
+      Data3: -33707075
+      Data4: 1980651025
+    Path: event:/Music/MalusGraveyard
   MineMusic:
     Guid:
       Data1: -1498131914
@@ -95,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomGap: 1
-  DefaultRoom: {fileID: 7571652563315209235, guid: 543683015598e674194bbd3b22694399, type: 3}
+  DefaultRoom: {fileID: 1467078256656380338, guid: d0652cbdaa2648246bc757d83ad97cc2, type: 3}
   TransitionMoveDistance: 4
 --- !u!114 &2112808292133461168
 MonoBehaviour:

@@ -12,7 +12,13 @@ namespace Quinn
 		public static AudioManager Instance { get; private set; }
 
 		[SerializeField, FoldoutGroup("Ambience")]
+		private EventReference GraveyardAmbience;
+
+		[SerializeField, FoldoutGroup("Ambience")]
 		private EventReference MineAmbience;
+
+		[SerializeField, FoldoutGroup("Music")]
+		private EventReference GraveyardMusic;
 
 		[SerializeField, FoldoutGroup("Music")]
 		private EventReference MineMusic;
@@ -97,6 +103,7 @@ namespace Quinn
 			EventReference ambience = type switch
 			{
 				RegionType.None => throw new Exception("Cannot set region type to 'None'!"),
+				RegionType.Graveyard => GraveyardAmbience,
 				RegionType.Mine => MineAmbience,
 				_ => throw new NotImplementedException($"Ambience is not implemented for region: '{type}'!")
 			};
@@ -107,6 +114,7 @@ namespace Quinn
 
 			EventReference music = type switch
 			{
+				RegionType.Graveyard => GraveyardMusic,
 				RegionType.Mine => MineMusic,
 				_ => throw new NotImplementedException()
 			};

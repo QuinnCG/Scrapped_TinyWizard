@@ -3,6 +3,7 @@
 	public enum RegionType
 	{
 		None = -1,
-		Mine = 0
+		Graveyard = 0,
+		Mine = 1
 	}
 }

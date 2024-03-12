@@ -55,7 +55,7 @@ namespace Quinn.SpellSystem
 		public float Charge { get; private set; }
 		public bool DidJustCastSpell { get; private set; }
 
-		public bool WillSpellFail { get; set; }
+		public bool CanCharge { get; set; }
 		public float MaxCharge { get; set; } = -1f;
 
 		public event Action OnBeginCharge;
@@ -83,7 +83,7 @@ namespace Quinn.SpellSystem
 		{
 			if (IsCharging)
 			{
-				if (Charge < MaxCharge || MaxCharge < 0f)
+				if ((Charge < MaxCharge && CanCharge) || MaxCharge < 0f)
 				{
 					float delta = ChargeRate * Time.deltaTime;
 					Charge += delta;

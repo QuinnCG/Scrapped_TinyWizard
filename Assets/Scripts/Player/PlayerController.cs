@@ -139,7 +139,7 @@ namespace Quinn.Player
 			CameraTargetUpdate();
 
 			float cost = Inventory.Instance.ActiveSpell.ManaCost;
-			Caster.WillSpellFail = Mana < cost;
+			Caster.CanCharge = Mana >= cost;
 
 			if (!Caster.IsCharging)
 			{

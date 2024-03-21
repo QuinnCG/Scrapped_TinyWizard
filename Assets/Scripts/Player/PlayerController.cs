@@ -183,7 +183,7 @@ namespace Quinn.Player
 			_movement.Move(_input.MoveInput);
 
 			var dirToCrosshair = Crosshair.Instance.Position - Center;
-			_movement.SetFacingDirection(dirToCrosshair.normalized.x);
+			_movement.SetFacingDirection(dirToCrosshair.x);
 		}
 
 		private void OnDash()

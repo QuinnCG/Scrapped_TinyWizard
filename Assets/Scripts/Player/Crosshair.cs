@@ -10,13 +10,7 @@ namespace Quinn.Player
 		[SerializeField, Required]
 		private GameObject Prefab;
 
-		public Vector2 Position
-		{
-			get
-			{
-				return _crosshair ? _crosshair.transform.position : Vector2.zero;
-			}
-		}
+		public Vector2 Position { get; private set; }
 
 		private Camera _main;
 
@@ -42,6 +36,8 @@ namespace Quinn.Player
 			{
 				Vector2 pos = GetMousePos();
 				_crosshair.transform.position = pos;
+
+				Position = pos;
 			}
 		}
 

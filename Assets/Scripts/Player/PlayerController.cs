@@ -138,8 +138,7 @@ namespace Quinn.Player
 			StaffTransformUpdate();
 			CameraTargetUpdate();
 
-			float cost = Inventory.Instance.ActiveSpell.ManaCost;
-			Caster.CanCharge = Mana >= cost;
+			Caster.CanCharge = Mana > 0f;
 
 			if (!Caster.IsCharging)
 			{

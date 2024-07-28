@@ -25,7 +25,7 @@ namespace Quinn
 		public bool IsDashing { get; private set; }
 
 		public float FacingDirection { get; private set; } = 1f;
-		public Vector2 Velocity => _rb.velocity;
+		public Vector2 Velocity => _rb.linearVelocity;
 		public Vector2 MoveDirection { get; private set; }
 
 		public event Action OnDashStart, OnDashEnd;
@@ -86,7 +86,7 @@ namespace Quinn
 
 		private void LateUpdate()
 		{
-			_rb.velocity = _velocitySum;
+			_rb.linearVelocity = _velocitySum;
 			_velocitySum = Vector2.zero;
 
 			IsMoving = _wasMovingLastFrame;

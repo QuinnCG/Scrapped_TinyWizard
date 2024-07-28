@@ -105,6 +105,7 @@ ScriptedImporter:
     pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 0
@@ -126,6 +127,7 @@ ScriptedImporter:
     pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -146,6 +148,7 @@ ScriptedImporter:
     pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -172,6 +175,7 @@ ScriptedImporter:
     cells:
     - name: WoodDoor_Vertical_Closed
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 8
@@ -189,6 +193,7 @@ ScriptedImporter:
     cells:
     - name: WoodDoor_Vertical_Open
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 8
         y: 8

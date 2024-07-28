@@ -51684,6 +51684,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeadlessKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 9000494780200419628, guid: 949260ed3d684de498d9739314875e43, type: 3}
+      propertyPath: m_Size.x
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 9000494780200419628, guid: 949260ed3d684de498d9739314875e43, type: 3}
+      propertyPath: m_Size.y
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 9000494780200419628, guid: 949260ed3d684de498d9739314875e43, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1058792100630503337, guid: 337af79c4b5eabb4898a19dd282ce1f1, type: 3}
+    - target: {fileID: 9000494780200419628, guid: 949260ed3d684de498d9739314875e43, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

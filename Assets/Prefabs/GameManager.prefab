@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomGap: 1
-  DefaultRoom: {fileID: 1467078256656380338, guid: d0652cbdaa2648246bc757d83ad97cc2, type: 3}
+  DefaultRoom: {fileID: 9056660052262317397, guid: c4ce00d4f5de70c4ea0d1fa4e88255c2, type: 3}
   TransitionMoveDistance: 4
 --- !u!114 &2112808292133461168
 MonoBehaviour:

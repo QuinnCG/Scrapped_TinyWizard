@@ -15,7 +15,7 @@ namespace Quinn.SpellSystem
 		public event Action OnDestroyed;
 
 		public Rigidbody2D Rigidbody { get; private set; }
-		public Vector2 Velocity => Rigidbody.velocity;
+		public Vector2 Velocity => Rigidbody.linearVelocity;
 
 		private Vector2 _dir;
 
@@ -26,7 +26,7 @@ namespace Quinn.SpellSystem
 
 		private void Update()
 		{
-			Rigidbody.velocity = _dir * Info.Speed;
+			Rigidbody.linearVelocity = _dir * Info.Speed;
 		}
 
 		protected virtual void OnTriggerEnter2D(Collider2D collision)
